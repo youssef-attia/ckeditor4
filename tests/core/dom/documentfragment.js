@@ -100,7 +100,7 @@
 				ct.append( frag );
 				assert.areSame( 'text\t ', ct.getText() );
 			} : function() {
-				var element = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<div id="trimTarget">\t\ntext\t\n</div>', 'safe constant') ),
+				var element = CKEDITOR.dom.element.createFromHtml( '<div id="trimTarget">\t\ntext\t\n</div>' ),
 					frag = new CKEDITOR.dom.documentFragment( CKEDITOR.document );
 
 				element.moveChildren( frag );
@@ -125,7 +125,7 @@
 				ct.append( frag );
 				assert.areSame( ' \ttext', ct.getText() );
 			} : function() {
-				var element = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<div id="trimTarget">\t\ntext\t\n</div>', 'safe constant') ),
+				var element = CKEDITOR.dom.element.createFromHtml( '<div id="trimTarget">\t\ntext\t\n</div>' ),
 					frag = new CKEDITOR.dom.documentFragment( CKEDITOR.document );
 
 				element.moveChildren( frag );
@@ -150,7 +150,7 @@
 				ct.append( frag );
 				assert.areSame( 'text', ct.getText() );
 			} : function() {
-				var element = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<div id="trimTarget">\t\ntext\t\n</div>', 'safe constant') ),
+				var element = CKEDITOR.dom.element.createFromHtml( '<div id="trimTarget">\t\ntext\t\n</div>' ),
 					frag = new CKEDITOR.dom.documentFragment( CKEDITOR.document );
 
 				element.moveChildren( frag );
@@ -254,8 +254,8 @@
 		'test getHtml': function() {
 			var frag = new CKEDITOR.dom.documentFragment( CKEDITOR.document );
 
-			CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<b>foo</b>', 'safe constant') ).appendTo( frag );
-			CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<i>bar</i>', 'safe constant') ).appendTo( frag );
+			CKEDITOR.dom.element.createFromHtml( '<b>foo</b>' ).appendTo( frag );
+			CKEDITOR.dom.element.createFromHtml( '<i>bar</i>' ).appendTo( frag );
 
 			assert.areSame( '<b>foo</b><i>bar</i>', bender.tools.fixHtml( frag.getHtml(), 1, 1 ), 'HTML of documentFragment' );
 		},
@@ -276,8 +276,8 @@
 		'test clone': function() {
 			var frag = new CKEDITOR.dom.documentFragment( CKEDITOR.document );
 
-			CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<b>foo</b>', 'safe constant') ).appendTo( frag );
-			CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<i>bar</i>', 'safe constant') ).appendTo( frag );
+			CKEDITOR.dom.element.createFromHtml( '<b>foo</b>' ).appendTo( frag );
+			CKEDITOR.dom.element.createFromHtml( '<i>bar</i>' ).appendTo( frag );
 
 			var clone = frag.clone();
 
@@ -288,8 +288,8 @@
 		'test clone with children': function() {
 			var frag = new CKEDITOR.dom.documentFragment( CKEDITOR.document );
 
-			CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<b>foo</b>', 'safe constant') ).appendTo( frag );
-			CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<i id="bar">bar</i>', 'safe constant') ).appendTo( frag );
+			CKEDITOR.dom.element.createFromHtml( '<b>foo</b>' ).appendTo( frag );
+			CKEDITOR.dom.element.createFromHtml( '<i id="bar">bar</i>' ).appendTo( frag );
 
 			var clone = frag.clone( 1 );
 
@@ -301,7 +301,7 @@
 		'test clone with children and ids': function() {
 			var frag = new CKEDITOR.dom.documentFragment( CKEDITOR.document );
 
-			CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<b id="foo">foo</b>', 'safe constant') ).appendTo( frag );
+			CKEDITOR.dom.element.createFromHtml( '<b id="foo">foo</b>' ).appendTo( frag );
 
 			var clone = frag.clone( 1, 1 );
 
@@ -312,7 +312,7 @@
 		'test clone with html5': function() {
 			var frag = new CKEDITOR.dom.documentFragment( CKEDITOR.document );
 
-			CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<figure>foo</figure>', 'safe constant') ).appendTo( frag );
+			CKEDITOR.dom.element.createFromHtml( '<figure>foo</figure>' ).appendTo( frag );
 
 			var clone = frag.clone( 1 );
 

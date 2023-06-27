@@ -257,7 +257,7 @@
 			if ( !context && context !== null )
 				context = editor.editable().getName();
 
-			return CKEDITOR.tools.htmlSafeByReview(editor.fire( 'toHtml', {
+			return editor.fire( 'toHtml', {
 				dataValue: data,
 				context: context,
 				fixForBody: fixForBody,
@@ -265,7 +265,7 @@
 				filter: filter || editor.filter,
 				enterMode: enterMode || editor.enterMode,
 				protectedWhitespaces: protectedWhitespaces
-			} ).dataValue, 'sanitized');
+			} ).dataValue;
 		},
 
 		/**
@@ -940,7 +940,7 @@
 		// to avoid loosing them (of course, IE related).
 		// Note that we use a different tag for comments, as we need to
 		// transform them when applying filters.
-		data = data.toString().replace( ( /<!--[\s\S]*?-->/g ), function( match ) {
+		data = data.replace( ( /<!--[\s\S]*?-->/g ), function( match ) {
 			return '<!--{cke_temp_' + randomNumber + 'comment}' + ( protectedHtml.push( match ) - 1 ) + '-->';
 		} );
 

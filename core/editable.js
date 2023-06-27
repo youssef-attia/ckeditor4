@@ -855,7 +855,7 @@
 				}, this );
 
 				this.attachListener( editor, 'afterSetData', function() {
-					this.setData(CKEDITOR.tools.htmlSafeByReview(editor.getData( 1 ), 'controlled output'));
+					this.setData(editor.getData( 1 ));
 				}, this );
 				this.attachListener( editor, 'loadSnapshot', function( evt ) {
 					this.setData( evt.data, 1 );
@@ -1953,7 +1953,7 @@
 			var doc = range.document,
 				wrapper = doc.createElement( 'body' );
 
-			wrapper.setHtml( data );
+			wrapper.setHtml( CKEDITOR.tools.htmlSafeByReview(data, 'sanitized') );
 
 			// Eventually remove the temporaries.
 			if ( protect ) {
