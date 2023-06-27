@@ -727,7 +727,7 @@
 		/**
 		 * @property {CKEDITOR.dom.element} wrapper An element created for wrapping the progress bar.
 		 */
-		this.wrapper = CKEDITOR.dom.element.createFromHtml( wrapperHtml || '<div class="cke_loader"></div>' );
+		this.wrapper = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview(wrapperHtml || '<div class="cke_loader"></div>', 'safe const') );
 	}
 
 	ProgressReporter.prototype = {

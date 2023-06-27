@@ -506,8 +506,8 @@ CKEDITOR.dom.range = function( root ) {
 
 					// TopLeft may simply not exist if commonLevel == maxLevel or may be a text node.
 					if ( topLeft && topLeft.type == CKEDITOR.NODE_ELEMENT ) {
-						var span = CKEDITOR.dom.element.createFromHtml( '<span ' +
-							'data-cke-bookmark="1" style="display:none">&nbsp;</span>', range.document );
+						var span = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<span ' +
+							'data-cke-bookmark="1" style="display:none">&nbsp;</span>', 'safe const'), range.document );
 						span.insertAfter( topLeft );
 						topLeft.mergeSiblings( false );
 						range.moveToBookmark( { startNode: span } );

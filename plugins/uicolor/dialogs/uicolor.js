@@ -126,7 +126,7 @@ CKEDITOR.dialog.add( 'uicolor', function( editor ) {
 
 		} else {
 			$doc.getById( highlightedColorId ).removeStyle( 'background-color' );
-			$doc.getById( highlightedColorTextId ).setHtml( '&nbsp;' );
+			$doc.getById( highlightedColorTextId ).setHtml( CKEDITOR.tools.htmlSafeByReview('&nbsp;', 'safe constant'));
 		}
 	}
 

@@ -8,7 +8,7 @@
 		// Constructs the HTML view of the specified templates data.
 		function renderTemplatesList( container, templatesDefinitions ) {
 			// clear loading wait text.
-			container.setHtml( '' );
+			container.setHtml( CKEDITOR.tools.htmlSafeByReview('', 'empty'));
 
 			for ( var i = 0, totalDefs = templatesDefinitions.length; i < totalDefs; i++ ) {
 				var definition = CKEDITOR.getTemplates( templatesDefinitions[ i ] ),

@@ -176,7 +176,7 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;
 			'</div>';
 
 	function buildDialog( editor ) {
-		var element = CKEDITOR.dom.element.createFromHtml( CKEDITOR.addTemplate( 'dialog', templateSource ).output( {
+		var element = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview(CKEDITOR.addTemplate( 'dialog', templateSource ).output( {
 			id: CKEDITOR.tools.getNextNumber(),
 			editorId: editor.id,
 			langDir: editor.lang.dir,
@@ -184,7 +184,7 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;
 			editorDialogClass: 'cke_editor_' + editor.name.replace( /\./g, '\\.' ) + '_dialog',
 			closeTitle: editor.lang.common.close,
 			hidpi: CKEDITOR.env.hidpi ? 'cke_hidpi' : ''
-		} ) );
+		} ), 'safe template') );
 
 		// TODO: Change this to getById(), so it'll support custom templates.
 		var body = element.getChild( [ 0, 0, 0, 0, 0 ] ),
@@ -197,12 +197,12 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;
 		// IFrame shim for dialog that masks activeX in IE. (https://dev.ckeditor.com/ticket/7619)
 		if ( CKEDITOR.env.ie && !CKEDITOR.env.quirks && !CKEDITOR.env.edge ) {
 			var src = 'javascript:void(function(){' + encodeURIComponent( 'document.open();(' + CKEDITOR.tools.fixDomain + ')();document.close();' ) + '}())', // jshint ignore:line
-				iframe = CKEDITOR.dom.element.createFromHtml( '<iframe' +
+				iframe = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview( '<iframe' +
 					' frameBorder="0"' +
 					' class="cke_iframe_shim"' +
 					' src="' + src + '"' +
 					' tabIndex="-1"' +
-					'></iframe>' );
+					'></iframe>', 'template') );
 			iframe.appendTo( body.getParent() );
 		}
 
@@ -679,7 +679,7 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;
 				widths: [],
 				children: definition.buttons
 			}, buttonsHtml ).getChild();
-		this.parts.footer.setHtml( buttonsHtml.join( '' ) );
+		this.parts.footer.setHtml( CKEDITOR.tools.htmlSafeByReview(buttonsHtml.join( '' ), 'safe constructioin') );
 
 		for ( i = 0; i < buttons.length; i++ )
 			this._.buttons[ buttons[ i ].id ] = buttons[ i ];
@@ -1213,13 +1213,13 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;
 			}
 
 			// Create the HTML for the tab and the content block.
-			var page = CKEDITOR.dom.element.createFromHtml( pageHtml.join( '' ) );
+			var page = CKEDITOR.dom.element.createFromHtml(CKEDITOR.tools.htmlSafeByReview(pageHtml.join( '' ), 'safe construction') );
 			page.setAttribute( 'role', 'tabpanel' );
 			page.setStyle( 'min-height', '100%' );
 
 			var env = CKEDITOR.env,
 				tabId = 'cke_' + contents.id + '_' + CKEDITOR.tools.getNextNumber(),
-				tab = CKEDITOR.dom.element.createFromHtml( [
+				tab = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview( [
 					'<a class="cke_dialog_tab"',
 					( this._.pageCount > 0 ? ' cke_last' : 'cke_first' ),
 					titleHtml,
@@ -1231,7 +1231,7 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;
 					' role="tab">',
 					contents.label,
 					'</a>'
-				].join( '' ) );
+				].join( '' ), 'template') );
 
 			page.setAttribute( 'aria-labelledby', tabId );
 
@@ -1531,7 +1531,7 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;
 
 					this.parts.spinner = CKEDITOR.document.createElement( 'div', spinnerDef );
 
-					this.parts.spinner.setHtml( '&#8987;' );
+					this.parts.spinner.setHtml( CKEDITOR.tools.htmlSafeByReview('&#8987;', 'safe const') );
 					this.parts.spinner.appendTo( this.parts.title, 1 );
 				}
 
@@ -2163,7 +2163,7 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;
 
 			// Shim to help capturing "mousemove" over iframe.
 			if ( iframeDialog ) {
-				dialogCover = CKEDITOR.dom.element.createFromHtml( '<div class="cke_dialog_resize_cover" style="height: 100%; position: absolute; width: 100%; left:0; top:0;"></div>' );
+				dialogCover = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<div class="cke_dialog_resize_cover" style="height: 100%; position: absolute; width: 100%; left:0; top:0;"></div>', 'safe const') );
 				content.append( dialogCover );
 			}
 
@@ -2199,7 +2199,7 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;
 				direction = ' cke_resizer_horizontal';
 			else if ( resizable == CKEDITOR.DIALOG_RESIZE_HEIGHT )
 				direction = ' cke_resizer_vertical';
-			var resizer = CKEDITOR.dom.element.createFromHtml(
+			var resizer = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview(
 				'<div' +
 				' class="cke_resizer' + direction + ' cke_resizer_' + editor.lang.dir + '"' +
 				' title="' + CKEDITOR.tools.htmlEncode( editor.lang.common.resize ) + '"' +
@@ -2207,7 +2207,7 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;
 				// BLACK LOWER RIGHT TRIANGLE (ltr)
 				// BLACK LOWER LEFT TRIANGLE (rtl)
 				( editor.lang.dir == 'ltr' ? '\u25E2' : '\u25E3' ) +
-				'</div>' );
+				'</div>', 'safe template' ) );
 			dialog.parts.footer.append( resizer, 1 );
 		} );
 		editor.on( 'destroy', function() {
@@ -2355,7 +2355,7 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;
 
 			html.push( '</div>' );
 
-			coverElement = CKEDITOR.dom.element.createFromHtml( html.join( '' ) );
+			coverElement = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview(html.join( '' ), 'safe template construction') );
 			coverElement.setOpacity( backgroundCoverOpacity !== undefined ? backgroundCoverOpacity : 0.5 );
 
 			coverElement.on( 'keydown', cancelEvent );

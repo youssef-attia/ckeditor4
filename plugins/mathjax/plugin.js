@@ -260,7 +260,7 @@
 				updateDoneHandler = CKEDITOR.tools.addFunction( function() {
 					CKEDITOR.plugins.mathjax.copyStyles( iFrame, preview );
 
-					preview.setHtml( buffer.getHtml() );
+					preview.setHtml( CKEDITOR.tools.htmlSafeByReview(buffer.getHtml(), 'getting html from safe element') );
 
 					editor.fire( 'lockSnapshot' );
 
@@ -365,10 +365,10 @@
 
 				editor.fire( 'lockSnapshot' );
 
-				buffer.setHtml( value );
+				buffer.setHtml( CKEDITOR.tools.htmlSafeByReview(value, 'TODO safe?') );
 
 				// Set loading indicator.
-				preview.setHtml( '<img src=' + CKEDITOR.plugins.mathjax.loadingIcon + ' alt=' + editor.lang.mathjax.loading + '>' );
+				preview.setHtml( CKEDITOR.tools.htmlSafeByReview('<img src=' + CKEDITOR.plugins.mathjax.loadingIcon + ' alt=' + editor.lang.mathjax.loading + '>', 'safe constant'));
 
 				iFrame.setStyles( {
 					height: '16px',

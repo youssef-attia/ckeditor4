@@ -430,7 +430,7 @@
 				var editor = this.editor;
 
 				if ( isSnapshot ) {
-					this.setHtml( data );
+					this.setHtml( CKEDITOR.tools.htmlSafeByReview(data, 'TODO safe?') );
 					this.fixInitialSelection();
 
 					// Fire dataReady for the consistency with inline editors

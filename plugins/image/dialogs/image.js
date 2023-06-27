@@ -445,7 +445,7 @@
 								// We already have a link in editor.
 								if ( this.linkElement.equals( editor.getSelection().getSelectedElement() ) ) {
 									// If the link is selected outside, replace it's content rather than the link itself. ([<a>foo</a>])
-									this.linkElement.setHtml( '' );
+									this.linkElement.setHtml( CKEDITOR.tools.htmlSafeByReview('', 'empty'));
 									this.linkElement.append( this.imageElement, false );
 								} else {
 									// Only inside of the link is selected, so replace it with image. (<a>[foo]</a>, <a>[f]oo</a>)

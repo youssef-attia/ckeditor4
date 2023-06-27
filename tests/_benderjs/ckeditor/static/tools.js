@@ -694,7 +694,7 @@
 				element.setHtml( '<span>a</span>' + html );
 				element.getFirst().remove();
 			} else {
-				element.setHtml( html );
+				element.setHtml( CKEDITOR.tools.htmlSafeByReview(html, 'TODO REMOVE AFTER TESTING') );
 			}
 
 			// Walk prepared to traverse the inner dom tree of this element.
@@ -1400,7 +1400,7 @@
 					element.setHtml( '<span>!</span>' + html );
 					element.getFirst().remove();
 				} else {
-					element.setHtml( html );
+					element.setHtml( CKEDITOR.tools.htmlSafeByReview(html, 'TODO REMOVE AFTER TEST') );
 				}
 
 				removed = [];

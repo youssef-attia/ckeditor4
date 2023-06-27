@@ -275,7 +275,7 @@
 
 			if ( options.message !== undefined ) {
 				this.message = options.message;
-				messageElement.setHtml( this.message );
+				messageElement.setHtml( CKEDITOR.tools.htmlSafeByReview(this.message, 'sanitized') );
 			}
 
 			if ( options.progress !== undefined ) {
@@ -347,13 +347,13 @@
 
 			notificationMessageElement = new CKEDITOR.dom.element( 'p' );
 			notificationMessageElement.addClass( 'cke_notification_message' );
-			notificationMessageElement.setHtml( this.message );
+			notificationMessageElement.setHtml( CKEDITOR.tools.htmlSafeByReview(this.message, 'sanitized') );
 			notificationElement.append( notificationMessageElement );
 
 			notificationCloseElement = CKEDITOR.dom.element.createFromHtml(
-				'<a class="cke_notification_close" href="javascript:void(0)" title="' + close + '" role="button" tabindex="-1">' +
+				CKEDITOR.tools.htmlSafeByReview('<a class="cke_notification_close" href="javascript:void(0)" title="' + close + '" role="button" tabindex="-1">' +
 					'<span class="cke_label">X</span>' +
-				'</a>' );
+				'</a>', 'safe template') );
 			notificationElement.append( notificationCloseElement );
 
 			notificationCloseElement.on( 'click', function() {

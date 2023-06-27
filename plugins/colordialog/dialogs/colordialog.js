@@ -123,7 +123,7 @@ CKEDITOR.dialog.add( 'colordialog', function( editor ) {
 
 		} else {
 			$doc.getById( hicolorId ).removeStyle( 'background-color' );
-			$doc.getById( hicolorTextId ).setHtml( '&nbsp;' );
+			$doc.getById( hicolorTextId ).setHtml( CKEDITOR.tools.htmlSafeByReview('&nbsp;', 'safe constant'));
 		}
 	}
 

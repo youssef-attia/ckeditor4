@@ -11,7 +11,7 @@
 	bender.test( {
 		setUp: function() {
 			// Make sure page is scrollable on vertical screens.
-			CKEDITOR.document.getBody().appendHtml( '<div style="height:4000px"></div>' );
+			CKEDITOR.document.getBody().appendHtml( CKEDITOR.tools.htmlSafeByReview('<div style="height:4000px"></div>', 'safe const') );
 		},
 		tearDown: dialogTools.closeAllDialogs,
 

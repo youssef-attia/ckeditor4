@@ -798,7 +798,7 @@
 					output.push( '</span>' );
 				}
 
-				this.parts.content.setHtml( output.join( '' ) );
+				this.parts.content.setHtml( CKEDITOR.tools.htmlSafeByReview(output.join( '' ), 'controlled input template') );
 				this.parts.content.unselectable();
 				CKEDITOR.tools.array.forEach( this.parts.content.find( 'a' ).toArray(), function( element ) {
 					element.setAttribute( 'draggable', 'false' );

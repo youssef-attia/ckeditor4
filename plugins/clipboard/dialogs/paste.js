@@ -153,14 +153,14 @@ CKEDITOR.dialog.add( 'paste', function( editor ) {
 								) + '})())"'
 							: '';
 
-						var iframe = CKEDITOR.dom.element.createFromHtml( '<iframe' +
+						var iframe = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<iframe' +
 							' class="cke_pasteframe"' +
 							' frameborder="0" ' +
 							' allowTransparency="true"' +
 							' src="' + src + '"' +
 							' aria-label="' + lang.pasteArea + '"' +
 							' aria-describedby="' + dialog.getContentElement( 'general', 'pasteMsg' ).domId + '"' +
-							'></iframe>' );
+							'></iframe>', 'template') );
 
 						// Reset last data transfer.
 						lastDataTransfer = null;
@@ -180,13 +180,13 @@ CKEDITOR.dialog.add( 'paste', function( editor ) {
 						iframe.setCustomData( 'dialog', dialog );
 
 						var container = this.getElement();
-						container.setHtml( '' );
+						container.setHtml( CKEDITOR.tools.htmlSafeByReview('', 'empty'));
 						container.append( iframe );
 
 						// IE need a redirect on focus to make
 						// the cursor blinking inside iframe. (#5461)
 						if ( CKEDITOR.env.ie && !CKEDITOR.env.edge ) {
-							var focusGrabber = CKEDITOR.dom.element.createFromHtml( '<span tabindex="-1" style="position:absolute" role="presentation"></span>' );
+							var focusGrabber = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<span tabindex="-1" style="position:absolute" role="presentation"></span>', 'safe const') );
 							focusGrabber.on( 'focus', function() {
 								// Since fixDomain is called in src attribute,
 								// IE needs some slight delay to correctly move focus.

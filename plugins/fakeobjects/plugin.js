@@ -161,7 +161,7 @@
 
 		var realElementHtml = decodeURIComponent( fakeElement.data( 'cke-realelement' ) ),
 			filteredHtml = filterHtml( this, realElementHtml ),
-			realElement = CKEDITOR.dom.element.createFromHtml( filteredHtml, this.document );
+			realElement = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview(filteredHtml, 'filtered'), this.document );
 
 		if ( fakeElement.data( 'cke-resizable' ) ) {
 			var width = fakeElement.getStyle( 'width' ),

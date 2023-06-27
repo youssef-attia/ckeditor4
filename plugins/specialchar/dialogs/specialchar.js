@@ -66,8 +66,8 @@ CKEDITOR.dialog.add( 'specialchar', function( editor ) {
 			target = target.getParent();
 
 		if ( target.getName() == 'a' ) {
-			dialog.getContentElement( 'info', 'charPreview' ).getElement().setHtml( '&nbsp;' );
-			dialog.getContentElement( 'info', 'htmlPreview' ).getElement().setHtml( '&nbsp;' );
+			dialog.getContentElement( 'info', 'charPreview' ).getElement().setHtml( CKEDITOR.tools.htmlSafeByReview('&nbsp;', 'safe constant'));
+			dialog.getContentElement( 'info', 'htmlPreview' ).getElement().setHtml( CKEDITOR.tools.htmlSafeByReview('&nbsp;', 'safe constant'));
 			target.getParent().removeClass( 'cke_light_background' );
 
 			focusedNode = undefined;

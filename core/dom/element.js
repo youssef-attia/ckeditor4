@@ -517,7 +517,7 @@ CKEDITOR.dom.element.clearMarkers = function( database, element, removeFromDatab
 		 * Sets the inner HTML of this element.
 		 *
 		 *		var p = new CKEDITOR.dom.element( 'p' );
-		 *		p.setHtml( '<b>Inner</b> HTML' );
+		 *		p.setHtml( CKEDITOR.tools.htmlSafeByReview('<b>Inner</b> HTML', 'safe constant'));
 		 *
 		 *		// Result: '<p><b>Inner</b> HTML</p>'
 		 *

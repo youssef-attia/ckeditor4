@@ -1939,7 +1939,7 @@
 				enterMode: this.enterMode
 			} );
 
-			this.setHtml( data );
+			this.setHtml( CKEDITOR.tools.htmlSafeByReview(data, 'sanitized') );
 
 			this.editor.widgets.initOnAll( this );
 		},
@@ -2035,7 +2035,7 @@
 					// ... or create a brand-new widget from template.
 					var defaults = typeof widgetDef.defaults == 'function' ? widgetDef.defaults() : widgetDef.defaults,
 						templateData = CKEDITOR.tools.object.merge( defaults || {}, commandData && commandData.startupData || {} ),
-						element = CKEDITOR.dom.element.createFromHtml( widgetDef.template.output( templateData ), editor.document ),
+						element = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview(widgetDef.template.output( templateData ), 'template'), editor.document ),
 						instance,
 						wrapper = editor.widgets.wrapElement( element, widgetDef.name ),
 						temp = new CKEDITOR.dom.documentFragment( wrapper.getDocument() );

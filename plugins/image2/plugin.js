@@ -582,10 +582,10 @@
 					// There was no caption, but the caption is to be added.
 					if ( newValue ) {
 						// Create new <figure> from widget template.
-						var figure = CKEDITOR.dom.element.createFromHtml( templateBlock.output( {
+						var figure = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview(templateBlock.output( {
 							captionedClass: captionedClass,
 							captionPlaceholder: editor.lang.image2.captionPlaceholder
-						} ), doc );
+						} ), 'template'), doc );
 
 						// Replace element with <figure>.
 						replaceSafely( figure, shift.element );
