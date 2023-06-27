@@ -20,8 +20,8 @@
 
 		element = CKEDITOR.document.getById( name ) || CKEDITOR.document.getBody().append(
 			CKEDITOR.dom.element.createFromHtml( creator == 'replace' ?
-				'<textarea id="' + name + '"' + '></textarea>' :
-				'<div id="' + name + '"' + ' contenteditable="true"></div>' )
+				CKEDITOR.tools.htmlSafeByReview('<textarea id="' + name + '"' + '></textarea>', 'safe'):
+				CKEDITOR.tools.htmlSafeByReview('<div id="' + name + '"' + ' contenteditable="true"></div>', 'safe') )
 		);
 
 		if ( creator == 'replace' && !element.is( 'textarea' ) ) {
@@ -30,7 +30,7 @@
 		}
 
 		if ( typeof profile.startupData == 'string' ) {
-			element[ element.is( 'textarea' ) ? 'setValue' : 'setHtml' ]( profile.startupData );
+			element[ element.is( 'textarea' ) ? 'setValue' : 'setHtml' ]( CKEDITOR.tools.htmlSafeByReview(profile.startupData, 'sanitized') );
 		}
 
 		CKEDITOR.once( 'instanceReady', function( event ) {

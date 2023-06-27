@@ -770,7 +770,7 @@
 		 * @param {CKEDITOR.dom.documentFragment} itemsFragment The document fragment with item elements.
 		 */
 		appendItems: function( itemsFragment ) {
-			this.element.setHtml( '' );
+			this.element.setHtml( CKEDITOR.tools.htmlSafeByReview('', 'empty') );
 			this.element.append( itemsFragment );
 		},
 
@@ -845,7 +845,7 @@
 		 */
 		createItem: function( item ) {
 			var encodedItem = encodeItem( item ),
-				itemElement = CKEDITOR.dom.element.createFromHtml( this.itemTemplate.output( encodedItem ), this.document ),
+				itemElement = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview(this.itemTemplate.output( encodedItem ), 'template code'), this.document ),
 				id = CKEDITOR.tools.getNextId();
 
 			// Add attributes needed for a11y support (#4617).

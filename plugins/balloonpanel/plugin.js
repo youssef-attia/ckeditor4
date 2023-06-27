@@ -201,28 +201,28 @@
 			var editor = this.editor;
 
 			this.parts = {
-				title: CKEDITOR.dom.element.createFromHtml( this.templates.title.output( {
+				title: CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview(this.templates.title.output( {
 					title: this.title
-				} ) ),
+				} ) , 'template')),
 
-				close: CKEDITOR.dom.element.createFromHtml( this.templates.close.output() ),
+				close: CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview(this.templates.close.output(), 'template') ),
 
-				panel: CKEDITOR.dom.element.createFromHtml( this.templates.panel.output( {
+				panel: CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview(this.templates.panel.output( {
 					id: editor.id,
 					langDir: editor.lang.dir,
 					langCode: editor.langCode,
 					name: editor.name,
 					style: 'display:none;',
 					voiceLabel: editor.lang.editorPanel + ', ' + editor.name
-				} ) ),
+				} ) , 'template')),
 
-				content: CKEDITOR.dom.element.createFromHtml( this.templates.content.output( {
+				content: CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview(this.templates.content.output( {
 					content: this.content || ''
-				} ) ),
+				} ) , 'template') ),
 
-				triangleOuter: CKEDITOR.dom.element.createFromHtml( this.templates.triangleOuter.output() ),
+				triangleOuter: CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview(this.templates.triangleOuter.output(), 'template') ),
 
-				triangleInner: CKEDITOR.dom.element.createFromHtml( this.templates.triangleInner.output() )
+				triangleInner: CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview(this.templates.triangleInner.output(), 'template') )
 			};
 
 			// Append UI elements to create a panel.

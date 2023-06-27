@@ -24,7 +24,7 @@
 		}
 	};
 
-	var emptyHtml = '<span class="cke_path_empty">&nbsp;</span>';
+	var emptyHtml = CKEDITOR.tools.htmlSafeByReview('<span class="cke_path_empty">&nbsp;</span>', 'safe constant');
 
 	var extra = '';
 
@@ -222,7 +222,7 @@
 			}
 
 			var space = getSpaceElement();
-			space.setHtml( html.join( '' ) + emptyHtml );
+			space.setHtml( CKEDITOR.tools.htmlSafeByReview(html.join( '' ) + emptyHtml, 'html elements are created from a template') );
 			editor.fire( 'elementsPathUpdate', { space: space } );
 		} );
 

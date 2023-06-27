@@ -100,7 +100,7 @@
 		 * @member CKEDITOR.plugins.widgetselection
 		 * @private
 		 */
-		fillerContent: '&nbsp;',
+		fillerContent: CKEDITOR.tools.htmlSafeByReview('&nbsp;', 'safe const'),
 
 		/**
 		 * Tag name which is used to create fillers.

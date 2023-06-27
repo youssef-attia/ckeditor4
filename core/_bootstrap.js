@@ -9,8 +9,26 @@
 
 ( function() {
 	// Check whether high contrast is active by creating a colored border.
-	var hcDetect = CKEDITOR.dom.element.createFromHtml( '<div style="width:0;height:0;position:absolute;left:-10000px;' +
-		'border:1px solid;border-color:red blue"></div>', CKEDITOR.document );
+
+	// var hcDetect;
+	// if (self.trustedTypes && self.trustedTypes.createPolicy) {
+    //     const policy = self.trustedTypes.createPolicy(
+    //         'trusted#htmlSafeByReview',
+    //         {
+    //             createHTML: function (unused) {
+    //                 // This policy is only to be used for trusted inputs that do not involve unsanitized user inputs.
+    //                 return '<div style="width:0;height:0;position:absolute;left:-10000px;' +
+	// 				'border:1px solid;border-color:red blue"></div>';
+    //             },
+    //         }
+    //     );
+	// 	hcDetect = CKEDITOR.dom.element.createFromHtml( policy.createHTML(""), CKEDITOR.document );
+    // } else {
+	// 	hcDetect = CKEDITOR.dom.element.createFromHtml( '<div style="width:0;height:0;position:absolute;left:-10000px;' +
+	// 	'border:1px solid;border-color:red blue"></div>', CKEDITOR.document );
+    // }
+	hcDetect = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<div style="width:0;height:0;position:absolute;left:-10000px;' +
+	'border:1px solid;border-color:red blue"></div>', 'trusted constant value') , CKEDITOR.document );
 
 	hcDetect.appendTo( CKEDITOR.document.getHead() );
 

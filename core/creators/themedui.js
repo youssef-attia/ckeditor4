@@ -268,7 +268,7 @@ CKEDITOR.replaceClass = 'ckeditor';
 			}
 
 			// Clear up the mode space.
-			editor.ui.space( 'contents' ).setHtml( '' );
+			editor.ui.space( 'contents' ).setHtml( CKEDITOR.tools.htmlSafeByReview('', 'empty') );
 
 			editor.mode = '';
 		} else {
@@ -490,7 +490,7 @@ CKEDITOR.replaceClass = 'ckeditor';
 				'</{outerEl}>' +
 			'</{outerEl}>' );
 
-		var container = CKEDITOR.dom.element.createFromHtml( themedTpl.output( {
+		var container = CKEDITOR.dom.element.createFromHtml(CKEDITOR.tools.htmlSafeByReview(themedTpl.output( {
 			id: editor.id,
 			name: name,
 			langDir: editor.lang.dir,
@@ -500,7 +500,7 @@ CKEDITOR.replaceClass = 'ckeditor';
 			contentId: editor.ui.spaceId( 'contents' ),
 			bottomHtml: bottomHtml ? '<span id="' + editor.ui.spaceId( 'bottom' ) + '" class="cke_bottom cke_reset_all" role="presentation">' + bottomHtml + '</span>' : '',
 			outerEl: CKEDITOR.env.ie ? 'span' : 'div'	// https://dev.ckeditor.com/ticket/9571
-		} ) );
+		} ), "temp" ));
 
 		if ( elementMode == CKEDITOR.ELEMENT_MODE_REPLACE ) {
 			element.hide();

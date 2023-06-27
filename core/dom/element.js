@@ -71,6 +71,8 @@ CKEDITOR.dom.element.prototype = new CKEDITOR.dom.node();
  */
 CKEDITOR.dom.element.createFromHtml = function( html, ownerDocument ) {
 	var temp = new CKEDITOR.dom.element( 'div', ownerDocument );
+
+	// if (self.TrustedHTML && !(html instanceof TrustedHTML)) { reportError(html); }
 	temp.setHtml( html );
 
 	// When returning the node, remove it from its parent to detach it.
@@ -520,7 +522,7 @@ CKEDITOR.dom.element.clearMarkers = function( database, element, removeFromDatab
 		 *		// Result: '<p><b>Inner</b> HTML</p>'
 		 *
 		 * @method
-		 * @param {String} html The HTML to be set for this element.
+		 * @param {TrustedHTML} html The HTML to be set for this element.
 		 * @returns {String} The inserted HTML.
 		 */
 		setHtml: ( CKEDITOR.env.ie && CKEDITOR.env.version < 9 ) ?
@@ -574,7 +576,7 @@ CKEDITOR.dom.element.clearMarkers = function( database, element, removeFromDatab
 		 */
 		setText: ( function() {
 			var supportsTextContent = document.createElement( 'p' );
-			supportsTextContent.innerHTML = 'x';
+			supportsTextContent.textContent = 'x';
 			supportsTextContent = supportsTextContent.textContent;
 
 			return function( text ) {

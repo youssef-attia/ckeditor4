@@ -742,7 +742,7 @@ CKEDITOR.dom.range = function( root ) {
 
 			// For IE, it must have something inside, otherwise it may be
 			// removed during DOM operations.
-			startNode.setHtml( '&nbsp;' );
+			startNode.setHtml( CKEDITOR.tools.htmlSafeByReview('&nbsp;', 'safe constant') );
 
 			if ( serializable ) {
 				baseId = 'cke_bm_' + CKEDITOR.tools.getNextNumber();
@@ -752,7 +752,7 @@ CKEDITOR.dom.range = function( root ) {
 			// If collapsed, the endNode will not be created.
 			if ( !collapsed ) {
 				endNode = startNode.clone();
-				endNode.setHtml( '&nbsp;' );
+				endNode.setHtml( CKEDITOR.tools.htmlSafeByReview('&nbsp;', 'safe constant') );
 
 				if ( serializable )
 					endNode.setAttribute( 'id', baseId + 'E' );
@@ -2835,7 +2835,7 @@ CKEDITOR.dom.range = function( root ) {
 			// The reference element contains a zero-width space to avoid
 			// a premature removal. The view is to be scrolled with respect
 			// to this element.
-			var reference = new CKEDITOR.dom.element.createFromHtml( '<span>&nbsp;</span>', this.document ),
+			var reference = new CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<span>&nbsp;</span>', 'safe const'), this.document ),
 				afterCaretNode, startContainerText, isStartText;
 
 			var range = this.clone();

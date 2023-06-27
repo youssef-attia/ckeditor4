@@ -116,6 +116,17 @@
 		functions = [];
 	} );
 
+	function assertValidJustification(justification) {
+		if (typeof justification !== 'string' || justification.trim() === '') {
+			let errMsg =
+				'Calls to uncheckedconversion functions must go through security review.';
+			errMsg += ' A justification must be provided to capture what security' +
+				' assumptions are being made.';
+			throw new Error(errMsg);
+		}
+	}
+	
+
 	/**
 	 * Utility functions.
 	 *
@@ -123,6 +134,26 @@
 	 * @singleton
 	 */
 	CKEDITOR.tools = {
+
+		htmlSafeByReview: function (html, justification) {
+			assertValidJustification(justification);
+	
+			if (self.trustedTypes && self.trustedTypes.createPolicy) {
+				const policy = self.trustedTypes.createPolicy(
+					'trusted#htmlSafeByReview',
+					{
+						createHTML: function (html) {
+							// This policy is only to be used for trusted inputs that do not involve unsanitized user inputs.
+							return html;
+						},
+					}
+				);
+				return policy.createHTML(html);
+			} else {
+				return html;
+			}
+		},
+
 		/**
 		 * Compares the elements of two arrays.
 		 *
@@ -1004,9 +1035,9 @@
 			return function( cssLength ) {
 				// Recreate calculator whenever it was externally manipulated (#5158).
 				if ( !calculator || calculator.isDetached() ) {
-					calculator = CKEDITOR.dom.element.createFromHtml( '<div style="position:absolute;left:-9999px;' +
+					calculator = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<div style="position:absolute;left:-9999px;' +
 						'top:-9999px;margin:0px;padding:0px;border:0px;"' +
-						'></div>', CKEDITOR.document );
+						'></div>', 'safe constant'), CKEDITOR.document );
 
 					CKEDITOR.document.getBody().append( calculator );
 				}

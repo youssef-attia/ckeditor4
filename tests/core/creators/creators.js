@@ -124,7 +124,7 @@
 		'test creator replace': function() {
 			var tc = this,
 				target = CKEDITOR.document.getBody().append(
-					CKEDITOR.dom.element.createFromHtml( '<textarea id="foo">&lt;p&gt;foo&lt;/p&gt;</textarea>' ) );
+					CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<textarea id="foo">&lt;p&gt;foo&lt;/p&gt;</textarea>', 'safe constant') ) );
 
 			var editor = CKEDITOR.replace( 'foo', {
 				on: {
@@ -167,7 +167,7 @@
 
 		'test creator appendTo': function() {
 			var tc = this,
-				container = CKEDITOR.dom.element.createFromHtml( '<div id="foo"></div>' );
+				container = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<div id="foo"></div>' );
 
 			CKEDITOR.document.getBody().append( container );
 
@@ -180,7 +180,7 @@
 							tc.checkEditorProperties( editor );
 							tc.checkEditorUi( editor );
 							assert.areSame( CKEDITOR.ELEMENT_MODE_APPENDTO, editor.elementMode, 'editor.elementMode' );
-							assert.areSame( container.getLast(), editor.container, 'editor.container should be the last child element of editor.element' );
+							assert.areSame( container.getLast(), editor.container, 'editor.container should be the last child element of editor.element', 'safe constant') );
 
 							editor.destroy();
 							checkStatuses();
@@ -201,7 +201,7 @@
 		'test creator inline': function() {
 			var tc = this,
 				target = CKEDITOR.document.getBody().append(
-					CKEDITOR.dom.element.createFromHtml( '<div id="foo" contenteditable="true"><p>foo</p></div>' ) );
+					CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<div id="foo" contenteditable="true"><p>foo</p></div>', 'safe constant') ) );
 
 			var editor = CKEDITOR.inline( target.$, {
 				on: {
@@ -236,7 +236,7 @@
 		'test creator inline-textarea': function() {
 			var tc = this,
 				target = CKEDITOR.document.getBody().append(
-					CKEDITOR.dom.element.createFromHtml( '<textarea id="foo">&lt;p&gt;foo&lt;/p&gt;</textarea>' ) );
+					CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<textarea id="foo">&lt;p&gt;foo&lt;/p&gt;</textarea>', 'safe constant') ) );
 
 			var editor = CKEDITOR.inline( target.$, {
 				on: {

@@ -28,7 +28,7 @@
 				// Expecting exactly one <a> tag spanning the whole pasted content.
 				// The tag has to have same href as content.
 				if ( embedCandidatePasted ) {
-					evt.data.dataValue = '<a data-cke-autoembed="' + ( ++currentId ) + '"' + evt.data.dataValue.substr( 2 );
+					evt.data.dataValue = CKEDITOR.tools.htmlSafeByReview('<a data-cke-autoembed="' + ( ++currentId ) + '"' + evt.data.dataValue.substr( 2 ), 'safe const');
 				}
 			}, null, null, 20 ); // Execute after autolink.
 

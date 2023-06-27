@@ -103,9 +103,10 @@
 			}
 
 			marker = CKEDITOR.dom.element.createFromHtml(
+				CKEDITOR.tools.htmlSafeByReview(
 				'<span style="margin:0;padding:0;border:0;clear:both;width:1px;height:1px;display:block;">' +
 					( CKEDITOR.env.webkit ? '&nbsp;' : '' ) +
-				'</span>',
+				'</span>', 'safe template'),
 				doc );
 		}
 

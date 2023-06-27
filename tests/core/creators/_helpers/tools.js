@@ -259,7 +259,7 @@ var detachedTests = ( function() {
 
 	function createHtmlForEditor() {
 		var	editorId = 'editor' + new Date().getTime(),
-			editorSlot = CKEDITOR.dom.element.createFromHtml( '<div><div id="' + editorId + '"><p>Content!!</p></div></div>' );
+			editorSlot = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<div><div id="' + editorId + '"><p>Content!!</p></div></div>', 'const element with id based on date time') );
 
 		CKEDITOR.document.getBody().append( editorSlot );
 
