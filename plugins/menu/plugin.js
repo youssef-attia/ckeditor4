@@ -405,7 +405,7 @@ CKEDITOR.plugins.add( 'menu', {
 				output.push( '</div>' );
 
 				// Inject the HTML inside the panel.
-				element.setHtml( output.join( '' ) );
+				element.setHtml( CKEDITOR.tools.htmlSafeByReview(output.join( '' ), 'controlled html creation') );
 
 				CKEDITOR.ui.fire( 'ready', this );
 

@@ -756,7 +756,7 @@
 					assert.areSame( fixHtml( expected ), fixHtml( editor.getData() ), 'The image links to an anchor' );
 
 					widget = getById( bot.editor, 'x' );
-					CKEDITOR.dom.element.createFromHtml( '<a id="b" name="b"></a>', editor.document ).insertAfter( widget.wrapper );
+					CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<a id="b" name="b"></a>', 'safe constant'), editor.document ).insertAfter( widget.wrapper );
 
 					bot.dialog( 'link', function( dialog ) {
 						try {
