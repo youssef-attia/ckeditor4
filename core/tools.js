@@ -125,7 +125,7 @@
 	CKEDITOR.tools = {
 
 		/**
-		 * Verifies the safety of an html string and returns trusted version.
+		 * Claims safety of an html string and returns trusted version.
 		 *
 		 * @param {string} html The safe html string.
 		 * @param {string} justification A short justification for why this
@@ -134,7 +134,8 @@
 		 * Trusted Type or a string if TT is not supported.
 		 */
 		htmlSafeByReview: function (html, justification) {
-			// Used for Trusted Types assertions 
+
+			// If the justification is empty an error is raised. Any input marked as safe must be accompanied by a justification.
 			if (typeof justification !== 'string' || justification.trim() === '') {
 				let errMsg =
 					'Calls to uncheckedconversion functions must go through security review.';
