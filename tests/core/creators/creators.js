@@ -167,7 +167,7 @@
 
 		'test creator appendTo': function() {
 			var tc = this,
-				container = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<div id="foo"></div>' );
+				container = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<div id="foo"></div>', 'safe constant' ) );
 
 			CKEDITOR.document.getBody().append( container );
 
@@ -180,7 +180,7 @@
 							tc.checkEditorProperties( editor );
 							tc.checkEditorUi( editor );
 							assert.areSame( CKEDITOR.ELEMENT_MODE_APPENDTO, editor.elementMode, 'editor.elementMode' );
-							assert.areSame( container.getLast(), editor.container, 'editor.container should be the last child element of editor.element', 'safe constant') );
+							assert.areSame( container.getLast(), editor.container, 'editor.container should be the last child element of editor.element' );
 
 							editor.destroy();
 							checkStatuses();
