@@ -131,7 +131,7 @@
 		 * @param {string} justification A short justification for why this
 		 * html string can be verified as safe.
 		 * @returns {TrustedHTML | string} the same html string but as a
-		 * Trusted Type or a string if TT is not supported.
+		 * TrustedHTML or a string if TT is not supported.
 		 */
 		htmlSafeByReview: function (html, justification) {
 
