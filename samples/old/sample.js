@@ -23,9 +23,11 @@
 
 			if ( missing.length ) {
 				var warn = CKEDITOR.dom.element.createFromHtml(
+					CKEDITOR.tools.htmlSafeByReview(
 					'<div class="warning">' +
 						'<span>To fully experience this demo, the ' + missing.join( ', ' ) + ' plugin' + ( missing.length > 1 ? 's are' : ' is' ) + ' required.</span>' +
 					'</div>'
+					, 'safe template')
 				);
 				warn.insertBefore( editor.container );
 			}

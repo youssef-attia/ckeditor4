@@ -526,7 +526,7 @@
 		editor.addCommand( 'easyimageUpload', {
 			exec: function() {
 				// hiddenUploadElement is not attached to DOM, but it is still possible to `virtually` click into it.
-				var hiddenUploadElement = CKEDITOR.dom.element.createFromHtml( '<input type="file" accept="image/*" multiple="multiple">' );
+				var hiddenUploadElement = CKEDITOR.dom.element.createFromHtml(CKEDITOR.tools.htmlSafeByReview( '<input type="file" accept="image/*" multiple="multiple">' , 'safe const'));
 				hiddenUploadElement.once( 'change', function( evt ) {
 					var targetElement = evt.data.getTarget();
 					if ( targetElement.$.files.length ) {

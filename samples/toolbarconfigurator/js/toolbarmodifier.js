@@ -795,7 +795,7 @@
 	ToolbarModifier.prototype._addSeparator = function() {
 		var separatorIndex = this._determineSeparatorToAddIndex(),
 			separator = ToolbarModifier.createSeparatorLiteral(),
-			domSeparator = CKEDITOR.dom.element.createFromHtml( ToolbarModifier.getToolbarSeparatorString( separator ) );
+			domSeparator = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview( ToolbarModifier.getToolbarSeparatorString( separator ), 'safe creation') );
 
 		this.actualConfig.toolbarGroups.splice( separatorIndex, 0, separator );
 

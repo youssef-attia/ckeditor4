@@ -220,10 +220,10 @@ CKEDITOR.dialog.add( 'uicolor', function( editor ) {
 
 	// Creates color palette table and binds event listeners to manage focus inside it.
 	function createColorTable() {
-		var table = CKEDITOR.dom.element.createFromHtml( '<table tabIndex="-1" class="cke_colordialog_table"' +
+		var table = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<table tabIndex="-1" class="cke_colordialog_table"' +
 			' aria-label="' + lang.options + '" role="grid" style="border-collapse:separate;" cellspacing="0">' +
 			'<caption class="cke_voice_label">' + lang.options + '</caption>' +
-			'<tbody role="presentation"></tbody></table>' );
+			'<tbody role="presentation"></tbody></table>', 'safe template') );
 
 		table.on( 'mouseover', updateHighlight );
 		table.on( 'mouseout', removeHighlight );
@@ -262,7 +262,7 @@ CKEDITOR.dialog.add( 'uicolor', function( editor ) {
 
 			var colorLabel = generateId( 'color_table_cell' );
 			cell.setAttribute( 'aria-labelledby', colorLabel );
-			cell.append( CKEDITOR.dom.element.createFromHtml( '<span id="' + colorLabel + '" class="cke_voice_label">' + color + '</span>', CKEDITOR.document ) );
+			cell.append( CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview( '<span id="' + colorLabel + '" class="cke_voice_label">' + color + '</span>', 'safe template'), CKEDITOR.document ) );
 		}
 
 		appendColorRow( 0, 0 );

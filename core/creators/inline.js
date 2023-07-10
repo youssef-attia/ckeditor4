@@ -73,10 +73,10 @@
 			editor.setData( editorData, null, true );
 
 			//Change element from textarea to div
-			element = CKEDITOR.dom.element.createFromHtml(
+			element = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview(
 				'<div contenteditable="' + !!editor.readOnly + '" class="cke_textarea_inline">' +
 					textarea.getValue() +
-				'</div>',
+				'</div>', 'safe template'),
 				CKEDITOR.document );
 
 			element.insertAfter( textarea );

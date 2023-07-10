@@ -325,13 +325,14 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 
 			init: function() {
 				var element = CKEDITOR.dom.element.createFromHtml(
+					CKEDITOR.tools.htmlSafeByReview(
 					'<div class="staticContainer">' +
 						'<div class="grid-container" >' +
 							'<div class="grid-width-100">' +
 								'<div class="inner"></div>' +
 							'</div>' +
 						'</div>' +
-					'</div>' );
+					'</div>', 'safe const') );
 
 				this.staticContainer = element.findOne( '.inner' );
 

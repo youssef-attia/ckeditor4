@@ -67,7 +67,7 @@
 
 				if ( helpLabel ) {
 					var labelId = CKEDITOR.tools.getNextId(),
-						desc = CKEDITOR.dom.element.createFromHtml( '<span id="' + labelId + '" class="cke_voice_label">' + helpLabel + '</span>' );
+						desc = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<span id="' + labelId + '" class="cke_voice_label">' + helpLabel + '</span>', 'safe template') );
 
 					contentSpace.append( desc, 1 );
 					iframe.setAttribute( 'aria-describedby', labelId );

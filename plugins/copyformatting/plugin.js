@@ -1046,9 +1046,9 @@
 			// `aria-live` which has directly `position: absolute` assigned.
 			// The trick was simply to put position absolute, and all the hiding CSS into a wrapper,
 			// while content with `aria-live` attribute inside.
-			var notificationTpl = '<div class="cke_screen_reader_only cke_copyformatting_notification">' +
+			var notificationTpl = CKEDITOR.tools.htmlSafeByReview('<div class="cke_screen_reader_only cke_copyformatting_notification">' +
 						'<div aria-live="polite"></div>' +
-					'</div>';
+					'</div>', 'safe const');
 
 			return CKEDITOR.document.getBody().append( CKEDITOR.dom.element.createFromHtml( notificationTpl ) ).getChild( 0 );
 		},

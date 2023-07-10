@@ -27,9 +27,9 @@
 		}
 
 		function createTemplateItem( template, imagesPath ) {
-			var item = CKEDITOR.dom.element.createFromHtml( '<a href="javascript:void(0)" tabIndex="-1" role="option" >' +
+			var item = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview( '<a href="javascript:void(0)" tabIndex="-1" role="option" >' +
 				'<div class="cke_tpl_item"></div>' +
-				'</a>' );
+				'</a>', 'safe const' ));
 
 			// Build the inner HTML of our new item DIV.
 			var html = '<table style="width:350px;" class="cke_tpl_preview" role="presentation"><tr>';

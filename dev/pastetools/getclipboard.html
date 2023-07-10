@@ -199,7 +199,7 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 		var container = CKEDITOR.document.getById( options.container ),
 			checkboxContainer = generateOptions( options.plugins, options.selectAll ),
 			checkboxes = checkboxContainer.find( 'input[type=checkbox]' ).toArray(),
-			title = CKEDITOR.dom.element.createFromHtml( '<p>' + options.title + ' <button data-select="all">Select all</button> <button data-select="none">Deselect all</button></p>' ),
+			title = CKEDITOR.dom.element.createFromHtml(CKEDITOR.tools.htmlSafeByReview( '<p>' + options.title + ' <button data-select="all">Select all</button> <button data-select="none">Deselect all</button></p>', 'safe template') ),
 			selectButtons = title.find( '[data-select]' ).toArray();
 
 		container.append( title );
@@ -219,7 +219,7 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 			var optionsContainer = new CKEDITOR.dom.element( 'div' );
 
 			CKEDITOR.tools.array.forEach( options, function( option, i ) {
-				var checkbox = CKEDITOR.dom.element.createFromHtml( '<label class="ui-label"><input type="checkbox" class="plugin" value="' + option + '"' + ( selectAll || i === 0 ? ' checked' : '' ) + '> ' + option + '</label>' );
+				var checkbox = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<label class="ui-label"><input type="checkbox" class="plugin" value="' + option + '"' + ( selectAll || i === 0 ? ' checked' : '' ) + '> ' + option + '</label>', 'safe template') );
 
 				optionsContainer.append( checkbox );
 			} );
