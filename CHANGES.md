@@ -1,12 +1,17 @@
 CKEditor 4 Changelog
 ====================
 
-## CKEditor 4.21.1 [IN DEVELOPMENT]
+## CKEditor 4.22.0 [IN DEVELOPMENT]
 
 New Features:
 
 * [#5316](https://github.com/ckeditor/ckeditor4/issues/5316): Add vertical margins support for list elements in the [Paste from Word](https://ckeditor.com/cke4/addon/pastefromword) plugin.
 * [#5410](https://github.com/ckeditor/ckeditor4/issues/5410): Added the ability to indicate the language of styles in the [Styles Combo](https://ckeditor.com/cke4/addon/stylescombo) plugin via the [`config.styleSet`](https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-stylesSet) configuration option.
+* [#5437](https://github.com/ckeditor/ckeditor4/issues/5437): Fixed: Incorrect indication of selected items in comboboxes. The selected item was unmarked upon each opening of the combobox.
+
+Fixed Issues:
+
+* [#5495](https://github.com/ckeditor/ckeditor4/issues/5495): Fixed: Insufficient color ratio for links inside [Notifications](https://ckeditor.com/cke4/addon/notification).
 
 Other Changes:
 
