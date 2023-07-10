@@ -187,7 +187,7 @@
 						panelBlock = block;
 						block.autoSize = true;
 						block.element.addClass( 'cke_colorblock' );
-						block.element.setHtml( renderColors( colorBoxId, clickFn, history ? history.getLength() : 0 ) );
+						block.element.setHtml( CKEDITOR.tools.htmlSafeByReview(renderColors( colorBoxId, clickFn, history ? history.getLength() : 0 ), 'controlled templated output') );
 
 						// The block should not have scrollbars (https://dev.ckeditor.com/ticket/5933, https://dev.ckeditor.com/ticket/6056)
 						block.element.getDocument().getBody().setStyle( 'overflow', 'hidden' );
@@ -535,7 +535,7 @@
 			},
 
 			setHtml: function() {
-				this.getElement().setHtml( '<a class="cke_colorbox" _cke_focus=1 hidefocus=true' +
+				this.getElement().setHtml( CKEDITOR.tools.htmlSafeByReview('<a class="cke_colorbox" _cke_focus=1 hidefocus=true' +
 						' title="' + this.label + '"' +
 						' draggable="false"' +
 						' ondragstart="return false;"' + // Draggable attribute is buggy on Firefox.
@@ -545,7 +545,7 @@
 						' data-value="' + this.color + '"' +
 						' role="option">' +
 						'<span class="cke_colorbox" style="background-color:#' + this.color + '"></span>' +
-					'</a>' );
+					'</a>', 'template') );
 			},
 
 			setPositionIndex: function( posinset, setsize ) {

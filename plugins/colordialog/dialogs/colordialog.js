@@ -206,10 +206,10 @@ CKEDITOR.dialog.add( 'colordialog', function( editor ) {
 	}
 
 	function createColorTable() {
-		table = CKEDITOR.dom.element.createFromHtml( '<table tabIndex="-1" class="cke_colordialog_table"' +
+		table = CKEDITOR.dom.element.createFromHtml(CKEDITOR.tools.htmlSafeByReview('<table tabIndex="-1" class="cke_colordialog_table"' +
 			' aria-label="' + lang.options + '" role="grid" style="border-collapse:separate;" cellspacing="0">' +
 			'<caption class="cke_voice_label">' + lang.options + '</caption>' +
-			'<tbody role="presentation"></tbody></table>' );
+			'<tbody role="presentation"></tbody></table>', 'safe template'));
 
 		table.on( 'mouseover', updateHighlight );
 		table.on( 'mouseout', removeHighlight );
@@ -247,13 +247,13 @@ CKEDITOR.dialog.add( 'colordialog', function( editor ) {
 
 			var colorLabel = numbering( 'color_table_cell' );
 			cell.setAttribute( 'aria-labelledby', colorLabel );
-			cell.append( CKEDITOR.dom.element.createFromHtml( '<span id="' + colorLabel + '" class="cke_voice_label">' + color + '</span>', CKEDITOR.document ) );
+			cell.append( CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview( '<span id="' + colorLabel + '" class="cke_voice_label">' + color + '</span>', 'safe template'), CKEDITOR.document ) );
 		}
 
 		appendColorRow( 0, 0 );
 		appendColorRow( 3, 0 );
 		appendColorRow( 0, 3 );
-		appendColorRow( 3, 3 );
+		appendColorRow( 3, 3 );	
 
 		// Create the last row.
 		var oRow = new $el( table.$.insertRow( -1 ) );
