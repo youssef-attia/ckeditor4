@@ -32,7 +32,7 @@ CKEDITOR.plugins.add( 'devtools', {
 
 		str += '<li><strong>' + lang.elementType + '</strong> : ' + link + '</li>';
 
-		return str + '</ul>';
+		return CKEDITOR.tools.htmlSafeByReview(str + '</ul>', 'safe template');
 	}
 
 	function showTooltip( callback, el, editor, dialog, obj, tabName ) {

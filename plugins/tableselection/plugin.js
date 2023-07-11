@@ -441,7 +441,7 @@
 
 		copybin.setStyle( editor.config.contentsLangDirection == 'ltr' ? 'left' : 'right', '-5000px' );
 
-		copybin.setHtml( editor.getSelectedHtml( true ) );
+		copybin.setHtml( CKEDITOR.tools.htmlSafeByReview(editor.getSelectedHtml( true ), 'controlled by developer') );
 
 		// Ignore copybin.
 		editor.fire( 'lockSnapshot' );
@@ -692,9 +692,9 @@
 
 			// Pasted value must be filtered using dataProcessor to strip all unsafe code
 			// before inserting it into temporary container.
-			tmpContainer.setHtml( dataProcessor.toHtml( dataValue ), {
+			tmpContainer.setHtml( CKEDITOR.tools.htmlSafeByReview(dataProcessor.toHtml( dataValue ), {
 				fixForBody: false
-			} );
+			}, 'controlled by developer') );
 
 			return tmpContainer.getChildCount() > 1 ? null : tmpContainer.findOne( 'table' );
 		},

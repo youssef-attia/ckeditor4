@@ -119,7 +119,7 @@ CKEDITOR.dialog.add( 'colordialog', function( editor ) {
 	function setHighlight( color ) {
 		if ( color ) {
 			$doc.getById( hicolorId ).setStyle( 'background-color', color );
-			$doc.getById( hicolorTextId ).setHtml( color );
+			$doc.getById( hicolorTextId ).setHtml( CKEDITOR.tools.htmlSafeByReview(color, 'safe text') );
 
 		} else {
 			$doc.getById( hicolorId ).removeStyle( 'background-color' );

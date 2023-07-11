@@ -335,7 +335,7 @@ window.ToolbarConfigurator = {};
 			}
 		}
 
-		$button.setHtml( text );
+		$button.setHtml( CKEDITOR.tools.htmlSafeByReview(text, 'safe text replaceable?') );
 
 		return $button;
 	};

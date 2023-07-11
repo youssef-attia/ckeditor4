@@ -47,7 +47,7 @@
 
 			html += '</td></tr></table>';
 
-			item.getFirst().setHtml( html );
+			item.getFirst().setHtml( CKEDITOR.tools.htmlSafeByReview(html, 'safe templated creation') );
 
 			item.on( 'click', function() {
 				if( template.htmlFile ) {
@@ -193,9 +193,9 @@
 						renderTemplatesList( listContainer, templates );
 						templatesListField.focus();
 					} else {
-						listContainer.setHtml( '<div class="cke_tpl_empty">' +
+						listContainer.setHtml( CKEDITOR.tools.htmlSafeByReview('<div class="cke_tpl_empty">' +
 							'<span>' + lang.emptyListMsg + '</span>' +
-							'</div>' );
+							'</div>', 'safe template') );
 					}
 				} );
 

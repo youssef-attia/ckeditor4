@@ -3111,7 +3111,7 @@
 					editableElement = toBe.editables[ e ];
 
 					delete editableElement.attributes.contenteditable;
-					editableElement.setHtml( widget.editables[ e ].getData() );
+					editableElement.setHtml( CKEDITOR.tools.htmlSafeByReview(widget.editables[ e ].getData(), 'developer controlled') );
 				}
 
 				// Returned element always defaults to widgetElement.
@@ -3436,9 +3436,10 @@
 					scrollTop;
 
 				copyBin.setHtml(
+					CKEDITOR.tools.htmlSafeByReview(
 					'<span data-cke-copybin-start="1">\u200b</span>' +
 					html +
-					'<span data-cke-copybin-end="1">\u200b</span>' );
+					'<span data-cke-copybin-end="1">\u200b</span>', 'only used with safe inputs') );
 
 				// Ignore copybin.
 				editor.fire( 'lockSnapshot' );

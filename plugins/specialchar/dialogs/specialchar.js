@@ -29,7 +29,7 @@ CKEDITOR.dialog.add( 'specialchar', function( editor ) {
 
 			// We must use "insertText" here to keep text styled.
 			var span = editor.document.createElement( 'span' );
-			span.setHtml( value );
+			span.setHtml( CKEDITOR.tools.htmlSafeByReview(value, 'controlled by developer') );
 			editor.insertText( span.getText() );
 		}
 	};
@@ -50,8 +50,8 @@ CKEDITOR.dialog.add( 'specialchar', function( editor ) {
 
 			var htmlPreview = dialog.getContentElement( 'info', 'htmlPreview' ).getElement();
 
-			dialog.getContentElement( 'info', 'charPreview' ).getElement().setHtml( value );
-			htmlPreview.setHtml( CKEDITOR.tools.htmlEncode( value ) );
+			dialog.getContentElement( 'info', 'charPreview' ).getElement().setHtml( CKEDITOR.tools.htmlSafeByReview(value, 'controlled by developer') );
+			htmlPreview.setHtml( CKEDITOR.tools.htmlSafeByReview(CKEDITOR.tools.htmlEncode( value ), 'sanitized?') );
 			target.getParent().addClass( 'cke_light_background' );
 
 			// Memorize focused node.
@@ -229,7 +229,7 @@ CKEDITOR.dialog.add( 'specialchar', function( editor ) {
 
 			html.push( '</tbody></table>', '<span id="' + charsTableLabel + '" class="cke_voice_label">' + lang.options + '</span>' );
 
-			this.getContentElement( 'info', 'charContainer' ).getElement().setHtml( html.join( '' ) );
+			this.getContentElement( 'info', 'charContainer' ).getElement().setHtml( CKEDITOR.tools.htmlSafeByReview(html.join( '' ), 'safe template') );
 		},
 		contents: [ {
 			id: 'info',

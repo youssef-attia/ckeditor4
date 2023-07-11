@@ -260,7 +260,7 @@
 		this.modifyContainer.addClass( 'hidden' );
 		this.configContainer.removeClass( 'hidden' );
 
-		this.configContainer.setHtml( content );
+		this.configContainer.setHtml( CKEDITOR.tools.htmlSafeByReview(content, 'safe template') );
 	};
 
 	/**
@@ -291,7 +291,7 @@
 
 		AbstractToolbarModifier.prototype._createModifier.call( this );
 
-		this.modifyContainer.setHtml( this._toolbarConfigToListString() );
+		this.modifyContainer.setHtml( CKEDITOR.tools.htmlSafeByReview(this._toolbarConfigToListString(), 'controlled creation') );
 
 		var groupLi = this.modifyContainer.find( 'li[data-type="group"]' );
 

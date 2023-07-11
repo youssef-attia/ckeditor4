@@ -755,7 +755,7 @@
 		 * @param {String} title A new panel title.
 		 */
 		setTitle: function( title ) {
-			this.parts.title.setHtml( title );
+			this.parts.title.setHtml( CKEDITOR.tools.htmlSafeByReview(title, 'controlled by developer') );
 		},
 
 		/**

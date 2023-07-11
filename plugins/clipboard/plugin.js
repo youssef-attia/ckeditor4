@@ -368,7 +368,7 @@
 						editable_wrapper,
 						wrapper = new CKEDITOR.dom.element( 'div' );
 
-					wrapper.setHtml( CKEDITOR.tools.htmlSafeByReview(data,'sanitized') );
+					wrapper.setHtml( CKEDITOR.tools.htmlSafeByReview(data, 'sanitized') );
 					// Verify for sure and check for nested editor UI parts. (https://dev.ckeditor.com/ticket/9675)
 					while ( wrapper.getChildCount() == 1 &&
 							( tmp = wrapper.getFirst() ) &&

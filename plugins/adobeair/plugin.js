@@ -125,14 +125,14 @@
 							// Do that before getDocumentHead because WebKit moves
 							// <link css> elements to the <head> at this point.
 							var div = new CKEDITOR.dom.element( 'div', doc );
-							div.setHtml( headHtml );
+							div.setHtml( CKEDITOR.tools.htmlSafeByReview(headHtml, 'controlled creation') );
 							// Move the <div> nodes to <head>.
 							div.moveChildren( head );
 							return '';
 						} );
 
 						html.replace( /(<body[^>]*>)([\s\S]*)(?=$|<\/body>)/i, function( match, startTag, innerHTML ) {
-							doc.getBody().setHtml( innerHTML );
+							doc.getBody().setHtml( CKEDITOR.tools.htmlSafeByReview(innerHTML, 'controlled creation') );
 							var attrs = CKEDITOR.htmlParser.fragment.fromHtml( startTag ).children[ 0 ].attributes;
 							attrs && doc.getBody().setAttributes( attrs );
 						} );

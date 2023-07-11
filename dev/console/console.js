@@ -169,7 +169,7 @@ var CKCONSOLE = ( function() {
 					valueName;
 
 				for ( valueName in values )
-					this.valuesElements[ valueName ].setHtml( values[ valueName ] );
+					this.valuesElements[ valueName ].setHtml( CKEDITOR.tools.htmlSafeByReview(values[ valueName ], 'pulling from editor data') );
 			}
 		};
 	}

@@ -1395,7 +1395,7 @@ CKEDITOR.STYLE_OBJECT = 3;
 		if ( CKEDITOR.env.ie )
 			preBlock.$.outerHTML = '<pre>' + mergedHtml + '</pre>';
 		else
-			preBlock.setHtml( mergedHtml );
+			preBlock.setHtml( CKEDITOR.tools.htmlSafeByReview(mergedHtml, 'sanitized') );
 
 		previousBlock.remove();
 	}
@@ -1462,10 +1462,10 @@ CKEDITOR.STYLE_OBJECT = 3;
 
 			if ( docFrag ) {
 				var newBlockClone = newBlock.clone();
-				newBlockClone.setHtml( blockHtml );
+				newBlockClone.setHtml( CKEDITOR.tools.htmlSafeByReview(blockHtml, 'sanitized') );
 				docFrag.append( newBlockClone );
 			} else {
-				newBlock.setHtml( blockHtml );
+				newBlock.setHtml( CKEDITOR.tools.htmlSafeByReview(blockHtml, 'sanitized') );
 			}
 		}
 
@@ -1501,7 +1501,7 @@ CKEDITOR.STYLE_OBJECT = 3;
 			newBlock.copyAttributes( temp.getFirst() );
 			newBlock = temp.getFirst().remove();
 		} else {
-			newBlock.setHtml( preHtml );
+			newBlock.setHtml( CKEDITOR.tools.htmlSafeByReview(preHtml, 'sanitized') );
 		}
 
 		return newBlock;

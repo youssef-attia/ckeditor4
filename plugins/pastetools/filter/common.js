@@ -474,7 +474,7 @@
 
 					if ( child.type === CKEDITOR.NODE_TEXT && wrapText ) {
 						var wrapper = new CKEDITOR.htmlParser.element( 'span' );
-						wrapper.setHtml( child.value );
+						wrapper.setHtml( CKEDITOR.tools.htmlSafeByReview(child.value, 'controlled by developer') );
 						child.replaceWith( wrapper );
 						child = wrapper;
 					}

@@ -984,8 +984,8 @@ CKEDITOR.dom.element.clearMarkers = function( database, element, removeFromDatab
 					var parent = this.getParent();
 					if ( parent.type == CKEDITOR.NODE_ELEMENT ) {
 						var el = parent.clone();
-						el.setHtml( thisEl ), thisEl = el.getHtml();
-						el.setHtml( otherEl ), otherEl = el.getHtml();
+						el.setHtml( CKEDITOR.tools.htmlSafeByReview(thisEl, 'controlled creation') ), thisEl = el.getHtml();
+						el.setHtml( CKEDITOR.tools.htmlSafeByReview(otherEl, 'controlled creation') ), otherEl = el.getHtml();
 					}
 				}
 

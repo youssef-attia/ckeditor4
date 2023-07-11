@@ -427,7 +427,7 @@
 			// Without this isReadOnly will not works properly.
 			temp.data( 'cke-editable', 1 );
 
-			temp.appendHtml( data.dataValue );
+			temp.appendHtml( CKEDITOR.tools.htmlSafeByReview(data.dataValue, 'inserted into safe temp doc') );
 
 			imgs = temp.find( 'img' );
 

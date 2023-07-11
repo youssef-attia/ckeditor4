@@ -122,7 +122,7 @@ CKEDITOR.dialog.add( 'uicolor', function( editor ) {
 	function setHighlightedColor( color ) {
 		if ( color ) {
 			$doc.getById( highlightedColorId ).setStyle( 'background-color', color );
-			$doc.getById( highlightedColorTextId ).setHtml( color );
+			$doc.getById( highlightedColorTextId ).setHtml( CKEDITOR.tools.htmlSafeByReview(color, 'safe text') );
 
 		} else {
 			$doc.getById( highlightedColorId ).removeStyle( 'background-color' );
