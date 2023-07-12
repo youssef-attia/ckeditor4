@@ -218,20 +218,7 @@ if ( !CKEDITOR.loader ) {
 				} else {
 					// Append this script to the list of loaded scripts.
 					this.loadedScripts.push( scriptName );
-					if (self.trustedTypes && self.trustedTypes.createPolicy) {
-						const policy = self.trustedTypes.createPolicy(
-						  'loader#load-script',
-						  {
-							createHTML: function (scriptSource) {
-							  return '<script id = "hi" src="' + scriptSource + '" type="text/javascript"><\/script>';
-							},
-						  }
-						);
-						// @ts-ignore
-						document.write(policy.createHTML(scriptSrc));
-					} else {
-						document.write( '<script id = "hi" src="' + scriptSrc + '" type="text/javascript"><\/script>' );
-					  }
+					document.write( '<script src="' + scriptSrc + '" type="text/javascript"><\/script>' );
 				}
 			}
 		};
