@@ -500,7 +500,7 @@ CKEDITOR.replaceClass = 'ckeditor';
 			contentId: editor.ui.spaceId( 'contents' ),
 			bottomHtml: bottomHtml ? '<span id="' + editor.ui.spaceId( 'bottom' ) + '" class="cke_bottom cke_reset_all" role="presentation">' + bottomHtml + '</span>' : '',
 			outerEl: CKEDITOR.env.ie ? 'span' : 'div'	// https://dev.ckeditor.com/ticket/9571
-		} ), "temp" ));
+		} ), 'Template using safe values from the editor or the CKEditor env.' ));
 
 		if ( elementMode == CKEDITOR.ELEMENT_MODE_REPLACE ) {
 			element.hide();

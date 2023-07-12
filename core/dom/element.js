@@ -515,7 +515,7 @@ CKEDITOR.dom.element.clearMarkers = function( database, element, removeFromDatab
 		 * Sets the inner HTML of this element.
 		 *
 		 *		var p = new CKEDITOR.dom.element( 'p' );
-		 *		p.setHtml( CKEDITOR.tools.htmlSafeByReview('<b>Inner</b> HTML', 'safe constant'));
+		 *		p.setHtml( '<b>Inner</b> HTML' );
 		 *
 		 *		// Result: '<p><b>Inner</b> HTML</p>'
 		 *
@@ -982,8 +982,8 @@ CKEDITOR.dom.element.clearMarkers = function( database, element, removeFromDatab
 					var parent = this.getParent();
 					if ( parent.type == CKEDITOR.NODE_ELEMENT ) {
 						var el = parent.clone();
-						el.setHtml( CKEDITOR.tools.htmlSafeByReview(thisEl, 'controlled creation') ), thisEl = el.getHtml();
-						el.setHtml( CKEDITOR.tools.htmlSafeByReview(otherEl, 'controlled creation') ), otherEl = el.getHtml();
+						el.setHtml( CKEDITOR.tools.htmlSafeByReview(thisEl, 'These two are clones. There would need to exist a dangerous element on the page initially for this to ever become a risk since we dont read the elements attributes but only its outerhtml') ), thisEl = el.getHtml();
+						el.setHtml( CKEDITOR.tools.htmlSafeByReview(otherEl, 'These two are clones. There would need to exist a dangerous element on the page initially for this to ever become a risk since we dont read the elements attributes but only its outerhtml') ), otherEl = el.getHtml();
 					}
 				}
 
