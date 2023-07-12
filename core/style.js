@@ -1395,7 +1395,7 @@ CKEDITOR.STYLE_OBJECT = 3;
 		if ( CKEDITOR.env.ie )
 			preBlock.$.outerHTML = '<pre>' + mergedHtml + '</pre>';
 		else
-			preBlock.setHtml( CKEDITOR.tools.htmlSafeByReview(mergedHtml, 'sanitized') );
+			preBlock.setHtml( CKEDITOR.tools.htmlSafeByReview(mergedHtml, 'preBlock is created internally and is only impacted by the editors config options') );
 
 		previousBlock.remove();
 	}
@@ -1462,10 +1462,10 @@ CKEDITOR.STYLE_OBJECT = 3;
 
 			if ( docFrag ) {
 				var newBlockClone = newBlock.clone();
-				newBlockClone.setHtml( CKEDITOR.tools.htmlSafeByReview(blockHtml, 'sanitized') );
+				newBlockClone.setHtml( CKEDITOR.tools.htmlSafeByReview(blockHtml, 'blockHtml is created internally and is only impacted by the editors config options') );
 				docFrag.append( newBlockClone );
 			} else {
-				newBlock.setHtml( CKEDITOR.tools.htmlSafeByReview(blockHtml, 'sanitized') );
+				newBlock.setHtml( CKEDITOR.tools.htmlSafeByReview(blockHtml, 'blockHtml is created internally and is only impacted by the editors config options') );
 			}
 		}
 
@@ -1501,7 +1501,7 @@ CKEDITOR.STYLE_OBJECT = 3;
 			newBlock.copyAttributes( temp.getFirst() );
 			newBlock = temp.getFirst().remove();
 		} else {
-			newBlock.setHtml( CKEDITOR.tools.htmlSafeByReview(preHtml, 'sanitized') );
+			newBlock.setHtml( CKEDITOR.tools.htmlSafeByReview(preHtml, 'block is created internally and is only impacted by the editors config options. preHtml is made up of html code pulled from block but with some modifications.') );
 		}
 
 		return newBlock;

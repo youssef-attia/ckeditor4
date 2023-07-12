@@ -117,7 +117,7 @@
 
 		if ( editor.config.versionCheck ) {
 			container.setStyle( 'color', versionInfo.isSecure ? '' : '#C83939' );
-			container.setHtml( CKEDITOR.tools.htmlSafeByReview(message, 'controlled safe creation') );
+			container.setHtml( CKEDITOR.tools.htmlSafeByReview(message, 'The message variable is created internally using only editor values so it should be safe.') );
 		}
 	}
 

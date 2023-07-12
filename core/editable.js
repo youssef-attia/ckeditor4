@@ -1415,7 +1415,7 @@
 					var ct = this.ui.space( this.elementMode == CKEDITOR.ELEMENT_MODE_INLINE ? 'top' : 'contents' );
 					if ( ct ) {
 						var ariaDescId = CKEDITOR.tools.getNextId(),
-							desc = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<span id="' + ariaDescId + '" class="cke_voice_label">' + helpLabel + '</span>', 'template with safe values'));
+							desc = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<span id="' + ariaDescId + '" class="cke_voice_label">' + helpLabel + '</span>', 'Template created using values that are controlled by the editor'));
 						ct.append( desc );
 						editable.changeAttr( 'aria-describedby', ariaDescId );
 					}
@@ -1953,7 +1953,7 @@
 			var doc = range.document,
 				wrapper = doc.createElement( 'body' );
 
-			wrapper.setHtml( CKEDITOR.tools.htmlSafeByReview(data, 'sanitized') );
+			wrapper.setHtml( CKEDITOR.tools.htmlSafeByReview(data, 'The data goes through multiple steps of sanitization and processing before being passed here.') );
 
 			// Eventually remove the temporaries.
 			if ( protect ) {

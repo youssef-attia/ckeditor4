@@ -675,7 +675,7 @@
 			if ( element.is( 'textarea' ) )
 				element.setValue( data );
 			else
-				element.setHtml( CKEDITOR.tools.htmlSafeByReview(data, 'encoded/sanitized') );
+				element.setHtml( CKEDITOR.tools.htmlSafeByReview(data, 'getData pulls event data directly from the editor itself') );
 
 			return true;
 		}

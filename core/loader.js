@@ -218,6 +218,7 @@ if ( !CKEDITOR.loader ) {
 				} else {
 					// Append this script to the list of loaded scripts.
 					this.loadedScripts.push( scriptName );
+					
 					document.write( '<script src="' + scriptSrc + '" type="text/javascript"><\/script>' );
 				}
 			}
