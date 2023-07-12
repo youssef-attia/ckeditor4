@@ -194,7 +194,7 @@
 					output.push( this.createEmojiListBlock() );
 					output.push( this.createStatusBar() );
 
-					return CKEDITOR.tools.htmlSafeByReview('<div class="cke_emoji-inner_panel">' + output.join( '' ) + '</div>', 'safe template');
+					return CKEDITOR.tools.htmlSafeByReview('<div class="cke_emoji-inner_panel">' + output.join( '' ) + '</div>', 'Template created using safe internal values');
 				},
 				createGroupsNavigation: function() {
 					var itemTemplate,
@@ -544,7 +544,7 @@
 						var container = new CKEDITOR.dom.element( 'div' );
 
 						container.addClass( 'cke_emoji-navigation_icons' );
-						container.setHtml( CKEDITOR.tools.htmlSafeByReview(html, 'pulling from safe source') );
+						container.setHtml( CKEDITOR.tools.htmlSafeByReview(html, 'This html is being pulled from the plugin path so it should be safe') );
 
 						doc.getBody().append( container );
 					} );

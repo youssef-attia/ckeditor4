@@ -260,7 +260,7 @@
 				updateDoneHandler = CKEDITOR.tools.addFunction( function() {
 					CKEDITOR.plugins.mathjax.copyStyles( iFrame, preview );
 
-					preview.setHtml( CKEDITOR.tools.htmlSafeByReview(buffer.getHtml(), 'getting html from safe element') );
+					preview.setHtml( CKEDITOR.tools.htmlSafeByReview(buffer.getHtml(), 'Getting html from a preexisting item on the page: buffer') );
 
 					editor.fire( 'lockSnapshot' );
 
@@ -365,7 +365,7 @@
 
 				editor.fire( 'lockSnapshot' );
 
-				buffer.setHtml( CKEDITOR.tools.htmlSafeByReview(value, 'TODO safe?') );
+				buffer.setHtml( CKEDITOR.tools.htmlSafeByReview(value, 'Encoded using htmlEncode') );
 
 				// Set loading indicator.
 				preview.setHtml( CKEDITOR.tools.htmlSafeByReview('<img src=' + CKEDITOR.plugins.mathjax.loadingIcon + ' alt=' + editor.lang.mathjax.loading + '>', 'safe constant'));
@@ -419,7 +419,7 @@
 					var doc = iFrame.getFrameDocument(),
 						tex = doc.getById( 'tex' );
 
-					tex.setHtml( CKEDITOR.tools.htmlSafeByReview( CKEDITOR.plugins.mathjax.trim( CKEDITOR.tools.htmlEncode( value ) ), 'sanitized') );
+					tex.setHtml( CKEDITOR.tools.htmlSafeByReview( CKEDITOR.plugins.mathjax.trim( CKEDITOR.tools.htmlEncode( value ) ), 'Encoded using htmlEncode and then trimmed') );
 
 					CKEDITOR.plugins.mathjax.copyStyles( iFrame, tex );
 

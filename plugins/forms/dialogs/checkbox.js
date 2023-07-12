@@ -112,7 +112,7 @@ CKEDITOR.dialog.add( 'checkbox', function( editor ) {
 
 						if ( isElementChecked != isChecked ) {
 							var replace = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview( '<input type="checkbox"' + ( isChecked ? ' checked="checked"' : '' ) +
-								'/>', 'safe creation'), editor.document );
+								'/>', 'Ternary constant safe value'), editor.document );
 
 							element.copyAttributes( replace, { type: 1, checked: 1 } );
 							replace.replace( element );

@@ -388,7 +388,7 @@
 		// Shared CSS stuff for box elements
 		CSS_COMMON = 'width:0px;height:0px;padding:0px;margin:0px;display:block;' + 'z-index:9999;color:#fff;position:absolute;font-size: 0px;line-height:0px;',
 		CSS_TRIANGLE = CSS_COMMON + 'border-color:transparent;display:block;border-style:solid;',
-		TRIANGLE_HTML = '<span>' + WHITE_SPACE + '</span>';
+		TRIANGLE_HTML = CKEDITOR.tools.htmlSafeByReview('<span>' + WHITE_SPACE + '</span>', 'safe constant');
 
 	enterElements[ CKEDITOR.ENTER_BR ] = 'br';
 	enterElements[ CKEDITOR.ENTER_P ] = 'p';
@@ -570,7 +570,7 @@
 	function initLine( that ) {
 		var doc = that.doc,
 			// This the main box element that holds triangles and the insertion button
-			line = newElementFromHtml( '<span contenteditable="false" data-cke-magic-line="1" style="' + CSS_COMMON + 'position:absolute;border-top:1px dashed ' + that.boxColor + '"></span>', doc ),
+			line = newElementFromHtml( CKEDITOR.tools.htmlSafeByReview('<span contenteditable="false" data-cke-magic-line="1" style="' + CSS_COMMON + 'position:absolute;border-top:1px dashed ' + that.boxColor + '"></span>', 'Template created using safe internal values'), doc ),
 			iconPath = CKEDITOR.getUrl( this.path + 'images/' + ( env.hidpi ? 'hidpi/' : '' ) + 'icon' + ( that.rtl ? '-rtl' : '' ) + '.png' );
 
 		extend( line, {
@@ -587,8 +587,9 @@
 			lineChildren: [
 				extend(
 					newElementFromHtml(
+						CKEDITOR.tools.htmlSafeByReview(
 						'<span title="' + that.editor.lang.magicline.title +
-						'" contenteditable="false">&#8629;</span>', doc
+						'" contenteditable="false">&#8629;</span>', 'Template created using safe internal values'), doc
 					), {
 						base: CSS_COMMON + 'height:17px;width:17px;' + ( that.rtl ? 'left' : 'right' ) + ':17px;' +
 								'background:url(' + iconPath + ') center no-repeat ' + that.boxColor + ';cursor:pointer;' +

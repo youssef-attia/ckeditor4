@@ -318,7 +318,7 @@
 						// IE8 (not supported browser) have issue with new line chars, when using innerHTML.
 						// It will simply strip it.
 						that.parts.code.setHtml( CKEDITOR.tools.htmlSafeByReview(editor.plugins.codesnippet.isSupportedEnvironment() ?
-							formatted : formatted.replace( newLineRegex, '<br>'), 'formatted' ) );
+							formatted : formatted.replace( newLineRegex, '<br>'), 'Any unsafe usages are encoded using htmlEncode.' ) );
 					};
 
 				// Set plain code first, so even if custom handler will not call it the code will be there.
@@ -337,7 +337,7 @@
 					oldData = this.oldData;
 
 				if ( newData.code )
-					this.parts.code.setHtml( CKEDITOR.tools.htmlSafeByReview(CKEDITOR.tools.htmlEncode( newData.code ), 'sanitized') );
+					this.parts.code.setHtml( CKEDITOR.tools.htmlSafeByReview(CKEDITOR.tools.htmlEncode( newData.code ), 'Encoded using htmlEncode.') );
 
 				// Remove old .language-* class.
 				if ( oldData && newData.lang != oldData.lang )

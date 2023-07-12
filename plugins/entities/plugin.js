@@ -80,7 +80,7 @@
 			// final characters.
 			var div = document.createElement( 'div' ),
 				chars;
-			div.innerHTML = CKEDITOR.tools.htmlSafeByReview(('&' + entities.join( ';&' ) + ';'), 'document never added to page');
+			div.innerHTML = CKEDITOR.tools.htmlSafeByReview(('&' + entities.join( ';&' ) + ';'), 'The div element is never added to the page. Also, entities is only set to preset values and used internally');
 			chars = div.innerHTML;
 			div = null;
 

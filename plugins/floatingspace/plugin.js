@@ -291,7 +291,7 @@
 					style: 'display:none;z-index:' + (config.baseFloatZIndex - 1),
 					topId: editor.ui.spaceId('top'),
 					voiceLabel: editor.applicationTitle
-				}), 'safe created from template'))),
+				}), 'Template created using safe internal values'))),
 
 				// Use event buffers to reduce CPU load when tons of events are fired.
 				changeBuffer = CKEDITOR.tools.eventsBuffer( 500, layout ),

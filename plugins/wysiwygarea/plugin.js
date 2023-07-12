@@ -569,7 +569,7 @@
 							'</script>';
 					}
 
-					data = data.replace( /(?=\s*<\/(:?head)>)/, bootstrapCode );
+					data = CKEDITOR.tools.htmlSafeByReview(data.replace( /(?=\s*<\/(:?head)>)/, bootstrapCode ), 'The data variable here is always editor data. Assuming there is no way for users to inject fake data into the editor then this should be safe.');
 
 					// Current DOM will be deconstructed by document.write, cleanup required.
 					this.clearCustomData();

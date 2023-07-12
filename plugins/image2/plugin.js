@@ -585,7 +585,7 @@
 						var figure = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview(templateBlock.output( {
 							captionedClass: captionedClass,
 							captionPlaceholder: editor.lang.image2.captionPlaceholder
-						} ), 'template'), doc );
+						} ), 'Template created using safe internal values'), doc );
 
 						// Replace element with <figure>.
 						replaceSafely( figure, shift.element );

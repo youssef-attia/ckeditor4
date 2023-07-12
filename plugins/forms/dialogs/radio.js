@@ -107,7 +107,7 @@ CKEDITOR.dialog.add( 'radio', function( editor ) {
 
 						if ( isElementChecked != isChecked ) {
 							var replace = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview( '<input type="radio"' + ( isChecked ? ' checked="checked"' : '' ) +
-								'></input>', 'safe creation'), editor.document );
+								'></input>', 'Ternary constant safe value'), editor.document );
 							element.copyAttributes( replace, { type: 1, checked: 1 } );
 							replace.replace( element );
 

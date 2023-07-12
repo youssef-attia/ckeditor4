@@ -424,7 +424,7 @@
 						request.task.done();
 					}
 
-					this._setContent( request.url, CKEDITOR.tools.htmlSafeByReview(evtData.html, 'TODO safe?') );
+					this._setContent( request.url, CKEDITOR.tools.htmlSafeByReview(evtData.html, 'We assume that evtData is safe and no code can be injected here.') );
 					return true;
 				} else {
 					request.errorCallback( evtData.errorMessage );

@@ -184,7 +184,7 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;
 			editorDialogClass: 'cke_editor_' + editor.name.replace( /\./g, '\\.' ) + '_dialog',
 			closeTitle: editor.lang.common.close,
 			hidpi: CKEDITOR.env.hidpi ? 'cke_hidpi' : ''
-		} ), 'safe template') );
+		} ), 'Template created using safe internal values') );
 
 		// TODO: Change this to getById(), so it'll support custom templates.
 		var body = element.getChild( [ 0, 0, 0, 0, 0 ] ),
@@ -202,7 +202,7 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;
 					' class="cke_iframe_shim"' +
 					' src="' + src + '"' +
 					' tabIndex="-1"' +
-					'></iframe>', 'template') );
+					'></iframe>', 'Template created using safe internal values') );
 			iframe.appendTo( body.getParent() );
 		}
 
@@ -679,7 +679,7 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;
 				widths: [],
 				children: definition.buttons
 			}, buttonsHtml ).getChild();
-		this.parts.footer.setHtml( CKEDITOR.tools.htmlSafeByReview(buttonsHtml.join( '' ), 'safe constructioin') );
+		this.parts.footer.setHtml( CKEDITOR.tools.htmlSafeByReview(buttonsHtml.join( '' ), 'Buttons are all constructed internally using hbox.build and inplace values') );
 
 		for ( i = 0; i < buttons.length; i++ )
 			this._.buttons[ buttons[ i ].id ] = buttons[ i ];
@@ -1213,7 +1213,7 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;
 			}
 
 			// Create the HTML for the tab and the content block.
-			var page = CKEDITOR.dom.element.createFromHtml(CKEDITOR.tools.htmlSafeByReview(pageHtml.join( '' ), 'safe construction') );
+			var page = CKEDITOR.dom.element.createFromHtml(CKEDITOR.tools.htmlSafeByReview(pageHtml.join( '' ), 'Page is created using vbox.build and inplace internal values') );
 			page.setAttribute( 'role', 'tabpanel' );
 			page.setStyle( 'min-height', '100%' );
 
@@ -1231,7 +1231,7 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;
 					' role="tab">',
 					contents.label,
 					'</a>'
-				].join( '' ), 'template') );
+				].join( '' ), 'Template created using safe internal values') );
 
 			page.setAttribute( 'aria-labelledby', tabId );
 
@@ -2207,7 +2207,7 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;
 				// BLACK LOWER RIGHT TRIANGLE (ltr)
 				// BLACK LOWER LEFT TRIANGLE (rtl)
 				( editor.lang.dir == 'ltr' ? '\u25E2' : '\u25E3' ) +
-				'</div>', 'safe template' ) );
+				'</div>', 'Template created using safe internal values' ) );
 			dialog.parts.footer.append( resizer, 1 );
 		} );
 		editor.on( 'destroy', function() {
@@ -2355,7 +2355,7 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;
 
 			html.push( '</div>' );
 
-			coverElement = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview(html.join( '' ), 'safe template construction') );
+			coverElement = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview(html.join( '' ), 'Template created using safe internal values') );
 			coverElement.setOpacity( backgroundCoverOpacity !== undefined ? backgroundCoverOpacity : 0.5 );
 
 			coverElement.on( 'keydown', cancelEvent );

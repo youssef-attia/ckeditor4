@@ -336,7 +336,7 @@ CKEDITOR.dialog.add( 'image2', function( editor ) {
 		// Ratio button hc presentation - WHITE SQUARE / BLACK SQUARE
 		if ( CKEDITOR.env.hc ) {
 			var icon = lockButton.getChild( 0 );
-			icon.setHtml( CKEDITOR.tools.htmlSafeByReview(lockRatio ? CKEDITOR.env.ie ? '\u25A0' : '\u25A3' : CKEDITOR.env.ie ? '\u25A1' : '\u25A2', 'safe conditional'));
+			icon.setHtml( CKEDITOR.tools.htmlSafeByReview(lockRatio ? CKEDITOR.env.ie ? '\u25A0' : '\u25A3' : CKEDITOR.env.ie ? '\u25A1' : '\u25A2', 'Safe ternary constant'));
 		}
 	}
 

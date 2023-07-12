@@ -436,7 +436,7 @@
 				tplParams = CKEDITOR.tools.extend( {}, tplParams );
 				tplParams.src = blobUrl;
 
-				var element = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview( widgetDef.template.output( tplParams ) , 'safe template') ),
+				var element = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview( widgetDef.template.output( tplParams ) , 'review creation?') ),
 					wrapper = editor.widgets.wrapElement( element, widgetDef.name ),
 					temp = new CKEDITOR.dom.documentFragment( wrapper.getDocument() );
 

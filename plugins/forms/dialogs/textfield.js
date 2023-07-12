@@ -168,7 +168,7 @@ CKEDITOR.dialog.add( 'textfield', function( editor ) {
 						var myType = this.getValue();
 
 						if ( elementType != myType ) {
-							var replace = CKEDITOR.dom.element.createFromHtml(CKEDITOR.tools.htmlSafeByReview( '<input type="' + myType + '"></input>', 'safe template'), editor.document );
+							var replace = CKEDITOR.dom.element.createFromHtml(CKEDITOR.tools.htmlSafeByReview( '<input type="' + myType + '"></input>', 'myType is set using the internal value and wrapped in a safe template'), editor.document );
 							element.copyAttributes( replace, { type: 1 } );
 							replace.replace( element );
 							data.element = replace;

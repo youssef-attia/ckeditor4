@@ -121,7 +121,7 @@ CKEDITOR.plugins.add( 'listblock', {
 
 				commit: function() {
 					this._.close();
-					this.element.appendHtml( CKEDITOR.tools.htmlSafeByReview(this._.pendingHtml.join( '' ), 'controlled creation') );
+					this.element.appendHtml( CKEDITOR.tools.htmlSafeByReview(this._.pendingHtml.join( '' ), 'Every piece of pendingHtml is created using a safe template using safe internal values') );
 					delete this._.size;
 
 					this._.pendingHtml = [];

@@ -119,7 +119,7 @@ CKEDITOR.dialog.add( 'colordialog', function( editor ) {
 	function setHighlight( color ) {
 		if ( color ) {
 			$doc.getById( hicolorId ).setStyle( 'background-color', color );
-			$doc.getById( hicolorTextId ).setHtml( CKEDITOR.tools.htmlSafeByReview(color, 'safe text') );
+			$doc.getById( hicolorTextId ).setHtml( CKEDITOR.tools.htmlSafeByReview(color, 'The variable color here is only ever set to the html of elements created internally (in createColorTable and applyColorCell)') );
 
 		} else {
 			$doc.getById( hicolorId ).removeStyle( 'background-color' );
@@ -209,7 +209,7 @@ CKEDITOR.dialog.add( 'colordialog', function( editor ) {
 		table = CKEDITOR.dom.element.createFromHtml(CKEDITOR.tools.htmlSafeByReview('<table tabIndex="-1" class="cke_colordialog_table"' +
 			' aria-label="' + lang.options + '" role="grid" style="border-collapse:separate;" cellspacing="0">' +
 			'<caption class="cke_voice_label">' + lang.options + '</caption>' +
-			'<tbody role="presentation"></tbody></table>', 'safe template'));
+			'<tbody role="presentation"></tbody></table>', 'Template using internal values'));
 
 		table.on( 'mouseover', updateHighlight );
 		table.on( 'mouseout', removeHighlight );
@@ -247,7 +247,7 @@ CKEDITOR.dialog.add( 'colordialog', function( editor ) {
 
 			var colorLabel = numbering( 'color_table_cell' );
 			cell.setAttribute( 'aria-labelledby', colorLabel );
-			cell.append( CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview( '<span id="' + colorLabel + '" class="cke_voice_label">' + color + '</span>', 'safe template'), CKEDITOR.document ) );
+			cell.append( CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview( '<span id="' + colorLabel + '" class="cke_voice_label">' + color + '</span>', 'Template run on values that are only set internally'), CKEDITOR.document ) );
 		}
 
 		appendColorRow( 0, 0 );
