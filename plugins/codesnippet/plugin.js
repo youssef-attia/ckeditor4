@@ -377,7 +377,7 @@
 					data.lang = matchResult[ 1 ];
 
 				// Use textarea to decode HTML entities (https://dev.ckeditor.com/ticket/11926).
-				textarea.setHtml( CKEDITOR.tools.htmlSafeByReview(code.getHtml(), 'TODO safe?') );
+				textarea.setHtml( CKEDITOR.tools.htmlSafeByReview(code.getHtml(), 'Only runs on elements that already exist on the page and meet certain constraints (must be of type CKEDITOR.NODE_TEXT)') );
 				data.code = textarea.getValue();
 
 				code.addClass( codeClass );

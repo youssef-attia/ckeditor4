@@ -17,7 +17,7 @@ CKEDITOR.plugins.add( 'floatpanel', {
 
 		if ( !panel ) {
 			panel = panels[ key ] = new CKEDITOR.ui.panel( doc, definition );
-			panel.element = parentElement.append( CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview(panel.render( editor ), 'TODO safe?'), doc ) );
+			panel.element = parentElement.append( CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview(panel.render( editor ), 'Running an internal function on the editor whose configs are internal.'), doc ) );
 
 			panel.element.setStyles( {
 				display: 'none',
