@@ -29,7 +29,7 @@ CKEDITOR.dialog.add( 'specialchar', function( editor ) {
 
 			// We must use "insertText" here to keep text styled.
 			var span = editor.document.createElement( 'span' );
-			span.setHtml( CKEDITOR.tools.htmlSafeByReview(value, 'controlled by developer') );
+			span.setHtml( CKEDITOR.tools.htmlSafeByReview(value, 'Value is the html of an element that already exists on the page.') );
 			editor.insertText( span.getText() );
 		}
 	};
@@ -50,8 +50,8 @@ CKEDITOR.dialog.add( 'specialchar', function( editor ) {
 
 			var htmlPreview = dialog.getContentElement( 'info', 'htmlPreview' ).getElement();
 
-			dialog.getContentElement( 'info', 'charPreview' ).getElement().setHtml( CKEDITOR.tools.htmlSafeByReview(value, 'controlled by developer') );
-			htmlPreview.setHtml( CKEDITOR.tools.htmlSafeByReview(CKEDITOR.tools.htmlEncode( value ), 'sanitized?') );
+			dialog.getContentElement( 'info', 'charPreview' ).getElement().setHtml( CKEDITOR.tools.htmlSafeByReview(value, 'Value is the html of an element that already exists on the page.') );
+			htmlPreview.setHtml( CKEDITOR.tools.htmlSafeByReview(CKEDITOR.tools.htmlEncode( value ), 'Encoded using htmlEncode') );
 			target.getParent().addClass( 'cke_light_background' );
 
 			// Memorize focused node.
@@ -229,7 +229,7 @@ CKEDITOR.dialog.add( 'specialchar', function( editor ) {
 
 			html.push( '</tbody></table>', '<span id="' + charsTableLabel + '" class="cke_voice_label">' + lang.options + '</span>' );
 
-			this.getContentElement( 'info', 'charContainer' ).getElement().setHtml( CKEDITOR.tools.htmlSafeByReview(html.join( '' ), 'safe template') );
+			this.getContentElement( 'info', 'charContainer' ).getElement().setHtml( CKEDITOR.tools.htmlSafeByReview(html.join( '' ), 'Template created using safe internal values. Any possibly unsafe values are encoded using htmlEncode.') );
 		},
 		contents: [ {
 			id: 'info',

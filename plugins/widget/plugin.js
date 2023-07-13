@@ -1939,7 +1939,7 @@
 				enterMode: this.enterMode
 			} );
 
-			this.setHtml( CKEDITOR.tools.htmlSafeByReview(data, 'sanitized') );
+			this.setHtml( CKEDITOR.tools.htmlSafeByReview(data, 'data goes throguh multiple different dataProcessor stages to get rid of any unsafe code.') );
 
 			this.editor.widgets.initOnAll( this );
 		},
@@ -2035,7 +2035,7 @@
 					// ... or create a brand-new widget from template.
 					var defaults = typeof widgetDef.defaults == 'function' ? widgetDef.defaults() : widgetDef.defaults,
 						templateData = CKEDITOR.tools.object.merge( defaults || {}, commandData && commandData.startupData || {} ),
-						element = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview(widgetDef.template.output( templateData ), 'template'), editor.document ),
+						element = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview(widgetDef.template.output( templateData ), 'Template created using safe internal values. commandData and commandData.statupData come from the editor.'), editor.document ),
 						instance,
 						wrapper = editor.widgets.wrapElement( element, widgetDef.name ),
 						temp = new CKEDITOR.dom.documentFragment( wrapper.getDocument() );
@@ -3111,7 +3111,7 @@
 					editableElement = toBe.editables[ e ];
 
 					delete editableElement.attributes.contenteditable;
-					editableElement.setHtml( CKEDITOR.tools.htmlSafeByReview(widget.editables[ e ].getData(), 'developer controlled') );
+					editableElement.setHtml( CKEDITOR.tools.htmlSafeByReview(widget.editables[ e ].getData(), 'widget.editables is an array of elements that are already on the page. Can this be dangerous if the editables contain dangerous text?') );
 				}
 
 				// Returned element always defaults to widgetElement.
@@ -3439,7 +3439,7 @@
 					CKEDITOR.tools.htmlSafeByReview(
 					'<span data-cke-copybin-start="1">\u200b</span>' +
 					html +
-					'<span data-cke-copybin-end="1">\u200b</span>', 'only used with safe inputs') );
+					'<span data-cke-copybin-end="1">\u200b</span>', 'Function only used internally and used with editor values.') );
 
 				// Ignore copybin.
 				editor.fire( 'lockSnapshot' );

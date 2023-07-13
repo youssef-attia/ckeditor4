@@ -124,8 +124,7 @@
 		'test creator replace': function() {
 			var tc = this,
 				target = CKEDITOR.document.getBody().append(
-					CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<textarea id="foo">&lt;p&gt;foo&lt;/p&gt;</textarea>', 'safe constant') ) );
-
+					CKEDITOR.dom.element.createFromHtml( '<textarea id="foo">&lt;p&gt;foo&lt;/p&gt;</textarea>' ) );
 			var editor = CKEDITOR.replace( 'foo', {
 				on: {
 					instanceReady: function( evt ) {
@@ -167,8 +166,7 @@
 
 		'test creator appendTo': function() {
 			var tc = this,
-				container = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<div id="foo"></div>', 'safe constant' ) );
-
+			container = CKEDITOR.dom.element.createFromHtml( '<div id="foo"></div>' );
 			CKEDITOR.document.getBody().append( container );
 
 			var editor = CKEDITOR.appendTo( 'foo', {
@@ -201,8 +199,7 @@
 		'test creator inline': function() {
 			var tc = this,
 				target = CKEDITOR.document.getBody().append(
-					CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<div id="foo" contenteditable="true"><p>foo</p></div>', 'safe constant') ) );
-
+					CKEDITOR.dom.element.createFromHtml( '<div id="foo" contenteditable="true"><p>foo</p></div>' ) );
 			var editor = CKEDITOR.inline( target.$, {
 				on: {
 					instanceReady: function() {
@@ -236,8 +233,7 @@
 		'test creator inline-textarea': function() {
 			var tc = this,
 				target = CKEDITOR.document.getBody().append(
-					CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<textarea id="foo">&lt;p&gt;foo&lt;/p&gt;</textarea>', 'safe constant') ) );
-
+					CKEDITOR.dom.element.createFromHtml( '<textarea id="foo">&lt;p&gt;foo&lt;/p&gt;</textarea>' ) );
 			var editor = CKEDITOR.inline( target.$, {
 				on: {
 					instanceReady: function() {

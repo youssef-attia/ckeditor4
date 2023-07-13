@@ -275,7 +275,7 @@
 
 			if ( options.message !== undefined ) {
 				this.message = options.message;
-				messageElement.setHtml( CKEDITOR.tools.htmlSafeByReview(this.message, 'sanitized') );
+				messageElement.setHtml( CKEDITOR.tools.htmlSafeByReview(this.message, 'Controlled by developer. The options variable is only ever passed in directly by the developer.') );
 			}
 
 			if ( options.progress !== undefined ) {
@@ -347,13 +347,13 @@
 
 			notificationMessageElement = new CKEDITOR.dom.element( 'p' );
 			notificationMessageElement.addClass( 'cke_notification_message' );
-			notificationMessageElement.setHtml( CKEDITOR.tools.htmlSafeByReview(this.message, 'sanitized') );
+			notificationMessageElement.setHtml( CKEDITOR.tools.htmlSafeByReview(this.message, 'this.message is only ever set by options.message using the update function which is only available to developers so it should be safe.') );
 			notificationElement.append( notificationMessageElement );
 
 			notificationCloseElement = CKEDITOR.dom.element.createFromHtml(
 				CKEDITOR.tools.htmlSafeByReview('<a class="cke_notification_close" href="javascript:void(0)" title="' + close + '" role="button" tabindex="-1">' +
 					'<span class="cke_label">X</span>' +
-				'</a>', 'safe template') );
+				'</a>', 'Template created using safe internal values. In this case it uses editor.lang.common.close which is an editor config value.') );
 			notificationElement.append( notificationCloseElement );
 
 			notificationCloseElement.on( 'click', function() {

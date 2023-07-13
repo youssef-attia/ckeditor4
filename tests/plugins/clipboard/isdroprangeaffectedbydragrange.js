@@ -113,8 +113,7 @@
 	}
 
 	function createSnippetThree( dropRangeDesc ) {
-		var element = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<p>FOO<b>BAR</b>D</p>', 'safe const') );
-
+		var element = CKEDITOR.dom.element.createFromHtml( '<p>FOO<b>BAR</b>D</p>' );
 		var dragRange = new CKEDITOR.dom.range( element );
 		dragRange.setStart( element.getChild( 0 ), 1 );
 		dragRange.setEnd( element.findOne( 'b' ).getChild( 0 ), 1 );
@@ -226,7 +225,7 @@
 				assert.ignore();
 			}
 
-			editable.setHtml( CKEDITOR.tools.htmlSafeByReview('<p>tmp</p>', 'safe const') );
+			editable.setHtml( '<p>tmp</p>' );
 			editable.append( element );
 
 			// This function doesn't modify nothing.

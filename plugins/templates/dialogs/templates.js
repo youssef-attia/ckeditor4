@@ -47,7 +47,7 @@
 
 			html += '</td></tr></table>';
 
-			item.getFirst().setHtml( CKEDITOR.tools.htmlSafeByReview(html, 'safe templated creation') );
+			item.getFirst().setHtml( CKEDITOR.tools.htmlSafeByReview(html, 'Template created using safe internal values. Any source paths are generated using internal functions.') );
 
 			item.on( 'click', function() {
 				if( template.htmlFile ) {
@@ -195,7 +195,7 @@
 					} else {
 						listContainer.setHtml( CKEDITOR.tools.htmlSafeByReview('<div class="cke_tpl_empty">' +
 							'<span>' + lang.emptyListMsg + '</span>' +
-							'</div>', 'safe template') );
+							'</div>', 'Template created using safe internal values. lang is internal and restricted.') );
 					}
 				} );
 

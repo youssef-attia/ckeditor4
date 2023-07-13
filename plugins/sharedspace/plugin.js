@@ -64,7 +64,7 @@
 					space: spaceName,
 					spaceId: editor.ui.spaceId( spaceName ),
 					content: innerHtml
-				} ), 'safe template') ) );
+				} ), 'Template created using safe internal values. This function is called internally where spaceName is passed as one of the spaces in editor.config.sharedSpaces. Is editor.fire safe?') ) );
 
 				// Only the first container starts visible. Others get hidden.
 				if ( target.getCustomData( 'cke_hasshared' ) )

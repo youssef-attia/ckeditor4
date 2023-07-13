@@ -79,8 +79,7 @@ var image2TestsTools = ( function() {
 			editable = editor.editable();
 
 		bot.setData( '', function() {
-			editable.setHtml( CKEDITOR.tools.htmlSafeByReview(config.htmlBefore || config.oldState._.html, 'safe') );
-
+			editable.setHtml( config.htmlBefore || config.oldState._.html );
 			// A state-change tool does it's job here.
 			config.shiftState( {
 				element: editor.document.getById( 'x' ),
