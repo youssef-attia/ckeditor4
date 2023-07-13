@@ -20,8 +20,8 @@
 
 		element = CKEDITOR.document.getById( name ) || CKEDITOR.document.getBody().append(
 			CKEDITOR.dom.element.createFromHtml( creator == 'replace' ?
-			'<textarea id="' + name + '"' + '></textarea>' :
-			'<div id="' + name + '"' + ' contenteditable="true"></div>' )
+				'<textarea id="' + name + '"' + '></textarea>' :
+				'<div id="' + name + '"' + ' contenteditable="true"></div>' )
 		);
 
 		if ( creator == 'replace' && !element.is( 'textarea' ) ) {

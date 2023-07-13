@@ -80,6 +80,7 @@ var image2TestsTools = ( function() {
 
 		bot.setData( '', function() {
 			editable.setHtml( config.htmlBefore || config.oldState._.html );
+
 			// A state-change tool does it's job here.
 			config.shiftState( {
 				element: editor.document.getById( 'x' ),

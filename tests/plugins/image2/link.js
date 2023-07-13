@@ -757,6 +757,7 @@
 
 					widget = getById( bot.editor, 'x' );
 					CKEDITOR.dom.element.createFromHtml( '<a id="b" name="b"></a>', editor.document ).insertAfter( widget.wrapper );
+
 					bot.dialog( 'link', function( dialog ) {
 						try {
 							// Note: There's always one empty <option>.

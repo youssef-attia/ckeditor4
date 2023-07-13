@@ -114,6 +114,7 @@
 
 	function createSnippetThree( dropRangeDesc ) {
 		var element = CKEDITOR.dom.element.createFromHtml( '<p>FOO<b>BAR</b>D</p>' );
+		
 		var dragRange = new CKEDITOR.dom.range( element );
 		dragRange.setStart( element.getChild( 0 ), 1 );
 		dragRange.setEnd( element.findOne( 'b' ).getChild( 0 ), 1 );
