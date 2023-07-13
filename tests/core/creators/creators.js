@@ -167,8 +167,8 @@
 
 		'test creator appendTo': function() {
 			var tc = this,
-				container = CKEDITOR.dom.element.createFromHtml( '<div id="foo"></div>' );	
-			
+				container = CKEDITOR.dom.element.createFromHtml( '<div id="foo"></div>' );
+
 			CKEDITOR.document.getBody().append( container );
 
 			var editor = CKEDITOR.appendTo( 'foo', {

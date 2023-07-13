@@ -9,7 +9,7 @@
 
 ( function() {
 	// Check whether high contrast is active by creating a colored border.
-	hcDetect = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<div style="width:0;height:0;position:absolute;left:-10000px;' +
+	var hcDetect = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<div style="width:0;height:0;position:absolute;left:-10000px;' +
 	'border:1px solid;border-color:red blue"></div>', 'trusted constant value') , CKEDITOR.document );
 
 	hcDetect.appendTo( CKEDITOR.document.getHead() );
