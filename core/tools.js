@@ -116,6 +116,16 @@
 		functions = [];
 	} );
 
+	function assertValidJustification(justification) {
+		if (typeof justification !== 'string' || justification.trim() === '') {
+			let errMsg =
+				'Calls to uncheckedconversion functions must go through security review.';
+			errMsg += ' A justification must be provided to capture what security' +
+				' assumptions are being made.';
+			throw new Error(errMsg);
+		}
+	}
+
 	/**
 	 * Utility functions.
 	 *
@@ -123,6 +133,26 @@
 	 * @singleton
 	 */
 	CKEDITOR.tools = {
+
+		htmlSafeByReview: function (html, justification) {
+			assertValidJustification(justification);
+
+			if (self.trustedTypes && self.trustedTypes.createPolicy) {
+				const policy = self.trustedTypes.createPolicy(
+					'trusted#htmlSafeByReview',
+					{
+						createHTML: function (html) {
+							// This policy is only to be used for trusted inputs that do not involve unsanitized user inputs.
+							return html;
+						},
+					}
+				);
+				return policy.createHTML(html);
+			} else {
+				return html;
+			}
+		},
+		
 		/**
 		 * Compares the elements of two arrays.
 		 *

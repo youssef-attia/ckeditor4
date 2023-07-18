@@ -90,7 +90,7 @@
 				doc = nativePreviewWindow.document;
 
 				doc.open();
-				doc.write( eventData.dataValue );
+				doc.write( CKEDITOR.tools.htmlSafeByReview(eventData.dataValue, 'The variable is set to createPreviewHtml with two parameters passed from createPreview. createPreview is only ever used internally with safe values.') );
 				doc.close();
 			}
 
