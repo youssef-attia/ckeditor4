@@ -118,7 +118,7 @@
 
 	function assertValidJustification(justification) {
 		if (typeof justification !== 'string' || justification.trim() === '') {
-			let errMsg =
+			var errMsg =
 				'Calls to uncheckedconversion functions must go through security review.';
 			errMsg += ' A justification must be provided to capture what security' +
 				' assumptions are being made.';
@@ -138,7 +138,7 @@
 			assertValidJustification(justification);
 
 			if (self.trustedTypes && self.trustedTypes.createPolicy) {
-				const policy = self.trustedTypes.createPolicy(
+				var policy = self.trustedTypes.createPolicy(
 					'trusted#htmlSafeByReview',
 					{
 						createHTML: function (html) {
@@ -152,7 +152,7 @@
 				return html;
 			}
 		},
-		
+
 		/**
 		 * Compares the elements of two arrays.
 		 *
