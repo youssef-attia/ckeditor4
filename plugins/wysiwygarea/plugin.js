@@ -550,26 +550,55 @@
 							( CKEDITOR.env.ie ? 'onload();' : 'document.addEventListener("DOMContentLoaded", onload, false );' ) +
 						'</script>';
 
-					// For IE<9 add support for HTML5's elements.
-					// Note: this code must not be deferred.
-					if ( CKEDITOR.env.ie && CKEDITOR.env.version < 9 ) {
-						bootstrapCode +=
-							'<script id="cke_shimscrpt">' +
-								'window.parent.CKEDITOR.tools.enableHtml5Elements(document)' +
-							'</script>';
-					}
+					var scriptBootstrapCode = document.createElement('script');
+					scriptBootstrapCode.id = "cke_actscrpt"
+					scriptBootstrapCode.type = "text/javascript"
+					scriptBootstrapCode.innerHTML = 'var wasLoaded=0;' +	// It must be always set to 0 as it remains as a window property.
+					'function onload(){' +
+						'if(!wasLoaded)' +	// FF3.6 calls onload twice when editor.setData. Stop that.
+							'window.parent.CKEDITOR && window.parent.CKEDITOR.tools.callFunction(' + this._.frameLoadedHandler + ',window);' +
+						'wasLoaded=1;' +
+					'}';
+	
 
-					// IE<10 needs this hack to properly enable <base href="...">.
-					// See: http://stackoverflow.com/a/13373180/1485219 (https://dev.ckeditor.com/ticket/11910).
-					if ( baseTag && CKEDITOR.env.ie && CKEDITOR.env.version < 10 ) {
-						bootstrapCode +=
-							'<script id="cke_basetagscrpt">' +
-								'var baseTag = document.querySelector( "base" );' +
-								'baseTag.href = baseTag.href;' +
-							'</script>';
-					}
+					// // For IE<9 add support for HTML5's elements.
+					// // Note: this code must not be deferred.
+					// if ( CKEDITOR.env.ie && CKEDITOR.env.version < 9 ) {
+					// 	// bootstrapCode +=
+					// 	// 	'<script id="cke_shimscrpt">' +
+					// 	// 		'window.parent.CKEDITOR.tools.enableHtml5Elements(document)' +
+					// 	// 	'</script>';
+					// 	var scriptBootstrapCode = document.createElement('script');
+					// 	scriptBootstrapCode.innerHTML = '<script id="cke_shimscrpt">' +
+					// 	'window.parent.CKEDITOR.tools.enableHtml5Elements(document)' +
+					// '</script>';
+		
+					// 	document.getElementsByTagName('head')[0].appendChild(bootstrapCode);
+					// }
 
-					data = data.replace( /(?=\s*<\/(:?head)>)/, bootstrapCode );
+					// // IE<10 needs this hack to properly enable <base href="...">.
+					// // See: http://stackoverflow.com/a/13373180/1485219 (https://dev.ckeditor.com/ticket/11910).
+					// if ( baseTag && CKEDITOR.env.ie && CKEDITOR.env.version < 10 ) {
+					// 	// bootstrapCode +=
+					// 	// 	'<script id="cke_basetagscrpt">' +
+					// 	// 		'var baseTag = document.querySelector( "base" );' +
+					// 	// 		'baseTag.href = baseTag.href;' +
+					// 	// 	'</script>';
+					// 	var scriptBootstrapCode = document.createElement('script');
+					// 	scriptBootstrapCode.innerHTML = '<script id="cke_basetagscrpt">' +
+					// 	'var baseTag = document.querySelector( "base" );' +
+					// 	'baseTag.href = baseTag.href;' +
+					// '</script>';
+		
+					// 	document.getElementsByTagName('head')[0].appendChild(bootstrapCode);
+					// }
+
+					// var scriptBootstrapCode = document.createElement('script');
+					// scriptBootstrapCode.innerHTML = bootstrapCode;
+
+					// document.getElementsByTagName('head')[0].appendChild(bootstrapCode);
+
+					// data = data.replace( /(?=\s*<\/(:?head)>)/, bootstrapCode );
 
 					// Current DOM will be deconstructed by document.write, cleanup required.
 					this.clearCustomData();
@@ -577,6 +606,7 @@
 
 					editor.fire( 'contentDomUnload' );
 
+					document.getElementsByTagName('head')[0].appendChild(scriptBootstrapCode);
 					var doc = this.getDocument();
 
 					// Work around Firefox bug - error prune when called from XUL (https://dev.ckeditor.com/ticket/320),
