@@ -570,7 +570,7 @@
 	function initLine( that ) {
 		var doc = that.doc,
 			// This the main box element that holds triangles and the insertion button
-			line = newElementFromHtml( CKEDITOR.tools.htmlSafeByReview('<span contenteditable="false" data-cke-magic-line="1" style="' + CSS_COMMON + 'position:absolute;border-top:1px dashed ' + that.boxColor + '"></span>', 'Content created inline using safe internal values'), doc ),
+			line = newElementFromHtml( CKEDITOR.tools.htmlSafeByReview('<span contenteditable="false" data-cke-magic-line="1" style="' + CSS_COMMON + 'position:absolute;border-top:1px dashed ' + that.boxColor + '"></span>', 'Content created inline using safe internal values. that.boxColor is either a constant or an editor config value.'), doc ),
 			iconPath = CKEDITOR.getUrl( this.path + 'images/' + ( env.hidpi ? 'hidpi/' : '' ) + 'icon' + ( that.rtl ? '-rtl' : '' ) + '.png' );
 
 		extend( line, {
