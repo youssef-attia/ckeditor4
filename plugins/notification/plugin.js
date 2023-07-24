@@ -275,7 +275,7 @@
 
 			if ( options.message !== undefined ) {
 				this.message = options.message;
-				messageElement.setHtml( CKEDITOR.tools.htmlSafeByReview(this.message, 'Controlled by developer. The options variable is only ever passed in directly by the developer.') );
+				messageElement.setHtml( CKEDITOR.tools.htmlSafeByReview(CKEDITOR.tools.htmlEncode(this.message), 'Encoding does not break tests. Controlled by developer. The options variable is only ever passed in directly by the developer.') );
 			}
 
 			if ( options.progress !== undefined ) {
@@ -347,7 +347,7 @@
 
 			notificationMessageElement = new CKEDITOR.dom.element( 'p' );
 			notificationMessageElement.addClass( 'cke_notification_message' );
-			notificationMessageElement.setHtml( CKEDITOR.tools.htmlSafeByReview(this.message, 'this.message is only ever set by options.message using the update function which is only available to developers so it should be safe.') );
+			notificationMessageElement.setHtml( CKEDITOR.tools.htmlSafeByReview( CKEDITOR.tools.htmlEncode(this.message), 'Encoding does not break tests. this.message is only ever set by options.message using the update function which is only available to developers so it should be safe.') );
 			notificationElement.append( notificationMessageElement );
 
 			notificationCloseElement = CKEDITOR.dom.element.createFromHtml(

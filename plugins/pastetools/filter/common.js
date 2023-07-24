@@ -474,7 +474,7 @@
 
 					if ( child.type === CKEDITOR.NODE_TEXT && wrapText ) {
 						var wrapper = new CKEDITOR.htmlParser.element( 'span' );
-						wrapper.setHtml( CKEDITOR.tools.htmlSafeByReview(child.value, 'This is only editing existing DOM elements that fit certain constraints such as if the child type is CKEDITOR.NODE_TEXT') );
+						wrapper.setHtml( CKEDITOR.tools.htmlSafeByReview(child.value, 'Looks like it is only used internally, legacy conversion? This is only editing existing DOM elements that fit certain constraints such as if the child type is CKEDITOR.NODE_TEXT') );
 						child.replaceWith( wrapper );
 						child = wrapper;
 					}

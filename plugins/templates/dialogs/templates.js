@@ -47,7 +47,7 @@
 
 			html += '</td></tr></table>';
 
-			item.getFirst().setHtml( CKEDITOR.tools.htmlSafeByReview(html, 'Content created using safe internal values. Any source paths are generated using internal functions.') );
+			item.getFirst().setHtml( CKEDITOR.tools.htmlSafeByReview(html, 'The template variable is passed in and used by other functions. It is passed in as templates = ( config.templates || "default" ).split( "," );. Any source paths are generated using internal functions.') );
 
 			item.on( 'click', function() {
 				if( template.htmlFile ) {

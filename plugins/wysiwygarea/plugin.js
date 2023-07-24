@@ -38,7 +38,7 @@
 					src = '';
 				}
 
-				var iframe = CKEDITOR.dom.element.createFromHtml(CKEDITOR.tools.htmlSafeByReview('<iframe src="' + src + '" frameBorder="0"></iframe>', 'Content created inline using safe internal values. In this case only ckeditor.env values are used.'));
+				var iframe = CKEDITOR.dom.element.createFromHtml(CKEDITOR.tools.htmlSafeByReview('<iframe src="' + src + '" frameBorder="0"></iframe>', 'Content created inline using safe internal values. url is created using CKEDITOR.tools.fixDomain.'));
 				iframe.setStyles( { width: '100%', height: '100%' } );
 				iframe.addClass( 'cke_wysiwyg_frame' ).addClass( 'cke_reset' );
 
@@ -430,7 +430,7 @@
 				var editor = this.editor;
 
 				if ( isSnapshot ) {
-					this.setHtml( CKEDITOR.tools.htmlSafeByReview(data, 'TODO safe?') );
+					this.setHtml( CKEDITOR.tools.htmlSafeByReview(data, 'Legacy conversion?') );
 					this.fixInitialSelection();
 
 					// Fire dataReady for the consistency with inline editors

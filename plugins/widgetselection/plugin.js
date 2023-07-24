@@ -251,7 +251,7 @@
 		 */
 		createFiller: function( onEnd ) {
 			var filler = new CKEDITOR.dom.element( this.fillerTagName );
-			filler.setHtml( CKEDITOR.tools.htmlSafeByReview(this.fillerContent, 'Can only be set by developer.') );
+			filler.setHtml( CKEDITOR.tools.htmlSafeByReview(this.fillerContent, 'Can only be set by developer. Defaults to a safe value.') );
 			filler.setAttribute( this.fillerAttribute, onEnd ? 'end' : 'start' );
 			filler.setAttribute( 'data-cke-temp', 1 );
 			filler.setStyles( {

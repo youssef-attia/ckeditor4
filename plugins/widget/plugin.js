@@ -3439,7 +3439,7 @@
 					CKEDITOR.tools.htmlSafeByReview(
 					'<span data-cke-copybin-start="1">\u200b</span>' +
 					html +
-					'<span data-cke-copybin-end="1">\u200b</span>', 'Function only used internally and used with editor values.') );
+					'<span data-cke-copybin-end="1">\u200b</span>', 'This function is only used once internally with getting clipboard html. The html gotten from the clipboard is filtered using editor.dataProcessor.toDataFormat( selectedHtml )') );
 
 				// Ignore copybin.
 				editor.fire( 'lockSnapshot' );

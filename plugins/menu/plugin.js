@@ -405,7 +405,7 @@ CKEDITOR.plugins.add( 'menu', {
 				output.push( '</div>' );
 
 				// Inject the HTML inside the panel.
-				element.setHtml( CKEDITOR.tools.htmlSafeByReview(output.join( '' ), 'All items added to "output" are created internally using safe internal values such as the editor path. The items appended to this output are created using safe methods also using internal properties (this.items)') );
+				element.setHtml( CKEDITOR.tools.htmlSafeByReview(output.join( '' ), 'item.render pushes to output using template.output. Since we are legacy converting template.output, legacy convert this as well?') );
 
 				CKEDITOR.ui.fire( 'ready', this );
 
