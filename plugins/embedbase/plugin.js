@@ -424,7 +424,7 @@
 						request.task.done();
 					}
 
-					this._setContent( request.url, CKEDITOR.tools.htmlLegacyConverted(evtData.html) );
+					this._setContent( request.url, evtData.html );
 					return true;
 				} else {
 					request.errorCallback( evtData.errorMessage );

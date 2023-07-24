@@ -222,7 +222,7 @@
 			}
 
 			var space = getSpaceElement();
-			space.setHtml( CKEDITOR.tools.htmlLegacyConverted(html.join( '' ) + emptyHtml) );
+			space.setHtml( html.join( '' ) + emptyHtml );
 			editor.fire( 'elementsPathUpdate', { space: space } );
 		} );
 
