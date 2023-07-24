@@ -194,7 +194,7 @@
 					output.push( this.createEmojiListBlock() );
 					output.push( this.createStatusBar() );
 
-					return CKEDITOR.tools.htmlSafeByReview('<div class="cke_emoji-inner_panel">' + output.join( '' ) + '</div>', 'Template created using safe internal values');
+					return CKEDITOR.tools.htmlSafeByReview('<div class="cke_emoji-inner_panel">' + output.join( '' ) + '</div>', 'Content created inline using safe internal values');
 				},
 				createGroupsNavigation: function() {
 					var itemTemplate,

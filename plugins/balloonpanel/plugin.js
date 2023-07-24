@@ -201,28 +201,28 @@
 			var editor = this.editor;
 
 			this.parts = {
-				title: CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview(this.templates.title.output( {
+				title: CKEDITOR.dom.element.createFromHtml( this.templates.title.output( {
 					title: this.title
-				} ) , 'Safe template using internal editor values as input')),
+				} ) ),
 
-				close: CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview(this.templates.close.output(), 'template') ),
+				close: CKEDITOR.dom.element.createFromHtml( this.templates.close.output() ),
 
-				panel: CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview(this.templates.panel.output( {
+				panel: CKEDITOR.dom.element.createFromHtml( this.templates.panel.output( {
 					id: editor.id,
 					langDir: editor.lang.dir,
 					langCode: editor.langCode,
 					name: editor.name,
 					style: 'display:none;',
 					voiceLabel: editor.lang.editorPanel + ', ' + editor.name
-				} ) , 'Safe template using internal editor values as input')),
+				} ) ),
 
-				content: CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview(this.templates.content.output( {
+				content: CKEDITOR.dom.element.createFromHtml( this.templates.content.output( {
 					content: this.content || ''
-				} ) , 'Safe template using internal editor values as input') ),
+				} ) ),
 
-				triangleOuter: CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview(this.templates.triangleOuter.output(), 'Safe template using internal editor values as input') ),
+				triangleOuter: CKEDITOR.dom.element.createFromHtml( this.templates.triangleOuter.output() ),
 
-				triangleInner: CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview(this.templates.triangleInner.output(), 'Safe template using internal editor values as input') )
+				triangleInner: CKEDITOR.dom.element.createFromHtml( this.templates.triangleInner.output() )
 			};
 
 			// Append UI elements to create a panel.

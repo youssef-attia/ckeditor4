@@ -260,7 +260,7 @@
 		this.modifyContainer.addClass( 'hidden' );
 		this.configContainer.removeClass( 'hidden' );
 
-		this.configContainer.setHtml( CKEDITOR.tools.htmlSafeByReview(content, 'Template created using safe internal values. cfg is set to internal config values then its values are pulled for the template.') );
+		this.configContainer.setHtml( CKEDITOR.tools.htmlSafeByReview(content, 'Content created inline using safe internal values. cfg is set to internal config values then its values are pulled for the template.') );
 	};
 
 	/**

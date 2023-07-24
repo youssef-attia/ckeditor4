@@ -222,7 +222,7 @@
 			}
 
 			var space = getSpaceElement();
-			space.setHtml( CKEDITOR.tools.htmlSafeByReview(html.join( '' ) + emptyHtml, 'The Html elements are all created from template using safe internal values') );
+			space.setHtml( CKEDITOR.tools.htmlLegacyConverted(html.join( '' ) + emptyHtml) );
 			editor.fire( 'elementsPathUpdate', { space: space } );
 		} );
 

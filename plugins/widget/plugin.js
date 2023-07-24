@@ -2035,7 +2035,7 @@
 					// ... or create a brand-new widget from template.
 					var defaults = typeof widgetDef.defaults == 'function' ? widgetDef.defaults() : widgetDef.defaults,
 						templateData = CKEDITOR.tools.object.merge( defaults || {}, commandData && commandData.startupData || {} ),
-						element = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview(widgetDef.template.output( templateData ), 'Template created using safe internal values. commandData and commandData.statupData come from the editor.'), editor.document ),
+						element = CKEDITOR.dom.element.createFromHtml( widgetDef.template.output( templateData ), editor.document ),
 						instance,
 						wrapper = editor.widgets.wrapElement( element, widgetDef.name ),
 						temp = new CKEDITOR.dom.documentFragment( wrapper.getDocument() );
@@ -3111,7 +3111,7 @@
 					editableElement = toBe.editables[ e ];
 
 					delete editableElement.attributes.contenteditable;
-					editableElement.setHtml( CKEDITOR.tools.htmlSafeByReview(widget.editables[ e ].getData(), 'widget.editables is an array of elements that are already on the page. Can this be dangerous if the editables contain dangerous text?') );
+					editableElement.setHtml( widget.editables[ e ].getData() );
 				}
 
 				// Returned element always defaults to widgetElement.

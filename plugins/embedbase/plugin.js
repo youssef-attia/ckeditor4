@@ -424,7 +424,7 @@
 						request.task.done();
 					}
 
-					this._setContent( request.url, CKEDITOR.tools.htmlSafeByReview(evtData.html, 'We assume that evtData is safe and no code can be injected here.') );
+					this._setContent( request.url, CKEDITOR.tools.htmlLegacyConverted(evtData.html) );
 					return true;
 				} else {
 					request.errorCallback( evtData.errorMessage );

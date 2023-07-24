@@ -229,7 +229,7 @@ CKEDITOR.dialog.add( 'specialchar', function( editor ) {
 
 			html.push( '</tbody></table>', '<span id="' + charsTableLabel + '" class="cke_voice_label">' + lang.options + '</span>' );
 
-			this.getContentElement( 'info', 'charContainer' ).getElement().setHtml( CKEDITOR.tools.htmlSafeByReview(html.join( '' ), 'Template created using safe internal values. Any possibly unsafe values are encoded using htmlEncode.') );
+			this.getContentElement( 'info', 'charContainer' ).getElement().setHtml( CKEDITOR.tools.htmlSafeByReview(html.join( '' ), 'Content created using safe internal values. Any possibly unsafe values are encoded using htmlEncode.') );
 		},
 		contents: [ {
 			id: 'info',

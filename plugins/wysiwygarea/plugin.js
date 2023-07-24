@@ -38,7 +38,7 @@
 					src = '';
 				}
 
-				var iframe = CKEDITOR.dom.element.createFromHtml(CKEDITOR.tools.htmlSafeByReview('<iframe src="' + src + '" frameBorder="0"></iframe>', 'Template created using safe internal values. In this case only ckeditor.env values are used.'));
+				var iframe = CKEDITOR.dom.element.createFromHtml(CKEDITOR.tools.htmlSafeByReview('<iframe src="' + src + '" frameBorder="0"></iframe>', 'Content created inline using safe internal values. In this case only ckeditor.env values are used.'));
 				iframe.setStyles( { width: '100%', height: '100%' } );
 				iframe.addClass( 'cke_wysiwyg_frame' ).addClass( 'cke_reset' );
 
@@ -67,7 +67,7 @@
 
 				if ( helpLabel ) {
 					var labelId = CKEDITOR.tools.getNextId(),
-						desc = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<span id="' + labelId + '" class="cke_voice_label">' + helpLabel + '</span>', 'Template created using safe internal values. helpLabel is brought in through an event but is set to an editor config label value.') );
+						desc = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<span id="' + labelId + '" class="cke_voice_label">' + helpLabel + '</span>', 'Content created inline using safe internal values. helpLabel is brought in through an event but is set to an editor config label value.') );
 
 					contentSpace.append( desc, 1 );
 					iframe.setAttribute( 'aria-describedby', labelId );

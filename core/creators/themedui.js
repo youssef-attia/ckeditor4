@@ -500,7 +500,7 @@ CKEDITOR.replaceClass = 'ckeditor';
 			contentId: editor.ui.spaceId( 'contents' ),
 			bottomHtml: bottomHtml ? '<span id="' + editor.ui.spaceId( 'bottom' ) + '" class="cke_bottom cke_reset_all" role="presentation">' + bottomHtml + '</span>' : '',
 			outerEl: CKEDITOR.env.ie ? 'span' : 'div'	// https://dev.ckeditor.com/ticket/9571
-		} ), 'Template using safe values from the editor or the CKEditor env.' ));
+		} ), 'topHtml and bottomHtml are set to the output of firing uiSpace. The uiSpace event is fired when a modification to the top or bottom bar needs to be made. This is triggered in a few places. Overall, topHtml and bottomHtml would be safe as long as each of these internal modifications do not pull in any user data.' ));
 
 		if ( elementMode == CKEDITOR.ELEMENT_MODE_REPLACE ) {
 			element.hide();

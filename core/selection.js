@@ -467,7 +467,7 @@
 		var content = ariaLabel && CKEDITOR.tools.htmlEncode( ariaLabel ) || '&nbsp;',
 			style = CKEDITOR.env.ie && CKEDITOR.env.version < 14 ? 'display:none' : 'position:fixed;top:0;left:-1000px;width:0;height:0;overflow:hidden;',
 			hiddenEl = CKEDITOR.dom.element.createFromHtml(
-				CKEDITOR.tools.htmlSafeByReview('<div data-cke-hidden-sel="1" data-cke-temp="1" style="' + style + '">' + content + '</div>', 'Template created using safe values that are defined in the same code block.'),
+				CKEDITOR.tools.htmlSafeByReview('<div data-cke-hidden-sel="1" data-cke-temp="1" style="' + style + '">' + content + '</div>', 'Content created inline using safe values that are defined in the same code block.'),
 				editor.document );
 
 		editor.fire( 'lockSnapshot' );

@@ -187,7 +187,7 @@
 						panelBlock = block;
 						block.autoSize = true;
 						block.element.addClass( 'cke_colorblock' );
-						block.element.setHtml( CKEDITOR.tools.htmlSafeByReview(renderColors( colorBoxId, clickFn, history ? history.getLength() : 0 ), 'renderColors is a template that uses values all created internally.') );
+						block.element.setHtml( renderColors( colorBoxId, clickFn, history ? history.getLength() : 0 ) );
 
 						// The block should not have scrollbars (https://dev.ckeditor.com/ticket/5933, https://dev.ckeditor.com/ticket/6056)
 						block.element.getDocument().getBody().setStyle( 'overflow', 'hidden' );
@@ -402,7 +402,7 @@
 
 				output.push( '</tr></tbody></table>' );
 
-				return output.join( '' );
+				return CKEDITOR.tools.htmlSafeByReview(output.join( '' ), 'renderColors is a function that outputs html created internally using values from editor or lang config.');
 
 				function generateAutomaticButtonHtml( output ) {
 					output.push( '<a class="cke_colorauto" _cke_focus=1 hidefocus=true',
@@ -545,7 +545,7 @@
 						' data-value="' + this.color + '"' +
 						' role="option">' +
 						'<span class="cke_colorbox" style="background-color:#' + this.color + '"></span>' +
-					'</a>', 'Template using this.color which is a value that must follow a certain pattern and is not susceptible to DOM XSS attacks') );
+					'</a>', 'Created using this.color which is a value that must follow a certain pattern and is not susceptible to DOM XSS attacks') );
 			},
 
 			setPositionIndex: function( posinset, setsize ) {

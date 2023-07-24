@@ -75,8 +75,8 @@
 			//Change element from textarea to div
 			element = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview(
 				'<div contenteditable="' + !!editor.readOnly + '" class="cke_textarea_inline">' +
-					textarea.getValue() +
-				'</div>', 'The element should never be attached to the dom as described in the comment above the function. If this accessible otherwise or its data can be changed this could be a potential DOM XSS risk.'),
+					CKEDITOR.tools.htmlEncode(textarea.getValue()) +
+				'</div>', 'The textarea.getValue() is encoded so it should be safe. Also, the element should never be attached to the dom as described in the comment above the function. If this accessible otherwise or its data can be changed this could be a potential DOM XSS risk.'),
 				CKEDITOR.document );
 
 			element.insertAfter( textarea );

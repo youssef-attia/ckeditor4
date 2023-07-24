@@ -282,16 +282,16 @@
 						'<div id="{topId}" class="cke_top" role="presentation">{content}</div>' +
 					'</div>' +
 				'</div>' ),
-				floatSpace = CKEDITOR.document.getBody().append(CKEDITOR.dom.element.createFromHtml(CKEDITOR.tools.htmlSafeByReview(floatSpaceTpl.output({
+				floatSpace = CKEDITOR.document.getBody().append( CKEDITOR.dom.element.createFromHtml( floatSpaceTpl.output( {
 					content: topHtml,
 					id: editor.id,
 					langDir: editor.lang.dir,
 					langCode: editor.langCode,
 					name: editor.name,
-					style: 'display:none;z-index:' + (config.baseFloatZIndex - 1),
-					topId: editor.ui.spaceId('top'),
+					style: 'display:none;z-index:' + ( config.baseFloatZIndex - 1 ),
+					topId: editor.ui.spaceId( 'top' ),
 					voiceLabel: editor.applicationTitle
-				}), 'Template created using safe internal values'))),
+				} ) ) ),
 
 				// Use event buffers to reduce CPU load when tons of events are fired.
 				changeBuffer = CKEDITOR.tools.eventsBuffer( 500, layout ),

@@ -176,7 +176,7 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;
 			'</div>';
 
 	function buildDialog( editor ) {
-		var element = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview(CKEDITOR.addTemplate( 'dialog', templateSource ).output( {
+		var element = CKEDITOR.dom.element.createFromHtml( CKEDITOR.addTemplate( 'dialog', templateSource ).output( {
 			id: CKEDITOR.tools.getNextNumber(),
 			editorId: editor.id,
 			langDir: editor.lang.dir,
@@ -184,7 +184,7 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;
 			editorDialogClass: 'cke_editor_' + editor.name.replace( /\./g, '\\.' ) + '_dialog',
 			closeTitle: editor.lang.common.close,
 			hidpi: CKEDITOR.env.hidpi ? 'cke_hidpi' : ''
-		} ), 'Template created using safe internal values') );
+		} ) );
 
 		// TODO: Change this to getById(), so it'll support custom templates.
 		var body = element.getChild( [ 0, 0, 0, 0, 0 ] ),
@@ -202,7 +202,7 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;
 					' class="cke_iframe_shim"' +
 					' src="' + src + '"' +
 					' tabIndex="-1"' +
-					'></iframe>', 'Template created using safe internal values') );
+					'></iframe>', 'Content created inline using safe internal values') );
 			iframe.appendTo( body.getParent() );
 		}
 
@@ -1231,7 +1231,7 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;
 					' role="tab">',
 					contents.label,
 					'</a>'
-				].join( '' ), 'Template created using safe internal values') );
+				].join( '' ), 'Content created inline using safe internal values. titleHtml is encoded.') );
 
 			page.setAttribute( 'aria-labelledby', tabId );
 
@@ -2207,7 +2207,7 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;
 				// BLACK LOWER RIGHT TRIANGLE (ltr)
 				// BLACK LOWER LEFT TRIANGLE (rtl)
 				( editor.lang.dir == 'ltr' ? '\u25E2' : '\u25E3' ) +
-				'</div>', 'Template created using safe internal values' ) );
+				'</div>', 'Content created inline using safe internal values' ) );
 			dialog.parts.footer.append( resizer, 1 );
 		} );
 		editor.on( 'destroy', function() {
@@ -2355,7 +2355,7 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;
 
 			html.push( '</div>' );
 
-			coverElement = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview(html.join( '' ), 'Template created using safe internal values') );
+			coverElement = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview(html.join( '' ), 'Created internally using safe internal values') );
 			coverElement.setOpacity( backgroundCoverOpacity !== undefined ? backgroundCoverOpacity : 0.5 );
 
 			coverElement.on( 'keydown', cancelEvent );

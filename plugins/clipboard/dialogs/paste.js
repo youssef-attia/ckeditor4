@@ -160,7 +160,7 @@ CKEDITOR.dialog.add( 'paste', function( editor ) {
 							' src="' + src + '"' +
 							' aria-label="' + lang.pasteArea + '"' +
 							' aria-describedby="' + dialog.getContentElement( 'general', 'pasteMsg' ).domId + '"' +
-							'></iframe>', 'Template that uses either internal data or attributes from elements created in the same function') );
+							'></iframe>', 'Created using either internal data or attributes from elements created in the same function') );
 
 						// Reset last data transfer.
 						lastDataTransfer = null;

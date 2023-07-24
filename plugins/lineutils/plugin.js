@@ -888,7 +888,7 @@
 		 * @returns {CKEDITOR.dom.element} A brand-new line.
 		 */
 		addLine: function() {
-			var line = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview(this.lineTpl, 'Template created using safe internal values') );
+			var line = CKEDITOR.dom.element.createFromHtml( this.lineTpl );
 
 			line.appendTo( this.container );
 

@@ -140,10 +140,27 @@
 	
 			if (self.trustedTypes && self.trustedTypes.createPolicy) {
 				const policy = self.trustedTypes.createPolicy(
-					'trusted#htmlSafeByReview',
+					'tools#htmlSafeByReview',
 					{
 						createHTML: function (html) {
 							// This policy is only to be used for trusted inputs that do not involve unsanitized user inputs.
+							return html;
+						},
+					}
+				);
+				return policy.createHTML(html);
+			} else {
+				return html;
+			}
+		},
+
+		htmlLegacyConverted: function (html) {
+			if (self.trustedTypes && self.trustedTypes.createPolicy) {
+				const policy = self.trustedTypes.createPolicy(
+					'tools#htmlLegacyConverted',
+					{
+						createHTML: function (html) {
+							// This policy is only to be used for legacy conversions.
 							return html;
 						},
 					}

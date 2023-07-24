@@ -845,7 +845,7 @@
 		 */
 		createItem: function( item ) {
 			var encodedItem = encodeItem( item ),
-				itemElement = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview(this.itemTemplate.output( encodedItem ), 'Template code using safe encoded item'), this.document ),
+				itemElement = CKEDITOR.dom.element.createFromHtml( this.itemTemplate.output( encodedItem ), this.document ),
 				id = CKEDITOR.tools.getNextId();
 
 			// Add attributes needed for a11y support (#4617).

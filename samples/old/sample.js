@@ -27,7 +27,7 @@
 					'<div class="warning">' +
 						'<span>To fully experience this demo, the ' + missing.join( ', ' ) + ' plugin' + ( missing.length > 1 ? 's are' : ' is' ) + ' required.</span>' +
 					'</div>'
-					, 'Template created using safe internal values.')
+					, 'Content created inline using safe internal values.')
 				);
 				warn.insertBefore( editor.container );
 			}

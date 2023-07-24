@@ -117,9 +117,10 @@ CKEDITOR.dialog.add( 'colordialog', function( editor ) {
 	}
 
 	function setHighlight( color ) {
+		console.log(color);
 		if ( color ) {
 			$doc.getById( hicolorId ).setStyle( 'background-color', color );
-			$doc.getById( hicolorTextId ).setHtml( CKEDITOR.tools.htmlSafeByReview(color, 'The variable color here is only ever set to the html of elements created internally (in createColorTable and applyColorCell)') );
+			$doc.getById( hicolorTextId ).setHtml( CKEDITOR.tools.htmlSafeByReview(CKEDITOR.tools.htmlEncode(color), 'Encoded.') );
 
 		} else {
 			$doc.getById( hicolorId ).removeStyle( 'background-color' );
@@ -209,7 +210,7 @@ CKEDITOR.dialog.add( 'colordialog', function( editor ) {
 		table = CKEDITOR.dom.element.createFromHtml(CKEDITOR.tools.htmlSafeByReview('<table tabIndex="-1" class="cke_colordialog_table"' +
 			' aria-label="' + lang.options + '" role="grid" style="border-collapse:separate;" cellspacing="0">' +
 			'<caption class="cke_voice_label">' + lang.options + '</caption>' +
-			'<tbody role="presentation"></tbody></table>', 'Template using internal values'));
+			'<tbody role="presentation"></tbody></table>', 'Content created using internal values'));
 
 		table.on( 'mouseover', updateHighlight );
 		table.on( 'mouseout', removeHighlight );
@@ -247,7 +248,7 @@ CKEDITOR.dialog.add( 'colordialog', function( editor ) {
 
 			var colorLabel = numbering( 'color_table_cell' );
 			cell.setAttribute( 'aria-labelledby', colorLabel );
-			cell.append( CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview( '<span id="' + colorLabel + '" class="cke_voice_label">' + color + '</span>', 'Template run on values that are only set internally'), CKEDITOR.document ) );
+			cell.append( CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview( '<span id="' + colorLabel + '" class="cke_voice_label">' + CKEDITOR.tools.htmlEncode(color) + '</span>', 'colorLabel is a safe variable created using a CKEditor generated id and the name. Color is encoded.'), CKEDITOR.document ) );
 		}
 
 		appendColorRow( 0, 0 );
