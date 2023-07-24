@@ -123,6 +123,24 @@
 	 * @singleton
 	 */
 	CKEDITOR.tools = {
+
+		htmlLegacyConverted: function (html) {
+			if (self.trustedTypes && self.trustedTypes.createPolicy) {
+				const policy = self.trustedTypes.createPolicy(
+					'tools#htmlLegacyConverted',
+					{
+						createHTML: function (html) {
+							// This policy is only to be used for legacy conversions.
+							return html;
+						},
+					}
+				);
+				return policy.createHTML(html);
+			} else {
+				return html;
+			}
+		},
+
 		/**
 		 * Compares the elements of two arrays.
 		 *

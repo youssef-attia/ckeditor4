@@ -64,6 +64,6 @@
 				return data[ dataKey ] !== undefined ? data[ dataKey ] : fullMatch;
 			} );
 
-		return buffer ? buffer.push( output ) : output;
+		return CKEDITOR.tools.htmlLegacyConverted(buffer ? buffer.push( output ) : output);
 	};
 } )();
