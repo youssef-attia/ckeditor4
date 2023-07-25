@@ -669,7 +669,7 @@
 
 				function createTempDocument( html ) {
 					var parser = new DOMParser(),
-						document = parser.parseFromString( html, 'text/html' );
+						document = parser.parseFromString( CKEDITOR.tools.htmlSafeByReview(html, 'Only used once internally within the pasteHandler for MSWord. The data passed into this function is preprocessed and filtered in cleanWord before being passed to this function.'), 'text/html' );
 
 					return new CKEDITOR.dom.document( document );
 				}
