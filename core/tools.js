@@ -124,7 +124,7 @@
 	 */
 	CKEDITOR.tools = {
 
-		/**
+		 /**
 		 * Claims safety of an html string and returns trusted version.
 		 *
 		 * @param {string} html The safe html string.
@@ -150,6 +150,34 @@
 					{
 						createHTML: function (html) {
 							// This policy is only to be used for trusted inputs that do not involve unsanitized user inputs.
+							return html;
+						},
+					}
+				);
+				return policy.createHTML(html);
+			} else {
+				return html;
+			}
+		},
+
+		/**
+		 * Wraps a possibly unsafe html string in a trusted type. Note that 
+		 * this function does not sanitize or make any changes to the html.
+		 * 
+		 * This function would be used for legacy conversions of inputs to a
+		 * DOM XSS sink that are possibly unsafe but not clear.
+		 *
+		 * @param {string} html The string to be wrapped with a trusted type.
+		 * @returns {TrustedHTML | string} the same html string but as a
+		 * TrustedHTML, or a string if TT is not supported.
+		 */
+		legacyUnsafeHtml: function (html) {
+			if (self.trustedTypes && self.trustedTypes.createPolicy) {
+				const policy = self.trustedTypes.createPolicy(
+					'tools#legacyUnsafeHtml',
+					{
+						createHTML: function (html) {
+							// This policy is only to be used for legacy conversions.
 							return html;
 						},
 					}
