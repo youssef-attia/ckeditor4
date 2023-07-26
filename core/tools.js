@@ -116,16 +116,6 @@
 		functions = [];
 	} );
 
-	function assertValidJustification(justification) {
-		if (typeof justification !== 'string' || justification.trim() === '') {
-			var errMsg =
-				'Calls to uncheckedconversion functions must go through security review.';
-			errMsg += ' A justification must be provided to capture what security' +
-				' assumptions are being made.';
-			throw new Error(errMsg);
-		}
-	}
-
 	/**
 	 * Utility functions.
 	 *
@@ -134,11 +124,28 @@
 	 */
 	CKEDITOR.tools = {
 
+				/**
+		 * Claims safety of an html string and returns trusted version.
+		 *
+		 * @param {string} html The safe html string.
+		 * @param {string} justification A short justification for why this
+		 * html string can be verified as safe.
+		 * @returns {TrustedHTML | string} the same html string but as a
+		 * TrustedHTML or a string if TT is not supported.
+		 */
 		htmlSafeByReview: function (html, justification) {
-			assertValidJustification(justification);
+
+			// If the justification is empty an error is raised. Any input marked as safe must be accompanied by a justification.
+			if (typeof justification !== 'string' || justification.trim() === '') {
+				let errMsg =
+					'Calls to uncheckedconversion functions must go through security review.';
+				errMsg += ' A justification must be provided to capture what security' +
+					' assumptions are being made.';
+				throw new Error(errMsg);
+			}
 
 			if (self.trustedTypes && self.trustedTypes.createPolicy) {
-				var policy = self.trustedTypes.createPolicy(
+				const policy = self.trustedTypes.createPolicy(
 					'trusted#htmlSafeByReview',
 					{
 						createHTML: function (html) {
