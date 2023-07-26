@@ -124,32 +124,24 @@
 	 */
 	CKEDITOR.tools = {
 
-				/**
-		 * Claims safety of an html string and returns trusted version.
+		/**
+		 * Wraps a possibly unsafe html string in a trusted type. Note that 
+		 * this function does not sanitize or make any changes to the html.
+		 * 
+		 * This function would be used for legacy conversions of inputs to a
+		 * DOM XSS sink that are possibly unsafe but not clear.
 		 *
-		 * @param {string} html The safe html string.
-		 * @param {string} justification A short justification for why this
-		 * html string can be verified as safe.
+		 * @param {string} html The string to be wrapped with a trusted type.
 		 * @returns {TrustedHTML | string} the same html string but as a
-		 * TrustedHTML or a string if TT is not supported.
+		 * TrustedHTML, or a string if TT is not supported.
 		 */
-		htmlSafeByReview: function (html, justification) {
-
-			// If the justification is empty an error is raised. Any input marked as safe must be accompanied by a justification.
-			if (typeof justification !== 'string' || justification.trim() === '') {
-				let errMsg =
-					'Calls to uncheckedconversion functions must go through security review.';
-				errMsg += ' A justification must be provided to capture what security' +
-					' assumptions are being made.';
-				throw new Error(errMsg);
-			}
-
+		legacyUnsafeHtml: function (html) {
 			if (self.trustedTypes && self.trustedTypes.createPolicy) {
 				const policy = self.trustedTypes.createPolicy(
-					'trusted#htmlSafeByReview',
+					'tools#legacyUnsafeHtml',
 					{
 						createHTML: function (html) {
-							// This policy is only to be used for trusted inputs that do not involve unsanitized user inputs.
+							// This policy is only to be used for legacy conversions.
 							return html;
 						},
 					}

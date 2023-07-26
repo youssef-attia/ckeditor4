@@ -490,7 +490,7 @@ CKEDITOR.replaceClass = 'ckeditor';
 				'</{outerEl}>' +
 			'</{outerEl}>' );
 
-		var container = CKEDITOR.dom.element.createFromHtml( themedTpl.output( {
+		var container = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.legacyUnsafeHtml(themedTpl.output( {
 			id: editor.id,
 			name: name,
 			langDir: editor.lang.dir,
@@ -500,7 +500,7 @@ CKEDITOR.replaceClass = 'ckeditor';
 			contentId: editor.ui.spaceId( 'contents' ),
 			bottomHtml: bottomHtml ? '<span id="' + editor.ui.spaceId( 'bottom' ) + '" class="cke_bottom cke_reset_all" role="presentation">' + bottomHtml + '</span>' : '',
 			outerEl: CKEDITOR.env.ie ? 'span' : 'div'	// https://dev.ckeditor.com/ticket/9571
-		} ) );
+		} ) ) );
 
 		if ( elementMode == CKEDITOR.ELEMENT_MODE_REPLACE ) {
 			element.hide();

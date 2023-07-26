@@ -176,7 +176,7 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;
 			'</div>';
 
 	function buildDialog( editor ) {
-		var element = CKEDITOR.dom.element.createFromHtml( CKEDITOR.addTemplate( 'dialog', templateSource ).output( {
+		var element = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.legacyUnsafeHtml(CKEDITOR.addTemplate( 'dialog', templateSource ).output( {
 			id: CKEDITOR.tools.getNextNumber(),
 			editorId: editor.id,
 			langDir: editor.lang.dir,
@@ -184,7 +184,7 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;
 			editorDialogClass: 'cke_editor_' + editor.name.replace( /\./g, '\\.' ) + '_dialog',
 			closeTitle: editor.lang.common.close,
 			hidpi: CKEDITOR.env.hidpi ? 'cke_hidpi' : ''
-		} ) );
+		} )) );
 
 		// TODO: Change this to getById(), so it'll support custom templates.
 		var body = element.getChild( [ 0, 0, 0, 0, 0 ] ),

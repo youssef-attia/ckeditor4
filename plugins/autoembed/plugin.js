@@ -63,7 +63,7 @@
 
 			// TODO Move this to a method in the widget plugin. https://dev.ckeditor.com/ticket/13408
 		var defaults = typeof widgetDef.defaults == 'function' ? widgetDef.defaults() : widgetDef.defaults,
-			element = CKEDITOR.dom.element.createFromHtml( widgetDef.template.output( defaults ) ),
+			element = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.legacyUnsafeHtml(widgetDef.template.output( defaults )) ),
 			instance,
 			wrapper = editor.widgets.wrapElement( element, widgetDef.name ),
 			temp = new CKEDITOR.dom.documentFragment( wrapper.getDocument() );

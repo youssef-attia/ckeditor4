@@ -504,7 +504,7 @@
 				if ( !isSnapshot )
 					data = this.editor.dataProcessor.toHtml( data );
 
-				this.setHtml( data );
+				this.setHtml( CKEDITOR.tools.legacyUnsafeHtml(data) );
 				this.fixInitialSelection();
 
 				// Editable is ready after first setData.
