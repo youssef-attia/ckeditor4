@@ -122,10 +122,10 @@
 								this.onLoad();
 						}, this ) );
 
-						doc.write( CKEDITOR.tools.htmlSafeByReview( frameDocTpl.output( CKEDITOR.tools.extend( {
+						doc.write( CKEDITOR.tools.legacyUnsafeHtml(frameDocTpl.output( CKEDITOR.tools.extend( {
 							css: CKEDITOR.tools.buildStyleHtml( this.css ),
 							onload: 'window.parent.CKEDITOR.tools.callFunction(' + onLoad + ');'
-						}, data )), 'Safe template using internal values. buildStyleHtml is run on this.css which is controlled internally. onLoad is an internal variable assigned to the ouput of a safe function. data is an internal variable assigned to editor config options.' ) );
+						}, data ) )) );
 
 						var win = doc.getWindow();
 
