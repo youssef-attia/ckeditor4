@@ -64,6 +64,6 @@
 				return data[ dataKey ] !== undefined ? data[ dataKey ] : fullMatch;
 			} );
 
-		return CKEDITOR.tools.legacyUnsafeHtml(buffer ? buffer.push( output ) : output);
+		return buffer ? buffer.push( output ) : output;
 	};
 } )();

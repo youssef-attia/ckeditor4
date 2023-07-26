@@ -122,10 +122,10 @@
 								this.onLoad();
 						}, this ) );
 
-						doc.write( frameDocTpl.output( CKEDITOR.tools.extend( {
+						doc.write( CKEDITOR.tools.legacyUnsafeHtml(frameDocTpl.output( CKEDITOR.tools.extend( {
 							css: CKEDITOR.tools.buildStyleHtml( this.css ),
 							onload: 'window.parent.CKEDITOR.tools.callFunction(' + onLoad + ');'
-						}, data ) ) );
+						}, data ) )) );
 
 						var win = doc.getWindow();
 
