@@ -55,7 +55,21 @@ CKEDITOR.tools.extend( CKEDITOR.editor.prototype, {
 				popupWindow.resizeTo( width, height );
 			}
 			popupWindow.focus();
-			popupWindow.location.href = url;
+			if (self.trustedTypes && self.trustedTypes.createPolicy) {
+				// This is a legacy conversion. This url is passed by plugins/filebrowser which should be only accessible 
+				// by the developer but the url is modified in too many areas for this to be fully safe.
+				const policy = self.trustedTypes.createPolicy(
+					'plugin#popup',
+					{
+						createScriptURL: function (url) {
+							return url;
+						},
+					}
+				);
+				popupWindow.location.href = policy.createScriptURL(url);
+			} else {
+				popupWindow.location.href = url;
+			}
 		} catch ( e ) {
 			popupWindow = window.open( url, null, options, true );
 		}
