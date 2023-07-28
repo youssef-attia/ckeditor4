@@ -114,7 +114,7 @@ var CKCONSOLE = ( function() {
 
 	function fromHtml( html, data ) {
 		if ( html instanceof CKEDITOR.template )
-			html = html.output( data );
+			html = CKEDITOR.tools.legacyUnsafeHtml(html.output( data ));
 
 		return CKEDITOR.dom.element.createFromHtml( html );
 	}

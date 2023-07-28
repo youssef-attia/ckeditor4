@@ -436,7 +436,7 @@
 				tplParams = CKEDITOR.tools.extend( {}, tplParams );
 				tplParams.src = blobUrl;
 
-				var element = CKEDITOR.dom.element.createFromHtml( widgetDef.template.output( tplParams ) ),
+				var element = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.legacyUnsafeHtml(widgetDef.template.output( tplParams )) ),
 					wrapper = editor.widgets.wrapElement( element, widgetDef.name ),
 					temp = new CKEDITOR.dom.documentFragment( wrapper.getDocument() );
 
