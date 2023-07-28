@@ -218,8 +218,7 @@ if ( !CKEDITOR.loader ) {
 				} else {
 					// Append this script to the list of loaded scripts.
 					this.loadedScripts.push( scriptName );
-
-					document.write( '<script src="' + scriptSrc + '" type="text/javascript"><\/script>' );
+					document.write( CKEDITOR.tools.htmlSafeByReview('<script src="' + scriptSrc + '" type="text/javascript"><\/script>', 'The CKEDITOR.getUrl function should be safe since the basePath calculated in ckeditor_base.js is pulled from the script elements on the page or is developer controlled by a window flag.') );
 				}
 			}
 		};
