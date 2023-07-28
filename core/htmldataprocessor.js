@@ -107,7 +107,7 @@
 			// structure.
 			var el = editor.document.createElement( fixBin );
 			// Add fake character to workaround IE comments bug. (https://dev.ckeditor.com/ticket/3801)
-			el.setHtml( 'a' + data );
+			el.setHtml( CKEDITOR.tools.legacyUnsafeHtml('a' + data) );
 			data = el.getHtml().substr( 1 );
 
 			// Restore shortly protected attribute names.
