@@ -441,7 +441,7 @@
 
 		copybin.setStyle( editor.config.contentsLangDirection == 'ltr' ? 'left' : 'right', '-5000px' );
 
-		copybin.setHtml( editor.getSelectedHtml( true ) );
+		copybin.setHtml( CKEDITOR.tools.legacyUnsafeHtml(editor.getSelectedHtml( true )) );
 
 		// Ignore copybin.
 		editor.fire( 'lockSnapshot' );
