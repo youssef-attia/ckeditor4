@@ -755,7 +755,7 @@
 		 * @param {String} title A new panel title.
 		 */
 		setTitle: function( title ) {
-			this.parts.title.setHtml( CKEDITOR.tools.htmlSafeByReview(title, 'Value controlled by developer, potential XSS risk if exposed to user') );
+			this.parts.title.setHtml( CKEDITOR.tools.htmlSafeByReview(title, 'Value controlled by developer, potential XSS risk if exposed to user. The title variable is passed as a parameter from the setTitle function which is part of the balloonpanel API accessible to the developer.') );
 		},
 
 		/**

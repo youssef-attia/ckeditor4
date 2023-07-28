@@ -50,7 +50,7 @@ CKEDITOR.dialog.add( 'specialchar', function( editor ) {
 
 			var htmlPreview = dialog.getContentElement( 'info', 'htmlPreview' ).getElement();
 
-			dialog.getContentElement( 'info', 'charPreview' ).getElement().setHtml( CKEDITOR.tools.htmlSafeByReview(value, 'Value is the html of an element that already exists on the page that has triggered some event. We know event data is not very safe for these purposes and it looks like this is pulling the element html directly so we may want to legacy convert.') );
+			dialog.getContentElement( 'info', 'charPreview' ).getElement().setHtml( value );
 			htmlPreview.setHtml( CKEDITOR.tools.htmlSafeByReview(CKEDITOR.tools.htmlEncode( value ), 'Encoded using htmlEncode') );
 			target.getParent().addClass( 'cke_light_background' );
 

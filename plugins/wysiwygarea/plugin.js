@@ -430,7 +430,7 @@
 				var editor = this.editor;
 
 				if ( isSnapshot ) {
-					this.setHtml( CKEDITOR.tools.htmlSafeByReview(data, 'Legacy conversion?') );
+					this.setHtml( data );
 					this.fixInitialSelection();
 
 					// Fire dataReady for the consistency with inline editors

@@ -441,7 +441,7 @@
 
 		copybin.setStyle( editor.config.contentsLangDirection == 'ltr' ? 'left' : 'right', '-5000px' );
 
-		copybin.setHtml( CKEDITOR.tools.htmlSafeByReview(editor.getSelectedHtml( true ), 'Gets selectedhtml in a document fragment then returns docfrag.getHtml(). The selected html can not be encoded since it contains raw html. Potential legacy conversion?') );
+		copybin.setHtml( editor.getSelectedHtml( true ) );
 
 		// Ignore copybin.
 		editor.fire( 'lockSnapshot' );

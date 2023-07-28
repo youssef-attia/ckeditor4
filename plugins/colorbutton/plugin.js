@@ -545,7 +545,7 @@
 						' data-value="' + this.color + '"' +
 						' role="option">' +
 						'<span class="cke_colorbox" style="background-color:#' + this.color + '"></span>' +
-					'</a>', 'Created using this.color which is a value that must follow a certain pattern and is not susceptible to DOM XSS attacks') );
+					'</a>', 'Created using this.color which is a value that is validated using a pattern and is not susceptible to DOM XSS attacks. This pattern is defined in CKEDITOR.tools._isValidColorFormat.') );
 			},
 
 			setPositionIndex: function( posinset, setsize ) {
