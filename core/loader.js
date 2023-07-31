@@ -218,7 +218,20 @@ if ( !CKEDITOR.loader ) {
 				} else {
 					// Append this script to the list of loaded scripts.
 					this.loadedScripts.push( scriptName );
-					document.write( CKEDITOR.tools.htmlSafeByReview('<script src="' + scriptSrc + '" type="text/javascript"><\/script>', 'The CKEDITOR.getUrl function should be safe since the basePath calculated in ckeditor_base.js is pulled from the script elements on the page or is developer controlled by a window flag.') );
+					if (self.trustedTypes && self.trustedTypes.createPolicy) {
+						const policy = self.trustedTypes.createPolicy(
+							'loader#load',
+							{
+								createHTML: function (html) {
+									// This policy is only to be used for legacy conversions.
+									return html;
+								},
+							}
+						);
+						document.write(policy.createHTML('<script src="' + scriptSrc + '" type="text/javascript"><\/script>'));
+					} else {
+						document.write('<script src="' + scriptSrc + '" type="text/javascript"><\/script>');
+					}
 				}
 			}
 		};

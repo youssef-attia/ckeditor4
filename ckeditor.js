@@ -25,7 +25,20 @@ else {
 		script.src = CKEDITOR.getUrl( 'core/loader.js' );
 		document.body.appendChild( script );
 	} else {
-		document.write(CKEDITOR.tools.htmlSafeByReview('<script type="text/javascript" src="' + CKEDITOR.getUrl('core/loader.js') + '"></script>', 'The CKEDITOR.getUrl function should be safe since the basePath calculated in ckeditor_base.js is pulled from the script elements on the page or is developer controlled by a window flag.'));
+		if (self.trustedTypes && self.trustedTypes.createPolicy) {
+			const policy = self.trustedTypes.createPolicy(
+				'ckeditor#scriptloader',
+				{
+					createHTML: function (html) {
+						// This policy is only to be used for legacy conversions.
+						return html;
+					},
+				}
+			);
+			document.write(policy.createHTML('<script type="text/javascript" src="' + CKEDITOR.getUrl('core/loader.js') + '"></script>'));
+		} else {
+			document.write('<script type="text/javascript" src="' + CKEDITOR.getUrl('core/loader.js') + '"></script>');
+		}
 	}
 
 }
