@@ -26,11 +26,11 @@ else {
 		document.body.appendChild( script );
 	} else {
 		if (self.trustedTypes && self.trustedTypes.createPolicy) {
+			// The CKEDITOR.getUrl function should be safe since the basePath calculated in ckeditor_base.js is pulled from the script elements on the page or is developer controlled by a window flag.
 			const policy = self.trustedTypes.createPolicy(
 				'ckeditor#scriptloader',
 				{
 					createHTML: function (html) {
-						// This policy is only to be used for legacy conversions.
 						return html;
 					},
 				}

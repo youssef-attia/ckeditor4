@@ -219,11 +219,11 @@ if ( !CKEDITOR.loader ) {
 					// Append this script to the list of loaded scripts.
 					this.loadedScripts.push( scriptName );
 					if (self.trustedTypes && self.trustedTypes.createPolicy) {
+						// The CKEDITOR.getUrl function should be safe since the basePath calculated in ckeditor_base.js is pulled from the script elements on the page or is developer controlled by a window flag.
 						const policy = self.trustedTypes.createPolicy(
 							'loader#load',
 							{
 								createHTML: function (html) {
-									// This policy is only to be used for legacy conversions.
 									return html;
 								},
 							}
