@@ -675,7 +675,7 @@
 			if ( element.is( 'textarea' ) )
 				element.setValue( data );
 			else
-				element.setHtml( data, 'getData pulls event data directly from the editor itself' );
+				element.setHtml( data );
 
 			return true;
 		}
