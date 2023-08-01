@@ -306,7 +306,7 @@
 				if ( CKEDITOR.env.ie )
 					iFrame.removeAttribute( 'src' );
 
-				doc.write( CKEDITOR.htmlSafeByReview('<!DOCTYPE html>' +
+				doc.write( CKEDITOR.tools.htmlSafeByReview('<!DOCTYPE html>' +
 							'<html>' +
 							'<head>' +
 								'<meta charset="utf-8">' +
