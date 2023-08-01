@@ -1395,7 +1395,7 @@ CKEDITOR.STYLE_OBJECT = 3;
 		if ( CKEDITOR.env.ie )
 			preBlock.$.outerHTML = '<pre>' + mergedHtml + '</pre>';
 		else
-			preBlock.setHtml( CKEDITOR.tools.htmlSafeByReview(mergedHtml, 'preBlock is created internally and is only impacted by the editors config options') );
+			preBlock.setHtml( mergedHtml );
 
 		previousBlock.remove();
 	}
@@ -1462,10 +1462,10 @@ CKEDITOR.STYLE_OBJECT = 3;
 
 			if ( docFrag ) {
 				var newBlockClone = newBlock.clone();
-				newBlockClone.setHtml( CKEDITOR.tools.htmlSafeByReview(blockHtml, 'blockHtml is created internally and is only impacted by the editors config options') );
+				newBlockClone.setHtml( blockHtml );
 				docFrag.append( newBlockClone );
 			} else {
-				newBlock.setHtml( CKEDITOR.tools.htmlSafeByReview(blockHtml, 'blockHtml is created internally and is only impacted by the editors config options') );
+				newBlock.setHtml( blockHtml );
 			}
 		}
 
