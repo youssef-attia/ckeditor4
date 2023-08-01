@@ -1933,7 +1933,7 @@
 
 			// Unescape protected content to prevent double escaping and corruption of content (#4060, #4509).
 			data = this.editor.dataProcessor.unprotectSource( data );
-			data = this.editor.dataProcessor.toHtml( data, {
+			data = this.editor.dataProcessor.toHtmlLegacy( data, {
 				context: this.getName(),
 				filter: this.filter,
 				enterMode: this.enterMode

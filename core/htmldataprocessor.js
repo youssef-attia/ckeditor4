@@ -268,6 +268,59 @@
 			} ).dataValue;
 		},
 
+
+		/**
+		 * Legacy version of toHtml that returns a TrustedType.
+		 *
+		 * @param {String} data The raw data.
+		 * @param {Object} [options] The options object.
+		 * @param {String} [options.context] The tag name of a context element within which
+		 * the input is to be processed, defaults to the editable element.
+		 * If `null` is passed, then data will be parsed without context (as children of {@link CKEDITOR.htmlParser.fragment}).
+		 * See {@link CKEDITOR.htmlParser.fragment#fromHtml} for more details.
+		 * @param {Boolean} [options.fixForBody=true] Whether to trigger the auto paragraph for non-block content.
+		 * @param {CKEDITOR.filter} [options.filter] When specified, instead of using the {@link CKEDITOR.editor#filter main filter},
+		 * the passed instance will be used to filter the content.
+		 * @param {Boolean} [options.dontFilter] Do not filter data with {@link CKEDITOR.filter} (note: transformations
+		 * will still be applied).
+		 * @param {Number} [options.enterMode] When specified, it will be used instead of the {@link CKEDITOR.editor#enterMode main enterMode}.
+		 * @param {Boolean} [options.protectedWhitespaces] Indicates that content was wrapped with `<span>` elements to preserve
+		 * leading and trailing whitespaces. Option used by the {@link CKEDITOR.editor#method-insertHtml} method.
+		 * @returns {String}
+		 */
+		toHtmlLegacy: function( data, options, fixForBody, dontFilter ) {
+			var editor = this.editor,
+				context, filter, enterMode, protectedWhitespaces;
+
+			// Typeof null == 'object', so check truthiness of options too.
+			if ( options && typeof options == 'object' ) {
+				context = options.context;
+				fixForBody = options.fixForBody;
+				dontFilter = options.dontFilter;
+				filter = options.filter;
+				enterMode = options.enterMode;
+				protectedWhitespaces = options.protectedWhitespaces;
+			}
+			// Backward compatibility. Since CKEDITOR 4.3.0 every option was a separate argument.
+			else {
+				context = options;
+			}
+
+			// Fall back to the editable as context if not specified.
+			if ( !context && context !== null )
+				context = editor.editable().getName();
+
+			return CKEDITOR.tools.legacyUnsafeHtml(editor.fire( 'toHtml', {
+				dataValue: data,
+				context: context,
+				fixForBody: fixForBody,
+				dontFilter: dontFilter,
+				filter: filter || editor.filter,
+				enterMode: enterMode || editor.enterMode,
+				protectedWhitespaces: protectedWhitespaces
+			} ).dataValue);
+		},
+
 		/**
 		 * See {@link CKEDITOR.dataProcessor#toDataFormat}.
 		 *

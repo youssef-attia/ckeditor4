@@ -692,7 +692,7 @@
 
 			// Pasted value must be filtered using dataProcessor to strip all unsafe code
 			// before inserting it into temporary container.
-			tmpContainer.setHtml( dataProcessor.toHtml( dataValue ), {
+			tmpContainer.setHtml( dataProcessor.toHtmlLegacy( dataValue ), {
 				fixForBody: false
 			} );
 
