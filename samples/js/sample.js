@@ -23,9 +23,8 @@ var initSample = ( function() {
 		// :(((
 		if ( isBBCodeBuiltIn ) {
 			editorElement.setHtml(
-				CKEDITOR.tools.htmlSafeByReview(
 				'Hello world!\n\n' +
-				'I\'m an instance of [url=https://ckeditor.com]CKEditor[/url].', 'safe constant')
+				'I\'m an instance of [url=https://ckeditor.com]CKEditor[/url].'
 			);
 		}
 

@@ -27,7 +27,7 @@ CKEDITOR.plugins.add( 'toolbarconfiguratorarea', {
 	// Use afterInit to override wysiwygarea's mode. May still fail to override divarea, but divarea is nice.
 	afterInit: function( editor ) {
 		editor.addMode( 'wysiwyg', function( callback ) {
-			var editingBlock = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview( '<div class="cke_wysiwyg_div cke_reset" hidefocus="true"></div>', 'safe const') );
+			var editingBlock = CKEDITOR.dom.element.createFromHtml( '<div class="cke_wysiwyg_div cke_reset" hidefocus="true"></div>' );
 
 			var contentSpace = editor.ui.space( 'contents' );
 			contentSpace.append( editingBlock );
