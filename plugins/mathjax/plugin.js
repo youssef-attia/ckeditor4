@@ -365,7 +365,7 @@
 
 				editor.fire( 'lockSnapshot' );
 
-				buffer.setHtml( CKEDITOR.tools.htmlSafeByReview(value, 'Encoded using htmlEncode in setValue') );
+				buffer.setHtml( CKEDITOR.tools.htmlSafeByReview(CKEDITOR.tools.htmlEncode(value), 'Encoded using htmlEncode in setValue') );
 
 				// Set loading indicator.
 				preview.setHtml( CKEDITOR.tools.htmlSafeByReview('<img src=' + CKEDITOR.plugins.mathjax.loadingIcon + ' alt=' + editor.lang.mathjax.loading + '>', 'Created using editor values'));
@@ -419,7 +419,7 @@
 					var doc = iFrame.getFrameDocument(),
 						tex = doc.getById( 'tex' );
 
-					tex.setHtml( CKEDITOR.tools.htmlSafeByReview( CKEDITOR.plugins.mathjax.trim( CKEDITOR.tools.htmlEncode( value ) ), 'Encoded using htmlEncode and then trimmed') );
+					tex.setHtml( CKEDITOR.tools.htmlSafeByReview( CKEDITOR.tools.htmlEncode(CKEDITOR.plugins.mathjax.trim( CKEDITOR.tools.htmlEncode( value ) )), 'Encoded using htmlEncode and then trimmed') );
 
 					CKEDITOR.plugins.mathjax.copyStyles( iFrame, tex );
 

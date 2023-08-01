@@ -265,7 +265,7 @@
 
 		this.codeContainer.refresh();
 
-		this.hintContainer.setHtml( CKEDITOR.tools.htmlSafeByReview( header + '<dl>' + listHeader + unusedElements + '</dl>', 'templated constants') );
+		this.hintContainer.setHtml( header + '<dl>' + listHeader + unusedElements + '</dl>' );
 	};
 
 	/**

@@ -335,7 +335,7 @@ window.ToolbarConfigurator = {};
 			}
 		}
 
-		$button.setHtml( CKEDITOR.tools.htmlSafeByReview(text, 'Safe only accessible internally or by developer.') );
+		$button.setHtml( text );
 
 		return $button;
 	};

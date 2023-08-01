@@ -260,7 +260,7 @@
 		this.modifyContainer.addClass( 'hidden' );
 		this.configContainer.removeClass( 'hidden' );
 
-		this.configContainer.setHtml( CKEDITOR.tools.htmlSafeByReview(content, 'Content created inline using safe internal values. cfg is set to internal config values then its values are pulled for the template.') );
+		this.configContainer.setHtml( content );
 	};
 
 	/**
@@ -291,7 +291,7 @@
 
 		AbstractToolbarModifier.prototype._createModifier.call( this );
 
-		this.modifyContainer.setHtml( CKEDITOR.tools.htmlSafeByReview(this._toolbarConfigToListString(), 'Created using safe internal function that does not use user input.') );
+		this.modifyContainer.setHtml( this._toolbarConfigToListString() );
 
 		var groupLi = this.modifyContainer.find( 'li[data-type="group"]' );
 
@@ -795,7 +795,7 @@
 	ToolbarModifier.prototype._addSeparator = function() {
 		var separatorIndex = this._determineSeparatorToAddIndex(),
 			separator = ToolbarModifier.createSeparatorLiteral(),
-			domSeparator = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview( ToolbarModifier.getToolbarSeparatorString( separator ), 'Created safely using internal function fed safe internal values.') );
+			domSeparator = CKEDITOR.dom.element.createFromHtml( ToolbarModifier.getToolbarSeparatorString( separator ) );
 
 		this.actualConfig.toolbarGroups.splice( separatorIndex, 0, separator );
 
