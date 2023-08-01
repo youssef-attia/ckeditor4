@@ -536,10 +536,10 @@
 
 			setHtml: function() {
 				this.getElement().setHtml( CKEDITOR.tools.htmlSafeByReview('<a class="cke_colorbox" _cke_focus=1 hidefocus=true' +
-						' title="' + CKEDITOR.tools.htmlEncode(this.label) + '"' +
+						' title="' + CKEDITOR.tools.htmlEncodeAttr(this.label) + '"' +
 						' draggable="false"' +
 						' ondragstart="return false;"' + // Draggable attribute is buggy on Firefox.
-						' onclick="CKEDITOR.tools.callFunction(' + this.clickFn + ',\'' + this.color + '\',\'' + CKEDITOR.tools.htmlEncode(this.label) +  '\', this);' +
+						' onclick="CKEDITOR.tools.callFunction(' + this.clickFn + ',\'' + this.color + '\',\'' + CKEDITOR.tools.htmlEncodeAttr(this.label) +  '\', this);' +
 						' return false;"' +
 						' href="javascript:void(\'' + this.color + '\')"' +
 						' data-value="' + this.color + '"' +

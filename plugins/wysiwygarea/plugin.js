@@ -38,7 +38,7 @@
 					src = '';
 				}
 
-				var iframe = CKEDITOR.dom.element.createFromHtml(CKEDITOR.tools.htmlSafeByReview('<iframe src="' + src + '" frameBorder="0"></iframe>', 'Content created inline using safe internal values. src is created using CKEDITOR.tools.fixDomain.'));
+				var iframe = CKEDITOR.dom.element.createFromHtml(CKEDITOR.tools.htmlSafeByReview('<iframe src="' + src + '" frameBorder="0"></iframe>', 'Content created inline using safe internal values. src is created using CKEDITOR.tools.fixDomain which fixes the domain to match the parent window domain in IE.'));
 				iframe.setStyles( { width: '100%', height: '100%' } );
 				iframe.addClass( 'cke_wysiwyg_frame' ).addClass( 'cke_reset' );
 
