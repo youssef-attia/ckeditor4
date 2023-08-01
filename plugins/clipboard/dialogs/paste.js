@@ -169,7 +169,8 @@ CKEDITOR.dialog.add( 'paste', function( editor ) {
 							e.removeListener();
 
 							var doc = iframe.getFrameDocument();
-							doc.write( htmlToLoad );
+							// Legacy converted because this.getDialog() could potentially be unsafe since it pulled from an element on the page.
+							doc.write( CKEDITOR.tools.legacyUnsafeHtml(htmlToLoad) );
 
 							editor.focusManager.add( doc.getBody() );
 
