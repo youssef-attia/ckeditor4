@@ -1395,7 +1395,7 @@ CKEDITOR.STYLE_OBJECT = 3;
 		if ( CKEDITOR.env.ie )
 			preBlock.$.outerHTML = '<pre>' + mergedHtml + '</pre>';
 		else
-			preBlock.setHtml( mergedHtml );
+			preBlock.setHtml( CKEDITOR.tools.legacyUnsafeHtml(mergedHtml) );
 
 		previousBlock.remove();
 	}
@@ -1456,9 +1456,9 @@ CKEDITOR.STYLE_OBJECT = 3;
 			// 3. Convert \n to <BR>.
 			// 4. Convert contiguous (i.e. non-singular) spaces or tabs to &nbsp;
 			blockHtml = blockHtml.replace( /\n/g, '<br>' );
-			blockHtml = blockHtml.replace( /[ \t]{2,}/g, function( match ) {
+			blockHtml = CKEDITOR.tools.legacyUnsafeHtml(blockHtml.replace( /[ \t]{2,}/g, function( match ) {
 				return CKEDITOR.tools.repeat( '&nbsp;', match.length - 1 ) + ' ';
-			} );
+			} ));
 
 			if ( docFrag ) {
 				var newBlockClone = newBlock.clone();

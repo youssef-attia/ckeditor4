@@ -3436,9 +3436,10 @@
 					scrollTop;
 
 				copyBin.setHtml(
+					CKEDITOR.tools.legacyUnsafeHtml(
 					'<span data-cke-copybin-start="1">\u200b</span>' +
 					html +
-					'<span data-cke-copybin-end="1">\u200b</span>' );
+					'<span data-cke-copybin-end="1">\u200b</span>' ));
 
 				// Ignore copybin.
 				editor.fire( 'lockSnapshot' );
