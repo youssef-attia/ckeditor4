@@ -275,7 +275,7 @@ CKEDITOR.dom.element.clearMarkers = function( database, element, removeFromDatab
 			if ( toStart )
 				this.$.insertBefore( node.$, this.$.firstChild );
 			else
-				this.$.appendChild( node.$ );
+				this.$.appendChild( CKEDITOR.tools.legacyUnsafeHtml(node.$) );
 
 			return node;
 		},
