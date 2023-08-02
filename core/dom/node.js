@@ -267,7 +267,7 @@ CKEDITOR.tools.extend( CKEDITOR.dom.node.prototype, {
 	 * @returns {CKEDITOR.dom.node} The node being inserted.
 	 */
 	insertBefore: function( node ) {
-		node.$.parentNode.insertBefore( this.$, node.$ );
+		node.$.parentNode.insertBefore( CKEDITOR.tools.legacyUnsafeHtml(this.$), node.$ );
 		return node;
 	},
 
@@ -758,7 +758,7 @@ CKEDITOR.tools.extend( CKEDITOR.dom.node.prototype, {
 				// Move all children before the node.
 				for ( var child;
 				( child = $.firstChild ); ) {
-					parent.insertBefore( $.removeChild( child ), $ );
+					parent.insertBefore( CKEDITOR.tools.legacyUnsafeHtml($.removeChild( child )), $ );
 				}
 			}
 
