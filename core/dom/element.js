@@ -287,10 +287,10 @@ CKEDITOR.dom.element.clearMarkers = function( database, element, removeFromDatab
 		 */
 		appendHtml: function( html ) {
 			if ( !this.$.childNodes.length )
-				this.setHtml( html );
+				this.setHtml( CKEDITOR.tools.legacyUnsafeHtml(html) );
 			else {
 				var temp = new CKEDITOR.dom.element( 'div', this.getDocument() );
-				temp.setHtml( html );
+				temp.setHtml( CKEDITOR.tools.legacyUnsafeHtml(html) );
 				temp.moveChildren( this );
 			}
 		},
