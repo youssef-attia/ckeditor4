@@ -758,7 +758,7 @@ CKEDITOR.tools.extend( CKEDITOR.dom.node.prototype, {
 				// Move all children before the node.
 				for ( var child;
 				( child = $.firstChild ); ) {
-					parent.insertBefore( $.removeChild( child ), $ );
+					parent.insertBefore( CKEDITOR.tools.legacyUnsafeHtml($.removeChild( child )), $ );
 				}
 			}
 
