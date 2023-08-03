@@ -137,7 +137,7 @@
 
 			// If the justification is empty an error is raised. Any input marked as safe must be accompanied by a justification.
 			if (typeof justification !== 'string' || justification.trim() === '') {
-				let errMsg =
+				var errMsg =
 					'Calls to uncheckedconversion functions must go through security review.';
 				errMsg += ' A justification must be provided to capture what security' +
 					' assumptions are being made.';
@@ -145,7 +145,7 @@
 			}
 
 			if (self.trustedTypes && self.trustedTypes.createPolicy) {
-				const policy = self.trustedTypes.createPolicy(
+				var policy = self.trustedTypes.createPolicy(
 					'trusted#htmlSafeByReview',
 					{
 						createHTML: function (html) {
@@ -173,7 +173,7 @@
 		 */
 		legacyUnsafeHtml: function (html) {
 			if (self.trustedTypes && self.trustedTypes.createPolicy) {
-				const policy = self.trustedTypes.createPolicy(
+				var policy = self.trustedTypes.createPolicy(
 					'tools#legacyUnsafeHtml',
 					{
 						createHTML: function (html) {
