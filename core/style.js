@@ -1501,7 +1501,7 @@ CKEDITOR.STYLE_OBJECT = 3;
 			newBlock.copyAttributes( temp.getFirst() );
 			newBlock = temp.getFirst().remove();
 		} else {
-			newBlock.setHtml( preHtml );
+			newBlock.setHtml( CKEDITOR.tools.htmlSafeByReview(preHtml, 'block is created internally and is only impacted by the editors config options. preHtml is made up of html code pulled from block but with some modifications.') );
 		}
 
 		return newBlock;

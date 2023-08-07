@@ -24,7 +24,7 @@
 		}
 	};
 
-	var emptyHtml = '<span class="cke_path_empty">&nbsp;</span>';
+	var emptyHtml = CKEDITOR.tools.htmlSafeByReview('<span class="cke_path_empty">&nbsp;</span>', 'safe constant');
 
 	var extra = '';
 

@@ -1050,7 +1050,7 @@
 			if ( typeof eventData != 'string' ) {
 				var element = this.element;
 				if ( element && this.elementMode == CKEDITOR.ELEMENT_MODE_REPLACE )
-					eventData = element.is( 'textarea' ) ? element.getValue() : element.getHtml();
+				eventData = element.is( 'textarea' ) ? element.getValue() : element.getHtml();
 				else
 					eventData = '';
 			}

@@ -63,7 +63,7 @@ CKEDITOR.plugins.add( 'devtools', {
 		var editor = evt.editor;
 		if ( editor._.showDialogDefinitionTooltips ) {
 			if ( !tooltip ) {
-				tooltip = CKEDITOR.dom.element.createFromHtml( '<div id="cke_tooltip" tabindex="-1" style="position: absolute"></div>', CKEDITOR.document );
+				tooltip = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<div id="cke_tooltip" tabindex="-1" style="position: absolute"></div>', 'safe const'), CKEDITOR.document );
 				tooltip.hide();
 				tooltip.on( 'mouseover', function() {
 					this.show();

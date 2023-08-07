@@ -648,7 +648,7 @@
 		cells = cells || this.cells.all;
 
 		for ( var i = 0; i < cells.length; i++ ) {
-			cells[ i ].setHtml( '' );
+			cells[ i ].setHtml( CKEDITOR.tools.htmlSafeByReview('', 'empty'));
 		}
 	};
 

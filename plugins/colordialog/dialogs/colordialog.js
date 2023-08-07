@@ -117,13 +117,14 @@ CKEDITOR.dialog.add( 'colordialog', function( editor ) {
 	}
 
 	function setHighlight( color ) {
+		console.log(color);
 		if ( color ) {
 			$doc.getById( hicolorId ).setStyle( 'background-color', color );
-			$doc.getById( hicolorTextId ).setHtml( color );
+			$doc.getById( hicolorTextId ).setHtml( CKEDITOR.tools.htmlSafeByReview(CKEDITOR.tools.htmlEncode(color), 'Encoded.') );
 
 		} else {
 			$doc.getById( hicolorId ).removeStyle( 'background-color' );
-			$doc.getById( hicolorTextId ).setHtml( '&nbsp;' );
+			$doc.getById( hicolorTextId ).setHtml( CKEDITOR.tools.htmlSafeByReview('&nbsp;', 'safe constant'));
 		}
 	}
 
@@ -206,10 +207,10 @@ CKEDITOR.dialog.add( 'colordialog', function( editor ) {
 	}
 
 	function createColorTable() {
-		table = CKEDITOR.dom.element.createFromHtml( '<table tabIndex="-1" class="cke_colordialog_table"' +
+		table = CKEDITOR.dom.element.createFromHtml(CKEDITOR.tools.htmlSafeByReview('<table tabIndex="-1" class="cke_colordialog_table"' +
 			' aria-label="' + lang.options + '" role="grid" style="border-collapse:separate;" cellspacing="0">' +
 			'<caption class="cke_voice_label">' + lang.options + '</caption>' +
-			'<tbody role="presentation"></tbody></table>' );
+			'<tbody role="presentation"></tbody></table>', 'Content created using internal values'));
 
 		table.on( 'mouseover', updateHighlight );
 		table.on( 'mouseout', removeHighlight );
@@ -247,13 +248,13 @@ CKEDITOR.dialog.add( 'colordialog', function( editor ) {
 
 			var colorLabel = numbering( 'color_table_cell' );
 			cell.setAttribute( 'aria-labelledby', colorLabel );
-			cell.append( CKEDITOR.dom.element.createFromHtml( '<span id="' + colorLabel + '" class="cke_voice_label">' + color + '</span>', CKEDITOR.document ) );
+			cell.append( CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview( '<span id="' + colorLabel + '" class="cke_voice_label">' + CKEDITOR.tools.htmlEncode(color) + '</span>', 'colorLabel is a safe variable created using a CKEditor generated id and the name. Color is encoded.'), CKEDITOR.document ) );
 		}
 
 		appendColorRow( 0, 0 );
 		appendColorRow( 3, 0 );
 		appendColorRow( 0, 3 );
-		appendColorRow( 3, 3 );
+		appendColorRow( 3, 3 );	
 
 		// Create the last row.
 		var oRow = new $el( table.$.insertRow( -1 ) );

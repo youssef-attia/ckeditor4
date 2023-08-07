@@ -770,7 +770,7 @@
 		 * @param {CKEDITOR.dom.documentFragment} itemsFragment The document fragment with item elements.
 		 */
 		appendItems: function( itemsFragment ) {
-			this.element.setHtml( '' );
+			this.element.setHtml( CKEDITOR.tools.htmlSafeByReview('', 'empty') );
 			this.element.append( itemsFragment );
 		},
 

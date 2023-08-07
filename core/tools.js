@@ -134,7 +134,6 @@
 		 * TrustedHTML or a string if TT is not supported.
 		 */
 		htmlSafeByReview: function (html, justification) {
-
 			// If the justification is empty an error is raised. Any input marked as safe must be accompanied by a justification.
 			if (typeof justification !== 'string' || justification.trim() === '') {
 				let errMsg =
@@ -1069,9 +1068,9 @@
 			return function( cssLength ) {
 				// Recreate calculator whenever it was externally manipulated (#5158).
 				if ( !calculator || calculator.isDetached() ) {
-					calculator = CKEDITOR.dom.element.createFromHtml( '<div style="position:absolute;left:-9999px;' +
+					calculator = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<div style="position:absolute;left:-9999px;' +
 						'top:-9999px;margin:0px;padding:0px;border:0px;"' +
-						'></div>', CKEDITOR.document );
+						'></div>', 'safe constant'), CKEDITOR.document );
 
 					CKEDITOR.document.getBody().append( calculator );
 				}

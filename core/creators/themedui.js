@@ -268,7 +268,7 @@ CKEDITOR.replaceClass = 'ckeditor';
 			}
 
 			// Clear up the mode space.
-			editor.ui.space( 'contents' ).setHtml( '' );
+			editor.ui.space( 'contents' ).setHtml( CKEDITOR.tools.htmlSafeByReview('', 'empty') );
 
 			editor.mode = '';
 		} else {
@@ -489,6 +489,7 @@ CKEDITOR.replaceClass = 'ckeditor';
 					'{bottomHtml}' +
 				'</{outerEl}>' +
 			'</{outerEl}>' );
+
 
 		var container = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.legacyUnsafeHtml(themedTpl.output( {
 			id: editor.id,

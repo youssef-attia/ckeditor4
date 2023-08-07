@@ -113,11 +113,11 @@
 		var container = dialog.getElement().findOne( '.cke_about_version-check' ),
 			message = getAboutMessage( editor );
 
-		container.setHtml( '' );
+		container.setHtml( CKEDITOR.tools.htmlSafeByReview('', 'empty') );
 
 		if ( editor.config.versionCheck ) {
 			container.setStyle( 'color', versionInfo.isSecure ? '' : '#C83939' );
-			container.setHtml( message );
+			container.setHtml( CKEDITOR.tools.htmlSafeByReview(message, 'The message variable is created internally using only editor values so it should be safe.') );
 		}
 	}
 
