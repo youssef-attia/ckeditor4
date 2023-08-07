@@ -1933,7 +1933,7 @@
 
 			// Unescape protected content to prevent double escaping and corruption of content (#4060, #4509).
 			data = this.editor.dataProcessor.unprotectSource( data );
-			data = this.editor.dataProcessor.toHtml( data, {
+			data = this.editor.dataProcessor.toHtmlLegacy( data, {
 				context: this.getName(),
 				filter: this.filter,
 				enterMode: this.enterMode
@@ -3436,9 +3436,10 @@
 					scrollTop;
 
 				copyBin.setHtml(
+					CKEDITOR.tools.legacyUnsafeHtml(
 					'<span data-cke-copybin-start="1">\u200b</span>' +
 					html +
-					'<span data-cke-copybin-end="1">\u200b</span>' );
+					'<span data-cke-copybin-end="1">\u200b</span>' ));
 
 				// Ignore copybin.
 				editor.fire( 'lockSnapshot' );

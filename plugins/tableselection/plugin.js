@@ -441,7 +441,7 @@
 
 		copybin.setStyle( editor.config.contentsLangDirection == 'ltr' ? 'left' : 'right', '-5000px' );
 
-		copybin.setHtml( editor.getSelectedHtml( true ) );
+		copybin.setHtml( CKEDITOR.tools.legacyUnsafeHtml(editor.getSelectedHtml( true )) );
 
 		// Ignore copybin.
 		editor.fire( 'lockSnapshot' );
@@ -692,7 +692,7 @@
 
 			// Pasted value must be filtered using dataProcessor to strip all unsafe code
 			// before inserting it into temporary container.
-			tmpContainer.setHtml( dataProcessor.toHtml( dataValue ), {
+			tmpContainer.setHtml( dataProcessor.toHtmlLegacy( dataValue ), {
 				fixForBody: false
 			} );
 

@@ -260,7 +260,7 @@
 				updateDoneHandler = CKEDITOR.tools.addFunction( function() {
 					CKEDITOR.plugins.mathjax.copyStyles( iFrame, preview );
 
-					preview.setHtml( buffer.getHtml() );
+					preview.setHtml( CKEDITOR.tools.legacyUnsafeHtml(buffer.getHtml()) );
 
 					editor.fire( 'lockSnapshot' );
 

@@ -121,7 +121,7 @@ CKEDITOR.plugins.add( 'listblock', {
 
 				commit: function() {
 					this._.close();
-					this.element.appendHtml( this._.pendingHtml.join( '' ) );
+					this.element.appendHtml( CKEDITOR.tools.legacyUnsafeHtml(this._.pendingHtml.join( '' )) );
 					delete this._.size;
 
 					this._.pendingHtml = [];
