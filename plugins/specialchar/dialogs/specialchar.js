@@ -50,8 +50,9 @@ CKEDITOR.dialog.add( 'specialchar', function( editor ) {
 
 			var htmlPreview = dialog.getContentElement( 'info', 'htmlPreview' ).getElement();
 
-			dialog.getContentElement( 'info', 'charPreview' ).getElement().setHtml( value );
+			dialog.getContentElement( 'info', 'charPreview' ).getElement().setHtml( CKEDITOR.tools.legacyUnsafeHtml(value) );
 			htmlPreview.setHtml( CKEDITOR.tools.htmlSafeByReview(CKEDITOR.tools.htmlEncode( value ), 'Encoded using htmlEncode') );
+
 			target.getParent().addClass( 'cke_light_background' );
 
 			// Memorize focused node.

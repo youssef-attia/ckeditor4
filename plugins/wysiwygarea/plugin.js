@@ -431,7 +431,7 @@
 				var editor = this.editor;
 
 				if ( isSnapshot ) {
-					this.setHtml( data );
+					this.setHtml( CKEDITOR.tools.legacyUnsafeHtml(data) );
 					this.fixInitialSelection();
 
 					// Fire dataReady for the consistency with inline editors

@@ -124,8 +124,7 @@
 	 */
 	CKEDITOR.tools = {
 
-
-		 /**
+		/**
 		 * Claims safety of an html string and returns trusted version.
 		 *
 		 * @param {string} html The safe html string.
