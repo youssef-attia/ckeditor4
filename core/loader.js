@@ -137,7 +137,21 @@ if ( !CKEDITOR.loader ) {
 
 				var script = document.createElement( 'script' );
 				script.type = 'text/javascript';
-				script.src = scriptSrc;
+				if (self.trustedTypes && self.trustedTypes.createPolicy) {
+					// The CKEDITOR.getUrl function should be safe since the basePath calculated in ckeditor_base.js is pulled from the script elements on the page or is developer controlled by a window flag.
+					const policy = self.trustedTypes.createPolicy(
+						'loader#loadPending',
+						{
+							createScriptURL: function (url) {
+								return url;
+							},
+						}
+					);
+					
+					script.src = policy.createScriptURL(scriptSrc);
+				} else {
+					script.src = scriptSrc;					
+				}
 
 				function onScriptLoaded() {
 					// Append this script to the list of loaded scripts.
@@ -218,8 +232,20 @@ if ( !CKEDITOR.loader ) {
 				} else {
 					// Append this script to the list of loaded scripts.
 					this.loadedScripts.push( scriptName );
-
-					document.write( '<script src="' + scriptSrc + '" type="text/javascript"><\/script>' );
+					if (self.trustedTypes && self.trustedTypes.createPolicy) {
+						// The CKEDITOR.getUrl function should be safe since the basePath calculated in ckeditor_base.js is pulled from the script elements on the page or is developer controlled by a window flag.
+						const policy = self.trustedTypes.createPolicy(
+							'loader#load',
+							{
+								createHTML: function (html) {
+									return html;
+								},
+							}
+						);
+						document.write(policy.createHTML('<script src="' + scriptSrc + '" type="text/javascript"><\/script>'));
+					} else {
+						document.write('<script src="' + scriptSrc + '" type="text/javascript"><\/script>');
+					}
 				}
 			}
 		};
