@@ -80,7 +80,8 @@
 			// final characters.
 			var div = document.createElement( 'div' ),
 				chars;
-			div.innerHTML = '&' + entities.join( ';&' ) + ';';
+			// div.innerHTML = '&' + entities.join( ';&' ) + ';';
+			div.innerHTML = CKEDITOR.tools.htmlSafeByReview('&' + entities.join( ';&' ) + ';', 'Pulls from developer defined safe entitites.');
 			chars = div.innerHTML;
 			div = null;
 
