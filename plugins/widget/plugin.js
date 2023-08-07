@@ -1939,7 +1939,7 @@
 				enterMode: this.enterMode
 			} );
 
-			this.setHtml( CKEDITOR.tools.htmlSafeByReview(data, 'data goes throguh multiple different dataProcessor stages to get rid of any unsafe code.') );
+			this.setHtml( data );
 
 			this.editor.widgets.initOnAll( this );
 		},
