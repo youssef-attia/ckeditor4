@@ -1933,7 +1933,7 @@
 
 			// Unescape protected content to prevent double escaping and corruption of content (#4060, #4509).
 			data = this.editor.dataProcessor.unprotectSource( data );
-			data = this.editor.dataProcessor.toHtml( data, {
+			data = this.editor.dataProcessor.toHtmlLegacy( data, {
 				context: this.getName(),
 				filter: this.filter,
 				enterMode: this.enterMode
@@ -2035,7 +2035,7 @@
 					// ... or create a brand-new widget from template.
 					var defaults = typeof widgetDef.defaults == 'function' ? widgetDef.defaults() : widgetDef.defaults,
 						templateData = CKEDITOR.tools.object.merge( defaults || {}, commandData && commandData.startupData || {} ),
-						element = CKEDITOR.dom.element.createFromHtml( widgetDef.template.output( templateData ), editor.document ),
+						element = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.legacyUnsafeHtml(widgetDef.template.output( templateData )), editor.document ),
 						instance,
 						wrapper = editor.widgets.wrapElement( element, widgetDef.name ),
 						temp = new CKEDITOR.dom.documentFragment( wrapper.getDocument() );
@@ -3436,9 +3436,10 @@
 					scrollTop;
 
 				copyBin.setHtml(
+					CKEDITOR.tools.legacyUnsafeHtml(
 					'<span data-cke-copybin-start="1">\u200b</span>' +
 					html +
-					'<span data-cke-copybin-end="1">\u200b</span>' );
+					'<span data-cke-copybin-end="1">\u200b</span>' ));
 
 				// Ignore copybin.
 				editor.fire( 'lockSnapshot' );

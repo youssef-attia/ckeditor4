@@ -675,7 +675,7 @@
 			if ( element.is( 'textarea' ) )
 				element.setValue( data );
 			else
-				element.setHtml( data );
+				element.setHtml( CKEDITOR.tools.legacyUnsafeHtml(data) );
 
 			return true;
 		}
@@ -1050,7 +1050,7 @@
 			if ( typeof eventData != 'string' ) {
 				var element = this.element;
 				if ( element && this.elementMode == CKEDITOR.ELEMENT_MODE_REPLACE )
-					eventData = element.is( 'textarea' ) ? element.getValue() : element.getHtml();
+				eventData = element.is( 'textarea' ) ? element.getValue() : element.getHtml();
 				else
 					eventData = '';
 			}

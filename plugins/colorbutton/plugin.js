@@ -402,7 +402,7 @@
 
 				output.push( '</tr></tbody></table>' );
 
-				return output.join( '' );
+				return CKEDITOR.tools.htmlSafeByReview(output.join( '' ), 'renderColor is called in only one other place, onblock, with 3 parameters all of which are either config values or safe inline functions. In this function output is modified indirectly in 4 areas. The first uses generateAutomaticButtonHtml which only uses constant or config values. The second is with box.getHtml where box is created inline using internal values. The third is with ColorHistory which is created with internal values and not accessible to modification externally. The last is generateMoreColorsButtonHtml which is defined on the next line and uses internal config values or predefined constants.');
 
 				function generateAutomaticButtonHtml( output ) {
 					output.push( '<a class="cke_colorauto" _cke_focus=1 hidefocus=true',
@@ -535,17 +535,17 @@
 			},
 
 			setHtml: function() {
-				this.getElement().setHtml( '<a class="cke_colorbox" _cke_focus=1 hidefocus=true' +
-						' title="' + this.label + '"' +
+				this.getElement().setHtml( CKEDITOR.tools.htmlSafeByReview('<a class="cke_colorbox" _cke_focus=1 hidefocus=true' +
+						' title="' + CKEDITOR.tools.htmlEncodeAttr(this.label) + '"' +
 						' draggable="false"' +
 						' ondragstart="return false;"' + // Draggable attribute is buggy on Firefox.
-						' onclick="CKEDITOR.tools.callFunction(' + this.clickFn + ',\'' + this.color + '\',\'' + this.label +  '\', this);' +
+						' onclick="CKEDITOR.tools.callFunction(' + this.clickFn + ',\'' + this.color + '\',\'' + CKEDITOR.tools.htmlEncodeAttr(this.label) +  '\', this);' +
 						' return false;"' +
 						' href="javascript:void(\'' + this.color + '\')"' +
 						' data-value="' + this.color + '"' +
 						' role="option">' +
 						'<span class="cke_colorbox" style="background-color:#' + this.color + '"></span>' +
-					'</a>' );
+					'</a>', 'Created using this.color which is a value that is validated using a pattern and is not susceptible to DOM XSS attacks. This pattern is defined in CKEDITOR.tools._isValidColorFormat. Encoded this.label') );
 			},
 
 			setPositionIndex: function( posinset, setsize ) {

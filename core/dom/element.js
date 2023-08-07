@@ -287,10 +287,10 @@ CKEDITOR.dom.element.clearMarkers = function( database, element, removeFromDatab
 		 */
 		appendHtml: function( html ) {
 			if ( !this.$.childNodes.length )
-				this.setHtml( html );
+				this.setHtml( CKEDITOR.tools.legacyUnsafeHtml(html) );
 			else {
 				var temp = new CKEDITOR.dom.element( 'div', this.getDocument() );
-				temp.setHtml( html );
+				temp.setHtml( CKEDITOR.tools.legacyUnsafeHtml(html) );
 				temp.moveChildren( this );
 			}
 		},
@@ -574,7 +574,7 @@ CKEDITOR.dom.element.clearMarkers = function( database, element, removeFromDatab
 		 */
 		setText: ( function() {
 			var supportsTextContent = document.createElement( 'p' );
-			supportsTextContent.innerHTML = 'x';
+			supportsTextContent.textContent = 'x';
 			supportsTextContent = supportsTextContent.textContent;
 
 			return function( text ) {
@@ -982,8 +982,8 @@ CKEDITOR.dom.element.clearMarkers = function( database, element, removeFromDatab
 					var parent = this.getParent();
 					if ( parent.type == CKEDITOR.NODE_ELEMENT ) {
 						var el = parent.clone();
-						el.setHtml( thisEl ), thisEl = el.getHtml();
-						el.setHtml( otherEl ), otherEl = el.getHtml();
+						el.setHtml( CKEDITOR.tools.htmlSafeByReview(thisEl, 'These two are clones. There would need to exist a dangerous element on the page initially for this to ever become a risk since we dont read the elements attributes but only its outerhtml') ), thisEl = el.getHtml();
+						el.setHtml( CKEDITOR.tools.htmlSafeByReview(otherEl, 'These two are clones. There would need to exist a dangerous element on the page initially for this to ever become a risk since we dont read the elements attributes but only its outerhtml') ), otherEl = el.getHtml();
 					}
 				}
 

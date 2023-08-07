@@ -441,7 +441,7 @@
 
 		copybin.setStyle( editor.config.contentsLangDirection == 'ltr' ? 'left' : 'right', '-5000px' );
 
-		copybin.setHtml( editor.getSelectedHtml( true ) );
+		copybin.setHtml( CKEDITOR.tools.legacyUnsafeHtml(editor.getSelectedHtml( true )) );
 
 		// Ignore copybin.
 		editor.fire( 'lockSnapshot' );
@@ -648,7 +648,7 @@
 		cells = cells || this.cells.all;
 
 		for ( var i = 0; i < cells.length; i++ ) {
-			cells[ i ].setHtml( '' );
+			cells[ i ].setHtml( CKEDITOR.tools.htmlSafeByReview('', 'empty'));
 		}
 	};
 
@@ -692,7 +692,7 @@
 
 			// Pasted value must be filtered using dataProcessor to strip all unsafe code
 			// before inserting it into temporary container.
-			tmpContainer.setHtml( dataProcessor.toHtml( dataValue ), {
+			tmpContainer.setHtml( dataProcessor.toHtmlLegacy( dataValue ), {
 				fixForBody: false
 			} );
 

@@ -527,7 +527,7 @@
 							if ( caption ) {
 								if ( captionElement.count() > 0 ) {
 									captionElement = captionElement.getItem( 0 );
-									captionElement.setHtml( '' );
+									captionElement.setHtml( CKEDITOR.tools.htmlSafeByReview('', 'empty'));
 								} else {
 									captionElement = new CKEDITOR.dom.element( 'caption', editor.document );
 									table.append( captionElement, true );

@@ -123,6 +123,70 @@
 	 * @singleton
 	 */
 	CKEDITOR.tools = {
+
+		/**
+		 * Claims safety of an html string and returns trusted version.
+		 *
+		 * @param {string} html The safe html string.
+		 * @param {string} justification A short justification for why this
+		 * html string can be verified as safe.
+		 * @returns {TrustedHTML | string} the same html string but as a
+		 * TrustedHTML or a string if TT is not supported.
+		 */
+		htmlSafeByReview: function (html, justification) {
+			// If the justification is empty an error is raised. Any input marked as safe must be accompanied by a justification.
+			if (typeof justification !== 'string' || justification.trim() === '') {
+				let errMsg =
+					'Calls to uncheckedconversion functions must go through security review.';
+				errMsg += ' A justification must be provided to capture what security' +
+					' assumptions are being made.';
+				throw new Error(errMsg);
+			}
+
+			if (self.trustedTypes && self.trustedTypes.createPolicy) {
+				const policy = self.trustedTypes.createPolicy(
+					'trusted#htmlSafeByReview',
+					{
+						createHTML: function (html) {
+							// This policy is only to be used for trusted inputs that do not involve unsanitized user inputs.
+							return html;
+						},
+					}
+				);
+				return policy.createHTML(html);
+			} else {
+				return html;
+			}
+		},
+
+		/**
+		 * Wraps a possibly unsafe html string in a trusted type. Note that 
+		 * this function does not sanitize or make any changes to the html.
+		 * 
+		 * This function would be used for legacy conversions of inputs to a
+		 * DOM XSS sink that are possibly unsafe but not clear.
+		 *
+		 * @param {string} html The string to be wrapped with a trusted type.
+		 * @returns {TrustedHTML | string} the same html string but as a
+		 * TrustedHTML, or a string if TT is not supported.
+		 */
+		legacyUnsafeHtml: function (html) {
+			if (self.trustedTypes && self.trustedTypes.createPolicy) {
+				const policy = self.trustedTypes.createPolicy(
+					'tools#legacyUnsafeHtml',
+					{
+						createHTML: function (html) {
+							// This policy is only to be used for legacy conversions.
+							return html;
+						},
+					}
+				);
+				return policy.createHTML(html);
+			} else {
+				return html;
+			}
+		},
+
 		/**
 		 * Compares the elements of two arrays.
 		 *
@@ -1004,9 +1068,9 @@
 			return function( cssLength ) {
 				// Recreate calculator whenever it was externally manipulated (#5158).
 				if ( !calculator || calculator.isDetached() ) {
-					calculator = CKEDITOR.dom.element.createFromHtml( '<div style="position:absolute;left:-9999px;' +
+					calculator = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<div style="position:absolute;left:-9999px;' +
 						'top:-9999px;margin:0px;padding:0px;border:0px;"' +
-						'></div>', CKEDITOR.document );
+						'></div>', 'safe constant'), CKEDITOR.document );
 
 					CKEDITOR.document.getBody().append( calculator );
 				}

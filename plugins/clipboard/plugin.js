@@ -368,7 +368,7 @@
 						editable_wrapper,
 						wrapper = new CKEDITOR.dom.element( 'div' );
 
-					wrapper.setHtml( data );
+					wrapper.setHtml( CKEDITOR.tools.htmlSafeByReview(data, 'We assume eventData is not injectable and is only used internally.') );
 					// Verify for sure and check for nested editor UI parts. (https://dev.ckeditor.com/ticket/9675)
 					while ( wrapper.getChildCount() == 1 &&
 							( tmp = wrapper.getFirst() ) &&

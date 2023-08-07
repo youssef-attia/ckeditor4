@@ -504,7 +504,7 @@
 				if ( !isSnapshot )
 					data = this.editor.dataProcessor.toHtml( data );
 
-				this.setHtml( data );
+				this.setHtml( CKEDITOR.tools.legacyUnsafeHtml(data) );
 				this.fixInitialSelection();
 
 				// Editable is ready after first setData.
@@ -855,7 +855,7 @@
 				}, this );
 
 				this.attachListener( editor, 'afterSetData', function() {
-					this.setData( editor.getData( 1 ) );
+					this.setData(editor.getData( 1 ));
 				}, this );
 				this.attachListener( editor, 'loadSnapshot', function( evt ) {
 					this.setData( evt.data, 1 );
@@ -1415,7 +1415,7 @@
 					var ct = this.ui.space( this.elementMode == CKEDITOR.ELEMENT_MODE_INLINE ? 'top' : 'contents' );
 					if ( ct ) {
 						var ariaDescId = CKEDITOR.tools.getNextId(),
-							desc = CKEDITOR.dom.element.createFromHtml( '<span id="' + ariaDescId + '" class="cke_voice_label">' + helpLabel + '</span>' );
+							desc = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<span id="' + ariaDescId + '" class="cke_voice_label">' + helpLabel + '</span>', 'Created inline using values that are controlled by the editor'));
 						ct.append( desc );
 						editable.changeAttr( 'aria-describedby', ariaDescId );
 					}
@@ -1841,7 +1841,7 @@
 			// and we will be able to move range back into this element.
 			// E.g. 'aa<b>[bb</b>]cc' -> (after deleting) 'aa<b><span/></b>cc'
 			if ( that.type == 'text' && range.shrink( CKEDITOR.SHRINK_ELEMENT, true, false ) ) {
-				marker = CKEDITOR.dom.element.createFromHtml( '<span>&nbsp;</span>', range.document );
+				marker = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<span>&nbsp;</span>', 'safe constant'), range.document );
 				range.insertNode( marker );
 				range.setStartAfter( marker );
 			}
@@ -1953,7 +1953,7 @@
 			var doc = range.document,
 				wrapper = doc.createElement( 'body' );
 
-			wrapper.setHtml( data );
+			wrapper.setHtml( CKEDITOR.tools.htmlSafeByReview(data, 'The data goes through multiple steps of sanitization in htmldataprocessor.js and processing before being passed here.') );
 
 			// Eventually remove the temporaries.
 			if ( protect ) {

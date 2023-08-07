@@ -121,7 +121,7 @@ CKEDITOR.plugins.add( 'listblock', {
 
 				commit: function() {
 					this._.close();
-					this.element.appendHtml( this._.pendingHtml.join( '' ) );
+					this.element.appendHtml( CKEDITOR.tools.legacyUnsafeHtml(this._.pendingHtml.join( '' )) );
 					delete this._.size;
 
 					this._.pendingHtml = [];
@@ -184,14 +184,6 @@ CKEDITOR.plugins.add( 'listblock', {
 
 					this.element.getDocument().getById( itemId + '_option' ).setAttribute( 'aria-selected', true );
 					this.onMark && this.onMark( item );
-				},
-
-				markFirstDisplayed: function() {
-					var context = this;
-					this._.markFirstDisplayed( function() {
-						if ( !context.multiSelect )
-							context.unmarkAll();
-					} );
 				},
 
 				unmark: function( value ) {

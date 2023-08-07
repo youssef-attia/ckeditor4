@@ -114,7 +114,7 @@ var CKCONSOLE = ( function() {
 
 	function fromHtml( html, data ) {
 		if ( html instanceof CKEDITOR.template )
-			html = html.output( data );
+			html = CKEDITOR.tools.legacyUnsafeHtml(html.output( data ));
 
 		return CKEDITOR.dom.element.createFromHtml( html );
 	}
@@ -169,7 +169,7 @@ var CKCONSOLE = ( function() {
 					valueName;
 
 				for ( valueName in values )
-					this.valuesElements[ valueName ].setHtml( values[ valueName ] );
+					this.valuesElements[ valueName ].setHtml( CKEDITOR.tools.htmlSafeByReview(values[ valueName ], 'this.definition.refresh is passed in from the panelDefinition variable which would include some configs that would be defined by the developer. The internal usages either do not involve dangerous values or are sanitized.') );
 			}
 		};
 	}

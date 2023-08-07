@@ -798,7 +798,7 @@
 					output.push( '</span>' );
 				}
 
-				this.parts.content.setHtml( output.join( '' ) );
+				this.parts.content.setHtml( CKEDITOR.tools.htmlSafeByReview(output.join( '' ), 'UI Elements are created using the render function using editor values so they should be safe.') );
 				this.parts.content.unselectable();
 				CKEDITOR.tools.array.forEach( this.parts.content.find( 'a' ).toArray(), function( element ) {
 					element.setAttribute( 'draggable', 'false' );

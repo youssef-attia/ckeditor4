@@ -467,7 +467,7 @@
 		var content = ariaLabel && CKEDITOR.tools.htmlEncode( ariaLabel ) || '&nbsp;',
 			style = CKEDITOR.env.ie && CKEDITOR.env.version < 14 ? 'display:none' : 'position:fixed;top:0;left:-1000px;width:0;height:0;overflow:hidden;',
 			hiddenEl = CKEDITOR.dom.element.createFromHtml(
-				'<div data-cke-hidden-sel="1" data-cke-temp="1" style="' + style + '">' + content + '</div>',
+				CKEDITOR.tools.htmlSafeByReview('<div data-cke-hidden-sel="1" data-cke-temp="1" style="' + style + '">' + content + '</div>', 'Content created inline using safe values that are defined in the same code block.'),
 				editor.document );
 
 		editor.fire( 'lockSnapshot' );
@@ -2203,7 +2203,7 @@
 					// It is also needed when placing the selection right after an inline
 					// element to avoid the selection moving inside of it.
 					dummySpan = range.document.createElement( 'span' );
-					dummySpan.setHtml( '&#65279;' ); // Zero Width No-Break Space (U+FEFF). See https://dev.ckeditor.com/ticket/1359.
+					dummySpan.setHtml( CKEDITOR.tools.htmlSafeByReview('&#65279;', 'safe constant')); // Zero Width No-Break Space (U+FEFF). See https://dev.ckeditor.com/ticket/1359.
 					dummySpan.insertBefore( startNode );
 
 					if ( isStartMarkerAlone ) {

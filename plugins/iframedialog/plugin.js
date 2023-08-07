@@ -154,7 +154,7 @@ CKEDITOR.plugins.add( 'iframedialog', {
 							parentContainer = iframe.getParent(),
 							callIndex = CKEDITOR.tools.addFunction( contentLoad ),
 							html = myHtml.replace( '%1', callIndex ).replace( '%2', CKEDITOR.tools.htmlEncode( elementDefinition.src ) );
-						parentContainer.setHtml( html );
+						parentContainer.setHtml( CKEDITOR.tools.htmlSafeByReview(html, 'safe creation?') );
 					} );
 				};
 
