@@ -306,7 +306,7 @@
 				if ( CKEDITOR.env.ie )
 					iFrame.removeAttribute( 'src' );
 
-				doc.write( '<!DOCTYPE html>' +
+				doc.write( CKEDITOR.tools.htmlSafeByReview('<!DOCTYPE html>' +
 							'<html>' +
 							'<head>' +
 								'<meta charset="utf-8">' +
@@ -354,7 +354,7 @@
 								// Render everything here and after that copy it to the preview.
 								'<span id="buffer" style="display:none"></span>' +
 							'</body>' +
-							'</html>' );
+							'</html>', 'Uses either functions that were defined earlier in the file that do not take user input or editor config values') );
 			}
 
 			// Run MathJax parsing Tex.
