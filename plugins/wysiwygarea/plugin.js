@@ -583,6 +583,7 @@
 						}
 					}), 'The data variable comes from editor.getData usually which pulls data from the CKEditor instances element which is said to not be editable but potentially unsafe. The data is processed using editor.dataProcessor.toHtml so it should then be safe. the data is modified in a variety of ways, but all of which are safely using config or encoded values.');
 
+
 					// Current DOM will be deconstructed by document.write, cleanup required.
 					this.clearCustomData();
 					this.clearListeners();
