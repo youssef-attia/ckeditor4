@@ -139,7 +139,7 @@ if ( !CKEDITOR.loader ) {
 				script.type = 'text/javascript';
 				if (self.trustedTypes && self.trustedTypes.createPolicy) {
 					// The CKEDITOR.getUrl function should be safe since the basePath calculated in ckeditor_base.js is pulled from the script elements on the page or is developer controlled by a window flag.
-					const policy = self.trustedTypes.createPolicy(
+					var policy = self.trustedTypes.createPolicy(
 						'loader#loadPending',
 						{
 							createScriptURL: function (url) {
@@ -234,7 +234,7 @@ if ( !CKEDITOR.loader ) {
 					this.loadedScripts.push( scriptName );
 					if (self.trustedTypes && self.trustedTypes.createPolicy) {
 						// The CKEDITOR.getUrl function should be safe since the basePath calculated in ckeditor_base.js is pulled from the script elements on the page or is developer controlled by a window flag.
-						const policy = self.trustedTypes.createPolicy(
+						var policy = self.trustedTypes.createPolicy(
 							'loader#load',
 							{
 								createHTML: function (html) {
