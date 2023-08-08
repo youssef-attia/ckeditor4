@@ -90,7 +90,11 @@
 				doc = nativePreviewWindow.document;
 
 				doc.open();
-				doc.write( eventData.dataValue );
+				// The variable is set to createPreviewHtml with two parameters passed from
+				// createPreview. createPreview uses editor.getData which pulls data from the
+				// CKEditor instance's element which is said to not be editable but potentially
+				// unsafe.
+				doc.write( CKEDITOR.tools.legacyUnsafeHtml(eventData.dataValue) );
 				doc.close();
 			}
 
