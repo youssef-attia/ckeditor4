@@ -49,8 +49,8 @@
 		' hidefocus="true" ' +
 		' draggable="false" ' +
 		' ondragstart="return false;"' + // Required by Firefox (#1191).
-		' onkeydown="return CKEDITOR.tools.callFunction({keyDownFn},{index}, event );"' +
-		' onclick="CKEDITOR.tools.callFunction({clickFn},{index}); return false;"' +
+		// ' onkeydown="return CKEDITOR.tools.callFunction({keyDownFn},{index}, event );"' +
+		// ' onclick="CKEDITOR.tools.callFunction({clickFn},{index}); return false;"' +
 		' role="button" aria-label="{label}">' +
 		'{text}' +
 		'</a>' );
@@ -205,6 +205,7 @@
 				}
 			}
 
+			var elementListLength = elementsList.length;
 			for ( var iterationLimit = elementsList.length, index = 0; index < iterationLimit; index++ ) {
 				name = namesList[ index ];
 				var label = editor.lang.elementspath.eleTitle.replace( /%1/, name ),
@@ -214,8 +215,8 @@
 						text: name,
 						jsTitle: 'javascript:void(\'' + name + '\')', // jshint ignore:line
 						index: index,
-						keyDownFn: onKeyDownHandler,
-						clickFn: onClickHanlder
+						// keyDownFn: onKeyDownHandler,
+						// clickFn: onClickHanlder
 					} );
 
 				html.unshift( item );
@@ -223,6 +224,15 @@
 
 			var space = getSpaceElement();
 			space.setHtml( CKEDITOR.tools.legacyUnsafeHtml(html.join( '' ) + emptyHtml) );
+
+			document.addEventListener('load', function () {
+				for( var index1 = 0; index1 < elementsListLength; index1++ ){
+					console.log(idBase + index1);
+					document.getElementById(idBase + index1).addEventListener("onkeydown", function(event){ return CKEDITOR.tools.callFunction(onKeyDownHandler, index1, event )});
+					document.getElementById(idBase + index1).addEventListener("onclick", function(){CKEDITOR.tools.callFunction(onClickHanlder, index1); return false;})
+				}
+			})
+
 			editor.fire( 'elementsPathUpdate', { space: space } );
 		} );
 
