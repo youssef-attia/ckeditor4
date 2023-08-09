@@ -1473,7 +1473,7 @@ CKEDITOR.plugins.add( 'dialogui', {
 
 					var inputId = _.frameId + '_input';
 
-					var capturedNonce = document.querySelector('[nonce]').nonce;
+					var capturedNonce = document.querySelector('[nonce]') ? document.querySelector('[nonce]').nonce : '';
 					frameDocument.$.write( [
 						'<html dir="' + langDir + '" lang="' + langCode + '"><head><title></title></head><body style="margin: 0; overflow: hidden; background: transparent;">',
 							'<form enctype="multipart/form-data" method="POST" dir="' + langDir + '" lang="' + langCode + '" action="',

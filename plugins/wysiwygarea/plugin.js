@@ -572,7 +572,7 @@
 
 					data = data.replace(/(?=\s*<\/(:?head)>)/, bootstrapCode);
 
-					var capturedNonce = document.querySelector('[nonce]').nonce;
+					var capturedNonce = document.querySelector('[nonce]') ? document.querySelector('[nonce]').nonce : '';
 					var scriptTagRegex = /<script\b(.*?)>/g;
 
 					data = CKEDITOR.tools.htmlSafeByReview(data.replace(scriptTagRegex, function (match, attributes) {

@@ -15,7 +15,7 @@ CKEDITOR.plugins.add( 'listblock', {
 					' ondragstart="return false;"' + // Draggable attribute is buggy on Firefox.
 					' href="javascript:void(\'{val}\')" ' +
 					' {language}' +
-					// ' onclick="{onclick}CKEDITOR.tools.callFunction({clickFn},\'{val}\'); return false;"' + // https://dev.ckeditor.com/ticket/188
+					' onclick="{onclick}CKEDITOR.tools.callFunction({clickFn},\'{val}\'); return false;"' + // https://dev.ckeditor.com/ticket/188
 						' role="option">' +
 					'{text}' +
 				'</a>' +
@@ -99,8 +99,8 @@ CKEDITOR.plugins.add( 'listblock', {
 						id: id,
 						val: escapeSingleQuotes( CKEDITOR.tools.htmlEncodeAttr( value ) ),
 						// Add check for left mouse button (#2857).
-						// onclick: CKEDITOR.env.ie ?
-							// 'return false;" onmouseup="CKEDITOR.tools.getMouseButton(event)===CKEDITOR.MOUSE_BUTTON_LEFT&&' : '',
+						onclick: CKEDITOR.env.ie ?
+							'return false;" onmouseup="CKEDITOR.tools.getMouseButton(event)===CKEDITOR.MOUSE_BUTTON_LEFT&&' : '',
 						clickFn: this._.getClick(),
 						title: CKEDITOR.tools.htmlEncodeAttr( title || value ),
 						text: html || value,
@@ -123,13 +123,6 @@ CKEDITOR.plugins.add( 'listblock', {
 				commit: function() {
 					this._.close();
 					this.element.appendHtml( CKEDITOR.tools.legacyUnsafeHtml(this._.pendingHtml.join( '' )) );
-					document.addEventListener("DOMContentLoaded", function(){
-						for( id in this._.items){
-							document.getElementById(id+'_option').addEventListener("click", CKEDITOR.env.ie ?
-							'return false;" onmouseup="CKEDITOR.tools.getMouseButton(event)===CKEDITOR.MOUSE_BUTTON_LEFT&&' : '')
-							
-						}
-					});
 					delete this._.size;
 
 					this._.pendingHtml = [];
