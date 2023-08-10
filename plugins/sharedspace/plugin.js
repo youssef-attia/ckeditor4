@@ -56,7 +56,7 @@
 				}, null, null, 1 );  // Hi-priority
 
 				// Inject the space into the target.
-				space = target.append( CKEDITOR.dom.element.createFromHtml( containerTpl.output( {
+				space = target.append( CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.legacyUnsafeHtml(containerTpl.output( {
 					id: editor.id,
 					name: editor.name,
 					langDir: editor.lang.dir,
@@ -64,7 +64,7 @@
 					space: spaceName,
 					spaceId: editor.ui.spaceId( spaceName ),
 					content: innerHtml
-				} ) ) );
+				} ) ) ) );
 
 				// Only the first container starts visible. Others get hidden.
 				if ( target.getCustomData( 'cke_hasshared' ) )
