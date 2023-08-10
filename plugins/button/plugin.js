@@ -21,8 +21,8 @@
 	// Some browsers don't cancel key events in the keydown but in the
 	// keypress.
 	// TODO: Check if really needed.
-	if ( CKEDITOR.env.gecko && CKEDITOR.env.mac )
-		template += ' onkeypress="return false;"';
+	// if ( CKEDITOR.env.gecko && CKEDITOR.env.mac )
+	// 	template += ' onkeypress="return false;"';
 
 	// With Firefox, we need to force the button to redraw, otherwise it
 	// will remain in the focus state.
@@ -36,9 +36,11 @@
 		specialClickHandler = 'return false;" onmouseup="CKEDITOR.tools.getMouseButton(event)==CKEDITOR.MOUSE_BUTTON_LEFT&&';
 	}
 
-	template += ' onkeydown="return CKEDITOR.tools.callFunction({keydownFn},event);"' +
-		' onfocus="return CKEDITOR.tools.callFunction({focusFn},event);" ' +
-		'onclick="' + specialClickHandler + 'CKEDITOR.tools.callFunction({clickFn},this);return false;">' +
+	template += 
+	// ' onkeydown="return CKEDITOR.tools.callFunction({keydownFn},event);"' +
+	// 	' onfocus="return CKEDITOR.tools.callFunction({focusFn},event);" ' +
+	// 	'onclick="' + specialClickHandler + 'CKEDITOR.tools.callFunction({clickFn},this);return false;"'+
+		'>' +
 		'<span class="cke_button_icon cke_button__{iconName}_icon" style="{style}"';
 
 
@@ -307,9 +309,9 @@
 				ariaShortcut: shortcut ? editor.lang.common.keyboardShortcut + ' ' + shortcut.aria : '',
 				titleJs: env.gecko && !env.hc ? '' : ( this.title || '' ).replace( "'", '' ),
 				hasArrow: typeof this.hasArrow === 'string' && this.hasArrow || ( this.hasArrow ? 'true' : 'false' ),
-				keydownFn: keydownFn,
-				focusFn: focusFn,
-				clickFn: clickFn,
+				// keydownFn: keydownFn,
+				// focusFn: focusFn,
+				// clickFn: clickFn,
 				style: CKEDITOR.skin.getIconStyle( iconPath, ( editor.lang.dir == 'rtl' ), overridePath, this.iconOffset ),
 				arrowHtml: this.hasArrow ? btnArrowTpl.output() : '',
 				hasArrowAriaHtml: this.hasArrow ? ' aria-expanded="false"' : '',
@@ -320,6 +322,21 @@
 
 			if ( this.onRender )
 				this.onRender();
+
+			editor.on('instanceReady', function() {
+				var capturedNonce = document.querySelector('[nonce]') ? document.querySelector('[nonce]').nonce : '';
+
+				pendingEventListeners =
+					'document.getElementById("'+id+'").addEventListener("keydown", function(event){ return CKEDITOR.tools.callFunction('+keydownFn+',event); });'+
+					'document.getElementById("'+id+'").addEventListener("focus", function(event){ return CKEDITOR.tools.callFunction('+focusFn+',event); });'+
+					'document.getElementById("'+id+'").addEventListener("click", function(){ CKEDITOR.tools.callFunction('+clickFn+',this);return false; });'+
+					(( CKEDITOR.env.gecko && CKEDITOR.env.mac ) ? 'document.getElementById("'+id+'").addEventListener("keypress", function(){ return false; });':'');
+				scriptEl = document.createElement('script');
+				scriptElBody = document.createTextNode( pendingEventListeners);
+				scriptEl.appendChild(scriptElBody);
+				scriptEl.setAttribute("nonce", capturedNonce);
+				document.body.appendChild(scriptEl);
+			});
 
 			return instance;
 		},
