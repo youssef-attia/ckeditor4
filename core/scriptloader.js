@@ -116,7 +116,7 @@ CKEDITOR.scriptLoader = ( function() {
 					var script = new CKEDITOR.dom.element( 'script' );
 					if (self.trustedTypes && self.trustedTypes.createPolicy) {
 						// Legacy converted for now because of the possibility of using alternate CDNs for serving scripts.
-						const policy = self.trustedTypes.createPolicy(
+						var policy = self.trustedTypes.createPolicy(
 						  'scriptloader#loadScript',
 						  {
 							createScriptURL: function (url) {
