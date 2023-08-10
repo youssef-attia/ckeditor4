@@ -115,16 +115,11 @@ CKEDITOR.scriptLoader = ( function() {
 					// Create the <script> element.
 					var script = new CKEDITOR.dom.element( 'script' );
 					if (self.trustedTypes && self.trustedTypes.createPolicy) {
-						const policy = self.trustedTypes.createPolicy(
+						policy = self.trustedTypes.createPolicy(
 						  'scriptloader#loadScript',
 						  {
 							createScriptURL: function (url) {
-								const regexURL = /^https:\/\/example\.com(\/.*)?$/;
-								if(regexURL.test(url)){
-									return url;
-								} else {
-									return '';
-								}
+								return url;
 							},
 						  }
 						);
