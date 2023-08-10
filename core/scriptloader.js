@@ -115,16 +115,12 @@ CKEDITOR.scriptLoader = ( function() {
 					// Create the <script> element.
 					var script = new CKEDITOR.dom.element( 'script' );
 					if (self.trustedTypes && self.trustedTypes.createPolicy) {
+						// Legacy converted for now because of the possibility of using alternate CDNs for serving scripts.
 						const policy = self.trustedTypes.createPolicy(
 						  'scriptloader#loadScript',
 						  {
 							createScriptURL: function (url) {
-								const regexURL = /^https:\/\/example\.com(\/.*)?$/;
-								if(regexURL.test(url)){
-									return url;
-								} else {
-									return '';
-								}
+								return url;
 							},
 						  }
 						);
