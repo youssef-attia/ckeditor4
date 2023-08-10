@@ -424,7 +424,7 @@
 						request.task.done();
 					}
 
-					this._setContent( request.url, evtData.html );
+					this._setContent( request.url, CKEDITOR.tools.legacyUnsafeHtml(evtData.html) );
 					return true;
 				} else {
 					request.errorCallback( evtData.errorMessage );

@@ -474,7 +474,7 @@
 
 					if ( child.type === CKEDITOR.NODE_TEXT && wrapText ) {
 						var wrapper = new CKEDITOR.htmlParser.element( 'span' );
-						wrapper.setHtml( child.value );
+						wrapper.setHtml( CKEDITOR.tools.legacyUnsafeHtml(child.value) );
 						child.replaceWith( wrapper );
 						child = wrapper;
 					}
@@ -669,7 +669,7 @@
 
 				function createTempDocument( html ) {
 					var parser = new DOMParser(),
-						document = parser.parseFromString( html, 'text/html' );
+						document = parser.parseFromString( CKEDITOR.tools.htmlSafeByReview(html, 'Only used once internally within the pasteHandler for MSWord. The data passed into this function is preprocessed and filtered in cleanWord before being passed to this function.'), 'text/html' );
 
 					return new CKEDITOR.dom.document( document );
 				}

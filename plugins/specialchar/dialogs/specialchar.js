@@ -29,7 +29,7 @@ CKEDITOR.dialog.add( 'specialchar', function( editor ) {
 
 			// We must use "insertText" here to keep text styled.
 			var span = editor.document.createElement( 'span' );
-			span.setHtml( value );
+			span.setHtml( CKEDITOR.tools.htmlSafeByReview(CKEDITOR.tools.htmlEncode(value), 'Value is the html of an element that already exists on the page that has triggered some event. We know event data is not very safe for these purposes and it looks like this is pulling the element html directly so we may want to legacy convert.') );
 			editor.insertText( span.getText() );
 		}
 	};
@@ -50,8 +50,9 @@ CKEDITOR.dialog.add( 'specialchar', function( editor ) {
 
 			var htmlPreview = dialog.getContentElement( 'info', 'htmlPreview' ).getElement();
 
-			dialog.getContentElement( 'info', 'charPreview' ).getElement().setHtml( value );
-			htmlPreview.setHtml( CKEDITOR.tools.htmlEncode( value ) );
+			dialog.getContentElement( 'info', 'charPreview' ).getElement().setHtml( CKEDITOR.tools.legacyUnsafeHtml(value) );
+			htmlPreview.setHtml( CKEDITOR.tools.htmlSafeByReview(CKEDITOR.tools.htmlEncode( value ), 'Encoded using htmlEncode') );
+
 			target.getParent().addClass( 'cke_light_background' );
 
 			// Memorize focused node.
@@ -66,8 +67,8 @@ CKEDITOR.dialog.add( 'specialchar', function( editor ) {
 			target = target.getParent();
 
 		if ( target.getName() == 'a' ) {
-			dialog.getContentElement( 'info', 'charPreview' ).getElement().setHtml( '&nbsp;' );
-			dialog.getContentElement( 'info', 'htmlPreview' ).getElement().setHtml( '&nbsp;' );
+			dialog.getContentElement( 'info', 'charPreview' ).getElement().setHtml( CKEDITOR.tools.htmlSafeByReview('&nbsp;', 'safe constant'));
+			dialog.getContentElement( 'info', 'htmlPreview' ).getElement().setHtml( CKEDITOR.tools.htmlSafeByReview('&nbsp;', 'safe constant'));
 			target.getParent().removeClass( 'cke_light_background' );
 
 			focusedNode = undefined;
@@ -229,7 +230,7 @@ CKEDITOR.dialog.add( 'specialchar', function( editor ) {
 
 			html.push( '</tbody></table>', '<span id="' + charsTableLabel + '" class="cke_voice_label">' + lang.options + '</span>' );
 
-			this.getContentElement( 'info', 'charContainer' ).getElement().setHtml( html.join( '' ) );
+			this.getContentElement( 'info', 'charContainer' ).getElement().setHtml( CKEDITOR.tools.htmlSafeByReview(html.join( '' ), 'Content created using safe internal values. Any possibly unsafe values are encoded using htmlEncode.') );
 		},
 		contents: [ {
 			id: 'info',

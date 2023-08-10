@@ -317,8 +317,8 @@
 					callback = function( formatted ) {
 						// IE8 (not supported browser) have issue with new line chars, when using innerHTML.
 						// It will simply strip it.
-						that.parts.code.setHtml( editor.plugins.codesnippet.isSupportedEnvironment() ?
-							formatted : formatted.replace( newLineRegex, '<br>' ) );
+						that.parts.code.setHtml( CKEDITOR.tools.htmlSafeByReview(editor.plugins.codesnippet.isSupportedEnvironment() ?
+							formatted : formatted.replace( newLineRegex, '<br>'), 'Any unsafe usages are encoded using htmlEncode.' ) );
 					};
 
 				// Set plain code first, so even if custom handler will not call it the code will be there.
@@ -337,7 +337,7 @@
 					oldData = this.oldData;
 
 				if ( newData.code )
-					this.parts.code.setHtml( CKEDITOR.tools.htmlEncode( newData.code ) );
+					this.parts.code.setHtml( CKEDITOR.tools.htmlSafeByReview(CKEDITOR.tools.htmlEncode( newData.code ), 'Encoded using htmlEncode.') );
 
 				// Remove old .language-* class.
 				if ( oldData && newData.lang != oldData.lang )
@@ -377,7 +377,7 @@
 					data.lang = matchResult[ 1 ];
 
 				// Use textarea to decode HTML entities (https://dev.ckeditor.com/ticket/11926).
-				textarea.setHtml( code.getHtml() );
+				textarea.setHtml( CKEDITOR.tools.htmlSafeByReview(code.getHtml(), 'Only runs on elements that already exist on the page and meet certain constraints (must be of type CKEDITOR.NODE_TEXT)') );
 				data.code = textarea.getValue();
 
 				code.addClass( codeClass );

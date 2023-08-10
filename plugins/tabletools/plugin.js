@@ -645,7 +645,7 @@
 
 					cell.moveChildren( frag );
 				}
-				i ? cell.remove() : cell.setHtml( '' );
+				i ? cell.remove() : cell.setHtml( CKEDITOR.tools.htmlSafeByReview('', 'empty') );
 			}
 			lastRowIndex = rowIndex;
 		}

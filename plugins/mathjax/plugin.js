@@ -260,7 +260,7 @@
 				updateDoneHandler = CKEDITOR.tools.addFunction( function() {
 					CKEDITOR.plugins.mathjax.copyStyles( iFrame, preview );
 
-					preview.setHtml( buffer.getHtml() );
+					preview.setHtml( CKEDITOR.tools.legacyUnsafeHtml(buffer.getHtml()) );
 
 					editor.fire( 'lockSnapshot' );
 
@@ -306,7 +306,7 @@
 				if ( CKEDITOR.env.ie )
 					iFrame.removeAttribute( 'src' );
 
-				doc.write( '<!DOCTYPE html>' +
+				doc.write( CKEDITOR.tools.htmlSafeByReview('<!DOCTYPE html>' +
 							'<html>' +
 							'<head>' +
 								'<meta charset="utf-8">' +
@@ -354,7 +354,7 @@
 								// Render everything here and after that copy it to the preview.
 								'<span id="buffer" style="display:none"></span>' +
 							'</body>' +
-							'</html>' );
+							'</html>', 'Uses either functions that were defined earlier in the file that do not take user input or editor config values') );
 			}
 
 			// Run MathJax parsing Tex.
@@ -365,10 +365,10 @@
 
 				editor.fire( 'lockSnapshot' );
 
-				buffer.setHtml( value );
+				buffer.setHtml( CKEDITOR.tools.htmlSafeByReview(CKEDITOR.tools.htmlEncode(value), 'Encoded using htmlEncode in setValue') );
 
 				// Set loading indicator.
-				preview.setHtml( '<img src=' + CKEDITOR.plugins.mathjax.loadingIcon + ' alt=' + editor.lang.mathjax.loading + '>' );
+				preview.setHtml( CKEDITOR.tools.htmlSafeByReview('<img src=' + CKEDITOR.plugins.mathjax.loadingIcon + ' alt=' + editor.lang.mathjax.loading + '>', 'Created using editor values'));
 
 				iFrame.setStyles( {
 					height: '16px',
@@ -419,7 +419,7 @@
 					var doc = iFrame.getFrameDocument(),
 						tex = doc.getById( 'tex' );
 
-					tex.setHtml( CKEDITOR.plugins.mathjax.trim( CKEDITOR.tools.htmlEncode( value ) ) );
+					tex.setHtml( CKEDITOR.tools.htmlSafeByReview( CKEDITOR.tools.htmlEncode(CKEDITOR.plugins.mathjax.trim( CKEDITOR.tools.htmlEncode( value ) )), 'Encoded using htmlEncode and then trimmed') );
 
 					CKEDITOR.plugins.mathjax.copyStyles( iFrame, tex );
 

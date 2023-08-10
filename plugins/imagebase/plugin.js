@@ -436,7 +436,7 @@
 				tplParams = CKEDITOR.tools.extend( {}, tplParams );
 				tplParams.src = blobUrl;
 
-				var element = CKEDITOR.dom.element.createFromHtml( widgetDef.template.output( tplParams ) ),
+				var element = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.legacyUnsafeHtml(widgetDef.template.output( tplParams )) ),
 					wrapper = editor.widgets.wrapElement( element, widgetDef.name ),
 					temp = new CKEDITOR.dom.documentFragment( wrapper.getDocument() );
 
@@ -727,7 +727,7 @@
 		/**
 		 * @property {CKEDITOR.dom.element} wrapper An element created for wrapping the progress bar.
 		 */
-		this.wrapper = CKEDITOR.dom.element.createFromHtml( wrapperHtml || '<div class="cke_loader"></div>' );
+		this.wrapper = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview(wrapperHtml || '<div class="cke_loader"></div>', 'wrapperHtml is set by the developer and is not exposed to the user. It is used as a way to allow custom loader htmls for image uploading. The alternative is a safe constant.') );
 	}
 
 	ProgressReporter.prototype = {

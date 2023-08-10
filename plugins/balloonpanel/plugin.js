@@ -201,28 +201,28 @@
 			var editor = this.editor;
 
 			this.parts = {
-				title: CKEDITOR.dom.element.createFromHtml( this.templates.title.output( {
+				title: CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.legacyUnsafeHtml(this.templates.title.output( {
 					title: this.title
-				} ) ),
+				} ) ) ),
 
-				close: CKEDITOR.dom.element.createFromHtml( this.templates.close.output() ),
+				close: CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.legacyUnsafeHtml(this.templates.close.output()) ),
 
-				panel: CKEDITOR.dom.element.createFromHtml( this.templates.panel.output( {
+				panel: CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.legacyUnsafeHtml(this.templates.panel.output( {
 					id: editor.id,
 					langDir: editor.lang.dir,
 					langCode: editor.langCode,
 					name: editor.name,
 					style: 'display:none;',
 					voiceLabel: editor.lang.editorPanel + ', ' + editor.name
-				} ) ),
+				} )) ),
 
-				content: CKEDITOR.dom.element.createFromHtml( this.templates.content.output( {
+				content: CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.legacyUnsafeHtml(this.templates.content.output( {
 					content: this.content || ''
-				} ) ),
+				} )) ),
 
-				triangleOuter: CKEDITOR.dom.element.createFromHtml( this.templates.triangleOuter.output() ),
+				triangleOuter: CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.legacyUnsafeHtml(this.templates.triangleOuter.output()) ),
 
-				triangleInner: CKEDITOR.dom.element.createFromHtml( this.templates.triangleInner.output() )
+				triangleInner: CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.legacyUnsafeHtml(this.templates.triangleInner.output()) )
 			};
 
 			// Append UI elements to create a panel.
@@ -755,7 +755,7 @@
 		 * @param {String} title A new panel title.
 		 */
 		setTitle: function( title ) {
-			this.parts.title.setHtml( title );
+			this.parts.title.setHtml( CKEDITOR.tools.htmlSafeByReview(CKEDITOR.tools.htmlEncode(title), 'Encoded. Value controlled by developer, potential XSS risk if exposed to user. The title variable is passed as a parameter from the setTitle function which is part of the balloonpanel API accessible to the developer.') );
 		},
 
 		/**

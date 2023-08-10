@@ -122,11 +122,11 @@ CKEDITOR.dialog.add( 'uicolor', function( editor ) {
 	function setHighlightedColor( color ) {
 		if ( color ) {
 			$doc.getById( highlightedColorId ).setStyle( 'background-color', color );
-			$doc.getById( highlightedColorTextId ).setHtml( color );
+			$doc.getById( highlightedColorTextId ).setHtml( CKEDITOR.tools.htmlSafeByReview(CKEDITOR.tools.htmlEncode(color), 'Encoding does not break tests. The variable color here is only ever set to the html of elements created internally (in createColorTable and applyColorCell)') );
 
 		} else {
 			$doc.getById( highlightedColorId ).removeStyle( 'background-color' );
-			$doc.getById( highlightedColorTextId ).setHtml( '&nbsp;' );
+			$doc.getById( highlightedColorTextId ).setHtml( CKEDITOR.tools.htmlSafeByReview('&nbsp;', 'safe constant'));
 		}
 	}
 
@@ -220,10 +220,10 @@ CKEDITOR.dialog.add( 'uicolor', function( editor ) {
 
 	// Creates color palette table and binds event listeners to manage focus inside it.
 	function createColorTable() {
-		var table = CKEDITOR.dom.element.createFromHtml( '<table tabIndex="-1" class="cke_colordialog_table"' +
+		var table = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<table tabIndex="-1" class="cke_colordialog_table"' +
 			' aria-label="' + lang.options + '" role="grid" style="border-collapse:separate;" cellspacing="0">' +
 			'<caption class="cke_voice_label">' + lang.options + '</caption>' +
-			'<tbody role="presentation"></tbody></table>' );
+			'<tbody role="presentation"></tbody></table>', 'Content created inline using safe internal values. lang is internal and restricted') );
 
 		table.on( 'mouseover', updateHighlight );
 		table.on( 'mouseout', removeHighlight );
@@ -262,7 +262,7 @@ CKEDITOR.dialog.add( 'uicolor', function( editor ) {
 
 			var colorLabel = generateId( 'color_table_cell' );
 			cell.setAttribute( 'aria-labelledby', colorLabel );
-			cell.append( CKEDITOR.dom.element.createFromHtml( '<span id="' + colorLabel + '" class="cke_voice_label">' + color + '</span>', CKEDITOR.document ) );
+			cell.append( CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview( '<span id="' + colorLabel + '" class="cke_voice_label">' + CKEDITOR.tools.htmlEncode(color) + '</span>', 'Encoding color does not break tests. colorLabel is created using the config and a constant appended value.'), CKEDITOR.document ) );
 		}
 
 		appendColorRow( 0, 0 );

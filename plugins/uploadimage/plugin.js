@@ -115,7 +115,7 @@
 				// Without this isReadOnly will not works properly.
 				temp.data( 'cke-editable', 1 );
 
-				temp.appendHtml( data.dataValue );
+				temp.appendHtml( CKEDITOR.tools.htmlSafeByReview(data.dataValue, 'Content added to tempDoc to prevent XSS attacks') );
 
 				imgs = temp.find( 'img' );
 

@@ -50,7 +50,7 @@ CKEDITOR.dialog.add( 'button', function( editor ) {
 
 			var writer = new CKEDITOR.htmlParser.basicWriter();
 			fake.writeHtml( writer );
-			var newElement = CKEDITOR.dom.element.createFromHtml( writer.getHtml(), editor.document );
+			var newElement = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.legacyUnsafeHtml(writer.getHtml()), editor.document );
 
 			if ( isInsertMode )
 				editor.insertElement( newElement );

@@ -8,7 +8,7 @@
 		// Constructs the HTML view of the specified templates data.
 		function renderTemplatesList( container, templatesDefinitions ) {
 			// clear loading wait text.
-			container.setHtml( '' );
+			container.setHtml( CKEDITOR.tools.htmlSafeByReview('', 'empty'));
 
 			for ( var i = 0, totalDefs = templatesDefinitions.length; i < totalDefs; i++ ) {
 				var definition = CKEDITOR.getTemplates( templatesDefinitions[ i ] ),
@@ -27,9 +27,9 @@
 		}
 
 		function createTemplateItem( template, imagesPath ) {
-			var item = CKEDITOR.dom.element.createFromHtml( '<a href="javascript:void(0)" tabIndex="-1" role="option" >' +
+			var item = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview( '<a href="javascript:void(0)" tabIndex="-1" role="option" >' +
 				'<div class="cke_tpl_item"></div>' +
-				'</a>' );
+				'</a>', 'safe const' ));
 
 			// Build the inner HTML of our new item DIV.
 			var html = '<table style="width:350px;" class="cke_tpl_preview" role="presentation"><tr>';
@@ -47,7 +47,7 @@
 
 			html += '</td></tr></table>';
 
-			item.getFirst().setHtml( html );
+			item.getFirst().setHtml( CKEDITOR.tools.htmlSafeByReview(html, 'The template variable is passed in and used by other functions. It is passed in as templates = ( config.templates || "default" ).split( "," );. Any source paths are generated using internal functions.') );
 
 			item.on( 'click', function() {
 				if( template.htmlFile ) {
@@ -193,9 +193,9 @@
 						renderTemplatesList( listContainer, templates );
 						templatesListField.focus();
 					} else {
-						listContainer.setHtml( '<div class="cke_tpl_empty">' +
+						listContainer.setHtml( CKEDITOR.tools.htmlSafeByReview('<div class="cke_tpl_empty">' +
 							'<span>' + lang.emptyListMsg + '</span>' +
-							'</div>' );
+							'</div>', 'Content created inline using safe internal values. lang is internal and restricted.') );
 					}
 				} );
 

@@ -150,7 +150,7 @@
 					// Ratio button hc presentation - WHITE SQUARE / BLACK SQUARE
 					if ( CKEDITOR.env.hc ) {
 						var icon = ratioButton.getChild( 0 );
-						icon.setHtml( dialog.lockRatio ? CKEDITOR.env.ie ? '\u25A0' : '\u25A3' : CKEDITOR.env.ie ? '\u25A1' : '\u25A2' );
+						icon.setHtml( CKEDITOR.tools.htmlSafeByReview(dialog.lockRatio ? CKEDITOR.env.ie ? '\u25A0' : '\u25A3' : CKEDITOR.env.ie ? '\u25A1' : '\u25A2', 'Safe ternary constant') );
 					}
 
 					return dialog.lockRatio;
@@ -445,7 +445,7 @@
 								// We already have a link in editor.
 								if ( this.linkElement.equals( editor.getSelection().getSelectedElement() ) ) {
 									// If the link is selected outside, replace it's content rather than the link itself. ([<a>foo</a>])
-									this.linkElement.setHtml( '' );
+									this.linkElement.setHtml( CKEDITOR.tools.htmlSafeByReview('', 'empty'));
 									this.linkElement.append( this.imageElement, false );
 								} else {
 									// Only inside of the link is selected, so replace it with image. (<a>[foo]</a>, <a>[f]oo</a>)

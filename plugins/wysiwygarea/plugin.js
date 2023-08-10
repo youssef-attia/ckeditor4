@@ -38,7 +38,7 @@
 					src = '';
 				}
 
-				var iframe = CKEDITOR.dom.element.createFromHtml( '<iframe src="' + src + '" frameBorder="0"></iframe>' );
+				var iframe = CKEDITOR.dom.element.createFromHtml(CKEDITOR.tools.htmlSafeByReview('<iframe src="' + src + '" frameBorder="0"></iframe>', 'Content created inline using safe internal values. src is created using CKEDITOR.tools.fixDomain which fixes the domain to match the parent window domain in IE.'));
 				iframe.setStyles( { width: '100%', height: '100%' } );
 				iframe.addClass( 'cke_wysiwyg_frame' ).addClass( 'cke_reset' );
 
@@ -66,8 +66,9 @@
 				}
 
 				if ( helpLabel ) {
+					console.log(helpLabel);
 					var labelId = CKEDITOR.tools.getNextId(),
-						desc = CKEDITOR.dom.element.createFromHtml( '<span id="' + labelId + '" class="cke_voice_label">' + helpLabel + '</span>' );
+						desc = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<span id="' + labelId + '" class="cke_voice_label">' + CKEDITOR.tools.htmlEncode(helpLabel) + '</span>', 'Content created inline using safe internal values. helpLabel is brought in through an event but is set to an editor config label value which is further encoded for security.') );
 
 					contentSpace.append( desc, 1 );
 					iframe.setAttribute( 'aria-describedby', labelId );
@@ -430,7 +431,7 @@
 				var editor = this.editor;
 
 				if ( isSnapshot ) {
-					this.setHtml( data );
+					this.setHtml( CKEDITOR.tools.legacyUnsafeHtml(data) );
 					this.fixInitialSelection();
 
 					// Fire dataReady for the consistency with inline editors
@@ -569,7 +570,7 @@
 							'</script>';
 					}
 
-					data = data.replace( /(?=\s*<\/(:?head)>)/, bootstrapCode );
+					data = CKEDITOR.tools.htmlSafeByReview(data.replace( /(?=\s*<\/(:?head)>)/, bootstrapCode ), 'The data variable comes from editor.getData usually which pulls data from the CKEditor instances element which is said to not be editable but potentially unsafe. The data is processed using editor.dataProcessor.toHtml so it should then be safe. the data is modified in a variety of ways, but all of which are safely using config or encoded values.');
 
 					// Current DOM will be deconstructed by document.write, cleanup required.
 					this.clearCustomData();
