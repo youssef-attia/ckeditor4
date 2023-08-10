@@ -58,7 +58,7 @@ CKEDITOR.tools.extend( CKEDITOR.editor.prototype, {
 			if (self.trustedTypes && self.trustedTypes.createPolicy) {
 				// This is a legacy conversion. This url is passed by plugins/filebrowser which should be only accessible 
 				// by the developer but the url is modified in too many areas for this to be fully safe.
-				const policy = self.trustedTypes.createPolicy(
+				var policy = self.trustedTypes.createPolicy(
 					'plugin#popup',
 					{
 						createScriptURL: function (url) {
