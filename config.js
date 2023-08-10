@@ -8,69 +8,8 @@ CKEDITOR.editorConfig = function( config ) {
 	// config.language = 'fr';
 	// config.uiColor = '#AADC6E';
 	// %REMOVE_START%
-	config.plugins =
-		'about,' +
-		'a11yhelp,' +
-		'basicstyles,' +
-		'bidi,' +
-		'blockquote,' +
-		'clipboard,' +
-		'colorbutton,' +
-		'colordialog,' +
-		'copyformatting,' +
-		'contextmenu,' +
-		'dialogadvtab,' +
-		'div,' +
-		'elementspath,' +
-		'enterkey,' +
-		'entities,' +
-		'filebrowser,' +
-		'find,' +
-		'floatingspace,' +
-		'font,' +
-		'format,' +
-		'forms,' +
-		'horizontalrule,' +
-		'htmlwriter,' +
-		'image,' +
-		'iframe,' +
-		'indentlist,' +
-		'indentblock,' +
-		'justify,' +
-		'language,' +
-		'link,' +
-		'list,' +
-		'liststyle,' +
-		'magicline,' +
-		'maximize,' +
-		'newpage,' +
-		'pagebreak,' +
-		'pastefromgdocs,' +
-		'pastefromlibreoffice,' +
-		'pastefromword,' +
-		'pastetext,' +
-		'editorplaceholder,' +
-		'preview,' +
-		'print,' +
-		'removeformat,' +
-		'resize,' +
-		'save,' +
-		'selectall,' +
-		'showblocks,' +
-		'showborders,' +
-		'smiley,' +
-		'sourcearea,' +
-		'specialchar,' +
-		'stylescombo,' +
-		'tab,' +
-		'table,' +
-		'tableselection,' +
-		'tabletools,' +
-		'templates,' +
-		'toolbar,' +
-		'undo,' +
-		'uploadimage,' +
-		'wysiwygarea';
+	config.plugins = 'dialogui,dialog,about,a11yhelp,basicstyles,blockquote,notification,button,toolbar,clipboard,panel,floatpanel,menu,contextmenu,resize,elementspath,enterkey,entities,popup,filetools,filebrowser,floatingspace,listblock,richcombo,format,horizontalrule,htmlwriter,wysiwygarea,image,indent,indentlist,fakeobjects,link,list,magicline,maximize,pastetext,xml,ajax,pastetools,pastefromgdocs,pastefromword,removeformat,showborders,sourcearea,specialchar,stylescombo,tab,table,tabletools,tableselection,undo,lineutils,widgetselection,widget,notificationaggregator,uploadwidget,uploadimage,autogrow,bidi,panelbutton,colorbutton,colordialog,dialogadvtab,div,find,flash,font,forms,iframe,indentblock,justify,menubutton,language,liststyle,newpage,pagebreak,preview,print,save,selectall,sharedspace,templates,codemirror';
+
 	// %REMOVE_END%
 };
 
