@@ -691,18 +691,18 @@ CKEDITOR.plugins.add( 'dialogui', {
 							' role="presentation"' +
 							' id="', _.frameId, '"' +
 							' title="', elementDefinition.label, '"' +
-							' src="javascript:void('
+							' src="'
 					];
 
 					// Support for custom document.domain on IE. (https://dev.ckeditor.com/ticket/10165)
 					html.push( CKEDITOR.env.ie ?
-						'(function(){' + encodeURIComponent(
+						'javascript:void((function(){' + encodeURIComponent(
 							'document.open();' +
 							'(' + CKEDITOR.tools.fixDomain + ')();' +
 							'document.close();'
 						) + '})()'
 						:
-						'0'
+						'#'
 					);
 
 					html.push( ')"></iframe>' );
