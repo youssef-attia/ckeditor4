@@ -8,7 +8,7 @@
  *		parent tree relative to the current selection in the editing area.
  */
 
-( function() {
+ ( function() {
 	var commands = {
 		toolbarFocus: {
 			editorFocus: false,
@@ -31,8 +31,8 @@
 	// Some browsers don't cancel key events in the keydown but in the
 	// keypress.
 	// TODO: Check if really needed.
-	if ( CKEDITOR.env.gecko && CKEDITOR.env.mac )
-		extra += ' onkeypress="return false;"';
+	// if ( CKEDITOR.env.gecko && CKEDITOR.env.mac )
+		// extra += ' onkeypress="return false;"';
 
 	// With Firefox, we need to force the button to redraw, otherwise it
 	// will remain in the focus state.
@@ -48,9 +48,7 @@
 		extra +
 		' hidefocus="true" ' +
 		' draggable="false" ' +
-		' ondragstart="return false;"' + // Required by Firefox (#1191).
-		' onkeydown="return CKEDITOR.tools.callFunction({keyDownFn},{index}, event );"' +
-		' onclick="CKEDITOR.tools.callFunction({clickFn},{index}); return false;"' +
+		// ' ondragstart="return false;"' + // Required by Firefox (#1191).
 		' role="button" aria-label="{label}">' +
 		'{text}' +
 		'</a>' );
@@ -205,6 +203,10 @@
 				}
 			}
 
+			var capturedNonce = document.querySelector('[nonce]') ? document.querySelector('[nonce]').nonce : '';
+			
+			var pendingEventListeners = [];
+
 			for ( var iterationLimit = elementsList.length, index = 0; index < iterationLimit; index++ ) {
 				name = namesList[ index ];
 				var label = editor.lang.elementspath.eleTitle.replace( /%1/, name ),
@@ -213,16 +215,28 @@
 						label: label,
 						text: name,
 						jsTitle: 'javascript:void(\'' + name + '\')', // jshint ignore:line
-						index: index,
-						keyDownFn: onKeyDownHandler,
-						clickFn: onClickHanlder
+						index: index
 					} );
+				
+			pendingEventListeners.push(
+				'document.getElementById("'+idBase + index+'").addEventListener("keydown", function(event){ return CKEDITOR.tools.callFunction('+onKeyDownHandler+','+ index+', event )});'+
+				'document.getElementById("'+idBase + index+'").addEventListener("click", function(){CKEDITOR.tools.callFunction('+onClickHanlder+','+ index+'); return false;});'+
+				'document.getElementById("'+idBase + index+'").addEventListener("dragstart", function(){return false;});'+
+				((CKEDITOR.env.gecko && CKEDITOR.env.mac)?'document.getElementById("'+idBase + index+'").addEventListener("keypress", function(){return false;});':'')
+			);
 
 				html.unshift( item );
 			}
-
+							
 			var space = getSpaceElement();
 			space.setHtml( CKEDITOR.tools.legacyUnsafeHtml(html.join( '' ) + emptyHtml) );
+			
+			scriptEl = document.createElement('script');
+			scriptElBody = document.createTextNode( pendingEventListeners.join(''));
+			scriptEl.appendChild(scriptElBody);
+			scriptEl.setAttribute("nonce", capturedNonce);
+			document.body.appendChild(scriptEl);
+
 			editor.fire( 'elementsPathUpdate', { space: space } );
 		} );
 
