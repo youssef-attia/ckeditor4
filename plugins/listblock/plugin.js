@@ -93,7 +93,6 @@ CKEDITOR.plugins.add( 'listblock', {
 					}
 
 					this._.items[ value ] = id;
-					console.log(this._items)
 
 					var data = {
 						id: id,
