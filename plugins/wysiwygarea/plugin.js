@@ -66,7 +66,6 @@
 				}
 
 				if ( helpLabel ) {
-					console.log(helpLabel);
 					var labelId = CKEDITOR.tools.getNextId(),
 						desc = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<span id="' + labelId + '" class="cke_voice_label">' + CKEDITOR.tools.htmlEncode(helpLabel) + '</span>', 'Content created inline using safe internal values. helpLabel is brought in through an event but is set to an editor config label value which is further encoded for security.') );
 

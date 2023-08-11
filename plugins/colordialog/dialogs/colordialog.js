@@ -117,7 +117,6 @@ CKEDITOR.dialog.add( 'colordialog', function( editor ) {
 	}
 
 	function setHighlight( color ) {
-		console.log(color);
 		if ( color ) {
 			$doc.getById( hicolorId ).setStyle( 'background-color', color );
 			$doc.getById( hicolorTextId ).setHtml( CKEDITOR.tools.htmlSafeByReview(CKEDITOR.tools.htmlEncode(color), 'Encoded.') );
