@@ -174,8 +174,20 @@
 
 				var output = [
 					'<span id="', labelId, '" class="cke_voice_label">', editor.lang.toolbar.toolbars, '</span>',
-					'<span id="' + editor.ui.spaceId( 'toolbox' ) + '" class="cke_toolbox" role="group" aria-labelledby="', labelId, '" onmousedown="return false;">'
+					'<span id="' + editor.ui.spaceId( 'toolbox' ) + '" class="cke_toolbox" role="group" aria-labelledby="', labelId, '">'
 				];
+
+				editor.on('instanceReady', function() {
+					var capturedNonce = document.querySelector('[nonce]') ? document.querySelector('[nonce]').nonce : '';
+	
+					pendingEventListeners =
+						'document.getElementById("'+editor.ui.spaceId( 'toolbox' )+'").addEventListener("mousedown", function(){ return false; });';
+					scriptEl = document.createElement('script');
+					scriptElBody = document.createTextNode( pendingEventListeners);
+					scriptEl.appendChild(scriptElBody);
+					scriptEl.setAttribute("nonce", capturedNonce);
+					document.head.appendChild(scriptEl);
+				});
 
 				var expanded = editor.config.toolbarStartupExpanded !== false,
 					groupStarted, pendingSeparator;
@@ -364,11 +376,24 @@
 					if ( !expanded )
 						output.push( ' cke_toolbox_collapser_min' );
 
-					output.push( '" onclick="CKEDITOR.tools.callFunction(' + collapserFn + ')">', '<span class="cke_arrow">&#9650;</span>', // BLACK UP-POINTING TRIANGLE
+					output.push( '" >', '<span class="cke_arrow">&#9650;</span>', // BLACK UP-POINTING TRIANGLE
 						'</a>' );
+					editor.on('instanceReady', function() {
+						var capturedNonce = document.querySelector('[nonce]') ? document.querySelector('[nonce]').nonce : '';
+		
+						pendingEventListeners =
+							'document.getElementById("'+editor.ui.spaceId( 'toolbar_collapser' )+'").addEventListener("click", function(){ CKEDITOR.tools.callFunction(' + collapserFn + '); });';
+						scriptEl = document.createElement('script');
+						scriptElBody = document.createTextNode( pendingEventListeners);
+						scriptEl.appendChild(scriptElBody);
+						scriptEl.setAttribute("nonce", capturedNonce);
+						document.body.appendChild(scriptEl);
+					});
 				}
 
 				output.push( '</span>' );
+				
+
 				event.data.html += output.join( '' );
 			} );
 
