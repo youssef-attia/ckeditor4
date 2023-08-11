@@ -66,7 +66,6 @@
 				}
 
 				if ( helpLabel ) {
-					console.log(helpLabel);
 					var labelId = CKEDITOR.tools.getNextId(),
 						desc = CKEDITOR.dom.element.createFromHtml( CKEDITOR.tools.htmlSafeByReview('<span id="' + labelId + '" class="cke_voice_label">' + CKEDITOR.tools.htmlEncode(helpLabel) + '</span>', 'Content created inline using safe internal values. helpLabel is brought in through an event but is set to an editor config label value which is further encoded for security.') );
 
@@ -570,7 +569,19 @@
 							'</script>';
 					}
 
-					data = CKEDITOR.tools.htmlSafeByReview(data.replace( /(?=\s*<\/(:?head)>)/, bootstrapCode ), 'The data variable comes from editor.getData usually which pulls data from the CKEditor instances element which is said to not be editable but potentially unsafe. The data is processed using editor.dataProcessor.toHtml so it should then be safe. the data is modified in a variety of ways, but all of which are safely using config or encoded values.');
+					data = data.replace(/(?=\s*<\/(:?head)>)/, bootstrapCode);
+
+					var capturedNonce = document.querySelector('[nonce]') ? document.querySelector('[nonce]').nonce : '';
+					var scriptTagRegex = /<script\b(.*?)>/g;
+
+					data = CKEDITOR.tools.htmlSafeByReview(data.replace(scriptTagRegex, function (match, attributes) {
+						if (attributes.includes('nonce=')) {
+							return match;
+						} else {
+							return '<script ' + attributes + ' nonce="' + capturedNonce + '">';
+						}
+					}), 'The data variable comes from editor.getData usually which pulls data from the CKEditor instances element which is said to not be editable but potentially unsafe. The data is processed using editor.dataProcessor.toHtml so it should then be safe. the data is modified in a variety of ways, but all of which are safely using config or encoded values.');
+
 
 					// Current DOM will be deconstructed by document.write, cleanup required.
 					this.clearCustomData();
