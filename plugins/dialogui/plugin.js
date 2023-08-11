@@ -1473,7 +1473,9 @@ CKEDITOR.plugins.add( 'dialogui', {
 
 					var inputId = _.frameId + '_input';
 
-					frameDocument.$.write( [
+
+					var capturedNonce = document.querySelector('[nonce]') ? document.querySelector('[nonce]').nonce : '';
+					frameDocument.$.write( CKEDITOR.tools.legacyUnsafeHtml( [
 						'<html dir="' + langDir + '" lang="' + langCode + '"><head><title></title></head><body style="margin: 0; overflow: hidden; background: transparent;">',
 							'<form enctype="multipart/form-data" method="POST" dir="' + langDir + '" lang="' + langCode + '" action="',
 								CKEDITOR.tools.htmlEncode( elementDefinition.action ),
@@ -1490,14 +1492,14 @@ CKEDITOR.plugins.add( 'dialogui', {
 								'" />',
 							'</form>',
 						'</body></html>',
-						'<script>',
+						'<script nonce="' + capturedNonce + '">',
 							// Support for custom document.domain in IE.
 							CKEDITOR.env.ie ? '(' + CKEDITOR.tools.fixDomain + ')();' : '',
 
 							'window.parent.CKEDITOR.tools.callFunction(' + callNumber + ');',
 							'window.onbeforeunload = function() {window.parent.CKEDITOR.tools.callFunction(' + unloadNumber + ')}',
 						'</script>'
-					].join( '' ) );
+					].join( '' ) ));
 
 					frameDocument.$.close();
 
